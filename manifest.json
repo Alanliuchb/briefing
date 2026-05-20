@@ -1,13 +1,5 @@
 {
-  "generated": "2026-05-20 14:03 (台北)",
-  "tech": {
-    "date": "20260520",
-    "html": "20260520_Tech_Industry_Intelligence_Report.html",
-    "pdf": null
-  },
-  "fin": {
-    "date": "20260520",
-    "html": "20260520_Global_Financial_Intelligence_Report.html",
-    "pdf": null
-  }
+  "generated": "2026-05-20 14:20 (台北)",
+  "tech": {"date":"20260520","html":"20260520_Tech_Industry_Intelligence_Report.html","pdf":null},
+  "fin":  {"date":"20260520","html":"20260520_Global_Financial_Intelligence_Report.html","pdf":null}
 }
