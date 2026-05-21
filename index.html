@@ -5,69 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alan's Daily Briefing</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #0f1117;
-    color: #e8eaf0;
-    min-height: 100vh;
-    padding: 24px 16px;
-  }
-  h1 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 6px;
-    color: #fff;
-  }
-  .subtitle {
-    font-size: 0.9rem;
-    color: #6b7280;
-    margin-bottom: 32px;
-  }
-  .section { margin-bottom: 32px; }
-  .section-title {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #6b7280;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #1f2937;
-  }
-  .card {
-    background: #1a1d27;
-    border: 1px solid #2d3142;
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .card:hover { border-color: #4f6ef7; background: #1f2336; }
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 6px;
-  }
-  .badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
-  }
-  .badge-fin  { background: #1a3a5c; color: #60a5fa; }
-  .badge-tech { background: #1a3a2a; color: #34d399; }
-  .card-title { font-size: 1rem; font-weight: 600; color: #fff; }
-  .card-date  { font-size: 0.8rem; color: #6b7280; }
-  .card-desc  { font-size: 0.85rem; color: #9ca3af; line-height: 1.5; }
-  .empty { font-size: 0.9rem; color: #4b5563; font-style: italic; padding: 12px 0; }
-  #last-updated { font-size: 0.75rem; color: #374151; margin-top: 40px; text-align: center; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0f1117;
+  color: #e8eaf0;
+  min-height: 100vh;
+  padding: 24px 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+a { color: inherit; text-decoration: none; }
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+.subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 32px;
+}
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1f2937;
+}
+/* Journal entry card */
+.journal-banner {
+  background: linear-gradient(135deg, #1a1f35 0%, #1a2d20 100%);
+  border: 1px solid #2d3142;
+  border-radius: 14px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: border-color 0.15s, background 0.15s;
+  margin-bottom: 12px;
+}
+.journal-banner:hover { border-color: #4f6ef7; }
+.journal-icon { font-size: 2rem; flex-shrink: 0; }
+.journal-text { flex: 1; }
+.journal-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.journal-sub { font-size: 0.82rem; color: #6b7280; }
+.journal-arrow { font-size: 1.2rem; color: #4b5563; }
+/* Today quick-link */
+.today-btn {
+  background: #1a1d27;
+  border: 1px solid #2d3142;
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  transition: border-color 0.15s;
+  margin-bottom: 10px;
+}
+.today-btn:hover { border-color: #4f6ef7; color: #e8eaf0; }
+.today-date { font-weight: 600; color: #fff; font-size: 0.9rem; }
+/* Report cards */
+.card {
+  background: #1a1d27;
+  border: 1px solid #2d3142;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  display: block;
+  transition: border-color 0.15s, background 0.15s;
+}
+.card:hover { border-color: #4f6ef7; background: #1f2336; }
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+.badge-fin  { background: #1a3a5c; color: #60a5fa; }
+.badge-tech { background: #1a3a2a; color: #34d399; }
+.card-title { font-size: 1rem; font-weight: 600; color: #fff; }
+.card-date  { font-size: 0.8rem; color: #6b7280; }
+.card-desc  { font-size: 0.85rem; color: #9ca3af; line-height: 1.5; }
+.empty { font-size: 0.9rem; color: #4b5563; font-style: italic; padding: 12px 0; }
+#last-updated { font-size: 0.75rem; color: #374151; margin-top: 40px; text-align: center; }
 </style>
 </head>
 <body>
@@ -75,6 +112,26 @@
 <h1>📊 Alan's Daily Briefing</h1>
 <p class="subtitle" id="today-date"></p>
 
+<!-- ── 每日記錄 ── -->
+<div class="section">
+  <div class="section-title">每日記錄</div>
+
+  <a class="journal-banner" href="daily/index.html">
+    <span class="journal-icon">📔</span>
+    <div class="journal-text">
+      <div class="journal-title">每日記錄本</div>
+      <div class="journal-sub">PDF · 連結 · 照片 · 筆記 — 按年月瀏覽</div>
+    </div>
+    <span class="journal-arrow">›</span>
+  </a>
+
+  <a class="today-btn" id="today-link" href="#">
+    <span>今日記錄 →</span>
+    <span class="today-date" id="today-label">載入中...</span>
+  </a>
+</div>
+
+<!-- ── 情報報告 ── -->
 <div id="report-container">
   <p class="empty">載入報告清單中...</p>
 </div>
@@ -84,17 +141,28 @@
 <script>
 function today() {
   const d = new Date();
-  const tz = new Date(d.toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
-  return tz.getFullYear().toString() +
-    String(tz.getMonth()+1).padStart(2,'0') +
-    String(tz.getDate()).padStart(2,'0');
+  const tz = new Date(d.toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
+  return {
+    ymd: tz.getFullYear() + '-' +
+         String(tz.getMonth()+1).padStart(2,'0') + '-' +
+         String(tz.getDate()).padStart(2,'0'),
+    y: tz.getFullYear(),
+    m: String(tz.getMonth()+1).padStart(2,'0'),
+    d8: tz.getFullYear().toString() +
+        String(tz.getMonth()+1).padStart(2,'0') +
+        String(tz.getDate()).padStart(2,'0'),
+    display: tz.getFullYear() + '年' +
+             (tz.getMonth()+1) + '月' +
+             tz.getDate() + '日'
+  };
 }
-function fmtDisplay(s) {
-  if (!s || s.length !== 8) return '';
-  return s.slice(0,4)+'年'+s.slice(4,6)+'月'+s.slice(6,8)+'日';
-}
-document.getElementById('today-date').textContent = '今日：' + fmtDisplay(today());
 
+const t = today();
+document.getElementById('today-date').textContent = '今日：' + t.display;
+document.getElementById('today-label').textContent = t.display;
+document.getElementById('today-link').href = `daily/${t.y}/${t.m}/${t.ymd}.html`;
+
+// ── Load intel reports from manifest ──
 fetch('manifest.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
@@ -104,12 +172,14 @@ fetch('manifest.json?t=' + Date.now())
       { key:'tech', label:'TECH', badgeClass:'badge-tech', title:'科技產業情報', desc:'科技與 AI 產業每日重點情報' },
       { key:'fin',  label:'FIN',  badgeClass:'badge-fin',  title:'全球財經情報', desc:'全球金融市場與經濟動態' }
     ];
+    let hasReport = false;
     reports.forEach(rpt => {
+      const entry = data[rpt.key];
+      if (!entry) return;
+      hasReport = true;
       const sec = document.createElement('div');
       sec.className = 'section';
-      sec.innerHTML = '<div class="section-title">'+rpt.title+'</div>';
-      const entry = data[rpt.key];
-      if (!entry) { sec.innerHTML += '<p class="empty">尚無報告</p>'; c.appendChild(sec); return; }
+      sec.innerHTML = '<div class="section-title">' + rpt.title + '</div>';
       ['html','pdf'].forEach(fmt => {
         if (!entry[fmt]) return;
         const card = document.createElement('a');
@@ -117,21 +187,27 @@ fetch('manifest.json?t=' + Date.now())
         card.href = entry[fmt];
         if (fmt === 'html') card.target = '_blank';
         card.innerHTML =
-          '<div class="card-header"><span class="badge '+rpt.badgeClass+'">'+rpt.label+'</span>'+
-          '<span class="card-title">'+(fmt==='html'?'🌐 網頁版':'📄 PDF 版')+'</span></div>'+
-          '<div class="card-date">'+fmtDisplay(entry.date)+'</div>'+
-          '<div class="card-desc">'+rpt.desc+'（'+fmt.toUpperCase()+'）</div>';
+          '<div class="card-header"><span class="badge ' + rpt.badgeClass + '">' + rpt.label + '</span>' +
+          '<span class="card-title">' + (fmt==='html' ? '🌐 網頁版' : '📄 PDF 版') + '</span></div>' +
+          '<div class="card-date">' + fmtDisplay(entry.date) + '</div>' +
+          '<div class="card-desc">' + rpt.desc + '（' + fmt.toUpperCase() + '）</div>';
         sec.appendChild(card);
       });
       c.appendChild(sec);
     });
+    if (!hasReport) c.innerHTML = '<p class="empty">尚無情報報告</p>';
     if (data.generated)
       document.getElementById('last-updated').textContent = '上次更新：' + data.generated;
   })
   .catch(() => {
     document.getElementById('report-container').innerHTML =
-      '<p class="empty">暫無報告（manifest.json 尚未產生）</p>';
+      '<p class="empty">暫無情報報告</p>';
   });
+
+function fmtDisplay(s) {
+  if (!s || s.length !== 8) return '';
+  return s.slice(0,4) + '年' + s.slice(4,6) + '月' + s.slice(6,8) + '日';
+}
 </script>
 </body>
 </html>
