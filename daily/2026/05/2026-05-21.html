@@ -5,226 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026-05-21 每日彙整</title>
   <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --border: #2e3352;
-      --text: #e8eaf0;
-      --muted: #8b90a7;
-      --accent: #4f6ef7;
-      --accent-light: #7c95ff;
-      --highlight: #ffd166;
-      --green: #06d6a0;
-      --red: #ef476f;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
-      font-size: 16px;
-    }
-    a { color: var(--accent-light); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Header */
-    .site-header {
-      background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .site-header .nav-back {
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .site-header .nav-back:hover { color: var(--accent-light); }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(135deg, #1e2235 0%, #0f1117 60%);
-      padding: 48px 32px 36px;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-date {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .hero-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .hero-sub {
-      color: var(--muted);
-      font-size: 15px;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 24px;
-      margin-top: 20px;
-    }
-    .stat-badge {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .stat-badge span { color: var(--accent-light); font-weight: 600; }
-
-    /* Main layout */
-    .main { max-width: 920px; margin: 0 auto; padding: 40px 24px 80px; }
-
-    /* Section */
-    .section { margin-bottom: 52px; }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .section-icon { font-size: 1.3rem; }
-    .section-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.4px;
-    }
-    .section-count {
-      background: var(--accent);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: 10px;
-    }
-    .section-divider {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: 8px;
-    }
-
-    /* PDF Card */
-    .pdf-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin-bottom: 20px;
-      transition: border-color 0.2s;
-    }
-    .pdf-card:hover { border-color: var(--accent); }
-    .pdf-card-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    .pdf-icon {
-      background: rgba(79,110,247,0.15);
-      border: 1px solid rgba(79,110,247,0.3);
-      border-radius: 8px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .pdf-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.4;
-    }
-    .pdf-source {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-    .pdf-highlight {
-      background: linear-gradient(135deg, rgba(255,209,102,0.1) 0%, rgba(255,209,102,0.05) 100%);
-      border-left: 3px solid var(--highlight);
-      border-radius: 0 8px 8px 0;
-      padding: 12px 16px;
-      margin: 16px 0;
-      font-size: 15px;
-      color: #f0e6b8;
-      font-style: italic;
-    }
-    .pdf-points {
-      list-style: none;
-      padding: 0;
-    }
-    .pdf-points li {
-      padding: 6px 0 6px 22px;
-      position: relative;
-      font-size: 14.5px;
-      color: #c8ccdc;
-      border-bottom: 1px solid rgba(46,51,82,0.5);
-    }
-    .pdf-points li:last-child { border-bottom: none; }
-    .pdf-points li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 12px;
-      top: 8px;
-    }
-    .pdf-footer {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-    }
-    .pdf-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(79,110,247,0.1);
-      border: 1px solid rgba(79,110,247,0.3);
-      border-radius: 6px;
-      padding: 6px 14px;
-      font-size: 13px;
-      color: var(--accent-light);
-      transition: background 0.2s;
-    }
-    .pdf-link:hover {
-      background: rgba(79,110,247,0.2);
-      text-decoration: none;
-    }
-
-    /* Footer */
-    .page-footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 32px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .page-footer a { color: var(--accent-light); }
+    :root { --bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--border:#2e3352;--text:#e8eaf0;--muted:#8b90a7;--accent:#4f6ef7;--accent-light:#7c95ff;--highlight:#ffd166; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;font-size:16px}
+    a{color:var(--accent-light);text-decoration:none}a:hover{text-decoration:underline}
+    .site-header{background:linear-gradient(135deg,#1a1d27 0%,#0f1117 100%);border-bottom:1px solid var(--border);padding:20px 32px;display:flex;align-items:center;justify-content:space-between}
+    .nav-back{color:var(--muted);font-size:14px}.nav-back:hover{color:var(--accent-light)}
+    .hero{background:linear-gradient(135deg,#1e2235 0%,#0f1117 60%);padding:48px 32px 36px;border-bottom:1px solid var(--border)}
+    .hero-date{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:8px}
+    .hero-title{font-size:2.2rem;font-weight:700;color:#fff;margin-bottom:6px}
+    .hero-sub{color:var(--muted);font-size:15px}
+    .hero-stats{display:flex;gap:24px;margin-top:20px}
+    .stat-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 14px;font-size:13px;color:var(--muted)}
+    .stat-badge span{color:var(--accent-light);font-weight:600}
+    .main{max-width:920px;margin:0 auto;padding:40px 24px 80px}
+    .section{margin-bottom:52px}
+    .section-header{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+    .section-icon{font-size:1.3rem}
+    .section-title{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:.4px}
+    .section-count{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+    .section-divider{flex:1;height:1px;background:var(--border);margin-left:8px}
+    .pdf-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 28px;margin-bottom:20px;transition:border-color .2s}
+    .pdf-card:hover{border-color:var(--accent)}
+    .pdf-card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+    .pdf-icon{background:rgba(79,110,247,.15);border:1px solid rgba(79,110,247,.3);border-radius:8px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;margin-top:2px}
+    .pdf-title{font-size:1.05rem;font-weight:600;color:#fff;line-height:1.4}
+    .pdf-source{font-size:12px;color:var(--muted);margin-top:4px}
+    .pdf-highlight{background:linear-gradient(135deg,rgba(255,209,102,.1) 0%,rgba(255,209,102,.05) 100%);border-left:3px solid var(--highlight);border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:15px;color:#f0e6b8;font-style:italic}
+    .pdf-points{list-style:none;padding:0}
+    .pdf-points li{padding:6px 0 6px 22px;position:relative;font-size:14.5px;color:#c8ccdc;border-bottom:1px solid rgba(46,51,82,.5)}
+    .pdf-points li:last-child{border-bottom:none}
+    .pdf-points li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:12px;top:8px}
+    .pdf-footer{margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+    .pdf-link{display:inline-flex;align-items:center;gap:6px;background:rgba(79,110,247,.1);border:1px solid rgba(79,110,247,.3);border-radius:6px;padding:6px 14px;font-size:13px;color:var(--accent-light);transition:background .2s}
+    .pdf-link:hover{background:rgba(79,110,247,.2);text-decoration:none}
+    .page-footer{border-top:1px solid var(--border);padding:24px 32px;text-align:center;color:var(--muted);font-size:13px}
+    .page-footer a{color:var(--accent-light)}
   </style>
 </head>
 <body>
-
 <header class="site-header">
   <a href="../../index.html" class="nav-back">← 回到首頁</a>
   <span style="color:var(--muted);font-size:13px;">Daily Briefing</span>
 </header>
-
 <div class="hero">
   <div class="hero-date">Thursday · May 2026</div>
   <h1 class="hero-title">2026年5月21日 星期四</h1>
@@ -235,10 +58,7 @@
     <div class="stat-badge">🖼️ 圖片 <span>0</span> 張</div>
   </div>
 </div>
-
 <main class="main">
-
-  <!-- PDF Section -->
   <section class="section">
     <div class="section-header">
       <span class="section-icon">📄</span>
@@ -247,7 +67,6 @@
       <div class="section-divider"></div>
     </div>
 
-    <!-- PDF 1 -->
     <div class="pdf-card">
       <div class="pdf-card-header">
         <div class="pdf-icon">📰</div>
@@ -256,24 +75,17 @@
           <div class="pdf-source">CNBC Daily Open · 2026/05/21</div>
         </div>
       </div>
-      <div class="pdf-highlight">
-        輝達（Nvidia）發布亮眼財報，執行長黃仁勳以「五層蛋糕」比喻AI產業生態圈，宣示全面投資供應鏈；亞洲科技股聞訊大漲，SpaceX 等超大型 IPO 蓄勢待發。
-      </div>
+      <div class="pdf-highlight">輝達（Nvidia）發布亮眼財報，執行長黃仁勳以「五層蛋糕」比喻 AI 產業生態圈，宣示全面投資供應鏈；亞洲科技股聞訊大漲，SpaceX 等超大型 IPO 蓄勢待發。</div>
       <ul class="pdf-points">
-        <li>輝達 Q1 ��報數據中心營收近乎翻倍，黃仁勳稱「需求已進入拋物線式增長」；臧他是「代理 AI f��代已來臨」</li>
+        <li>輝達 Q1 財報數據中心營收近乎翻倍，黃仁勳稱「需求已進入拋物線式增長」；理由是「代理 AI 時代已來臨」</li>
         <li>「五層蛋糕」涵蓋能源、晶片、基礎設施、模型及應用程式五大層面，輝達承諾全面支援供應鏈</li>
         <li>輝達已坦承在中國 AI 晶片市場「基本上讓位」給華為，美國出口管制加速北京半導體自給化</li>
         <li>亞洲科技股大漲：SoftBank 飆升 20%，台積電、SK Hynix、Renesas 等供應商齊揚</li>
         <li>SpaceX 將成今年首個超大型 IPO，後續還有 OpenAI 及 Anthropic；英國宣布與海灣國家簽署「歷史性」貿易協議</li>
       </ul>
-      <div class="pdf-footer">
-        <a href="https://drive.google.com/file/d/1Qev2VFj7_A3oyezAlyuwvIcgV6jWt_Yn/view" target="_blank" class="pdf-link">
-          📂 在 Google Drive 開啟
-        </a>
-      </div>
+      <div class="pdf-footer"><a href="https://drive.google.com/file/d/1Qev2VFj7_A3oyezAlyuwvIcgV6jWt_Yn/view" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a></div>
     </div>
 
-    <!-- PDF 2 -->
     <div class="pdf-card">
       <div class="pdf-card-header">
         <div class="pdf-icon">💰</div>
@@ -282,24 +94,17 @@
           <div class="pdf-source">CNBC Personal Finance · 2026/05/20</div>
         </div>
       </div>
-      <div class="pdf-highlight">
-        亞馬遜執行$��席貝佐斯呼籲免除美國收入後 50% 人口的聯邦所得稅，強調貧富稅負失衡且「K 型經濟」正在撕裂美國社會。
-      </div>
+      <div class="pdf-highlight">亞馬遜執行主席貝佐斯呼籲免除美國收入後 50% 人口的聯邦所得稅，強調貧富稅負失衡且「K 型經濟」正在撕裂美國社會。</div>
       <ul class="pdf-points">
-        <li>貝佐斯表示後 50% 納稅人僅繳 3% 聯邦所得稅，他認為應降至零；前 1% 則繳約 40%</li>
-        <li>以護士為例：「我們不應要要求皇后區的護士把錢匯給華盛頓，政府反而應該向她道歉」</li>
-        <li>高收入者利用稅法細節，實際稇率遠低於名目稇率；部分頂端 1% 有效稅率僅 3%</li>
+        <li>貝佐斯指出後 50% 納稅人僅繳 3% 聯邦所得稅，他認為應降至零；前 1% 則繳約 40%</li>
+        <li>以護士為例：「我們不應要求皇后區的護士把錢匯給華盛頓，政府反而應該向她道歉」</li>
+        <li>高收入者利用稅法細節，實際稅率遠低於名目稅率；部分頂端 1% 有效稅率僅 3%</li>
         <li>「K 型經濟」加劇：伊朗戰爭推高油價，低收入者油費占收入比更高，財務壓力更大</li>
         <li>聯邦參議員 Booker 提出《Keep Your Pay Act》，建議前 7.5 萬美元收入免稅</li>
       </ul>
-      <div class="pdf-footer">
-        <a href="https://drive.google.com/file/d/1SRwM3xf7FSv8Hod76tp9GgOWekqY8YDC/view" target="_blank" class="pdf-link">
-          📂 在 Google Drive 開啟
-        </a>
-      </div>
+      <div class="pdf-footer"><a href="https://drive.google.com/file/d/1SRwM3xf7FSv8Hod76tp9GgOWekqY8YDC/view" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a></div>
     </div>
 
-    <!-- PDF 3 -->
     <div class="pdf-card">
       <div class="pdf-card-header">
         <div class="pdf-icon">🛢️</div>
@@ -308,24 +113,17 @@
           <div class="pdf-source">CNBC Energy · 2026/05/20</div>
         </div>
       </div>
-      <div class="pdf-highlight">
-        阿布達比石油公司（ADNOC）宣布第二條繞越荷姆茲海峽管道建設進度達 50%，預計 2027 年通車，以因應伊朗自今年 3 月封鎖海峽所造成的歷史性能源危機。
-      </div>
+      <div class="pdf-highlight">阿布達比石油公司（ADNOC）宣布第二條繞越荷姆茲海峽管道建設進度達 50%，預計 2027 年通車，以因應伊朗自今年 3 月封鎖海峽所造成的歷史性能源危機。</div>
       <ul class="pdf-points">
         <li>伊朗自 3 月封鎖荷姆茲海峽後，已損失逾 10 億桶原油出口，每週仍持續損失近 1 億桶</li>
-        <li>新管道預計 2027 年啟用，將使 ADNOC 透過富查伊拉港的出口能力加倍至每日 3.6 百萬桶</li>
+        <li>新管道預計 2027 年啟用，將使 ADNOC 透過富查伊拉港的出口能力加倍至每日 360 萬桶</li>
         <li>ADNOC 執行長稱此次封鎖為「史上最嚴重的能源供應中斷」，並警告這是危險先例</li>
         <li>即使衝突立即結束，石油流量至少需 4 個月才能恢復至正常的 80%，2027 年才能完全正常化</li>
         <li>美國能源部長 Chris Wright 表示，荷姆茲的戰略地位將在戰後下降，但波斯灣產油國的重要性不會減弱</li>
       </ul>
-      <div class="pdf-footer">
-        <a href="https://drive.google.com/file/d/1e9eVz-UujOgqJU_fn5NDTCUt5cjEjUOb/view" target="_blank" class="pdf-link">
-          📂 在 Google Drive 開啟
-        </a>
-      </div>
+      <div class="pdf-footer"><a href="https://drive.google.com/file/d/1e9eVz-UujOgqJU_fn5NDTCUt5cjEjUOb/view" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a></div>
     </div>
 
-    <!-- PDF 4 -->
     <div class="pdf-card">
       <div class="pdf-card-header">
         <div class="pdf-icon">🔬</div>
@@ -334,24 +132,17 @@
           <div class="pdf-source">CNBC Tech · 2026/05/21</div>
         </div>
       </div>
-      <div class="pdf-highlight">
-        AMD 宣布對台灣e��導體與 AI 生態系統投入逾 100 億美元，加速次世代 AI 晶片封裝與製造技術，支援下半年 Helios AI 伺服器系統的全面部署。
-      </div>
+      <div class="pdf-highlight">AMD 宣布對台灣半導體與 AI 生態系統投入逾 100 億美元，加速次世代 AI 晶片封裝與製造技術，支援下半年 Helios AI 伺服器系統的全面部署。</div>
       <ul class="pdf-points">
-        <li>AMD 將與台灣 ASE、SPIL 合作推進晶片封裝（chiplet 亦連）技術，提升效能與效率</li>
+        <li>AMD 將與台灣 ASE、SPIL 合作推進晶片封裝（chiplet 互連）技術，提升效能與效率</li>
         <li>投資重點在支援 2026 年下半年部署的 AI 伺服器系統「Helios」</li>
         <li>Sanmina、Wiwynn、Wistron、Inventec 等台灣供應商確認參與 Helios 建置</li>
         <li>AMD 股價今年以來已翻倍，持續受益於 AI 基礎設施大規模支出，也在向 Nvidia 追趕</li>
         <li>台灣因台積電居全球晶圓代工核心，成為 AI 晶片製造最重要的據點</li>
       </ul>
-      <div class="pdf-footer">
-        <a href="https://drive.google.com/file/d/1THE1X-HiOJKIH5owTXBX0ZLy876iV-zL/view" target="_blank" class="pdf-link">
-          📂 在 Google Drive 開啟
-        </a>
-      </div>
+      <div class="pdf-footer"><a href="https://drive.google.com/file/d/1THE1X-HiOJKIH5owTXBX0ZLy876iV-zL/view" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a></div>
     </div>
 
-    <!-- PDF 5 -->
     <div class="pdf-card">
       <div class="pdf-card-header">
         <div class="pdf-icon">📈</div>
@@ -360,9 +151,7 @@
           <div class="pdf-source">CNBC Markets · 2026/05/21</div>
         </div>
       </div>
-      <div class="pdf-highlight">
-        美股早盤期貨略跌，市場在消化輝達亮眼財報後分歧；亞太股市全面大漲，SoftBank 飆升近 20%，韓國 KOSPI 大漲 8.42%，SpaceX 遞交 IPO 說明書引爆話題。
-      </div>
+      <div class="pdf-highlight">美股早盤期貨略跌，市場在消化輝達亮眼財報後分歧；亞太股市全面大漲，SoftBank 飆升近 20%，南韓 KOSPI 大漲 8.42%，SpaceX 遞交 IPO 說明書引爆話題。</div>
       <ul class="pdf-points">
         <li>輝達 Q1 營收達 816 億美元（年增 85%），超越預期但股價盤後仍下跌約 1%，反映市場高標準</li>
         <li>Intuit 宣布裁員 17%（約 3,000 人）、營收不如預期，股價大跌 13%；E.l.f. Beauty 財報亮眼，股價漲 4%</li>
@@ -370,20 +159,13 @@
         <li>三星電子超過 4.7 萬名員工罷工危機解除，股價大漲逾 8.5%；SK Hynix 漲 11.2%</li>
         <li>SpaceX 已遞交 IPO 說明書，投資人可透過 BPTRX、ARKVX 等 ETF 提前佈局，後續 OpenAI 及 Anthropic 跟進</li>
       </ul>
-      <div class="pdf-footer">
-        <a href="https://drive.google.com/file/d/1oxWSVXoMpHu3t9hflaFHwoU9hbV-GKsW/view" target="_blank" class="pdf-link">
-          📂 在 Google Drive 開啟
-        </a>
-      </div>
+      <div class="pdf-footer"><a href="https://drive.google.com/file/d/1oxWSVXoMpHu3t9hflaFHwoU9hbV-GKsW/view" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a></div>
     </div>
 
   </section>
-
 </main>
-
 <footer class="page-footer">
   <p>生成時間：2026-05-21 16:50 &nbsp;·&nbsp; <a href="../../index.html">← 回到首頁</a></p>
 </footer>
-
 </body>
 </html>
