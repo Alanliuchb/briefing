@@ -1,563 +1,373 @@
 <!DOCTYPE html>
-<html lang="zh-TW"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2026-05-22 每日彙整</title>
-  <style>
-    :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #22263a;
-      --border: #2e3250;
-      --text: #e8eaf0;
-      --muted: #8b90a8;
-      --accent: #4f6ef7;
-      --accent-light: #7a92ff;
-      --highlight: #ffd166;
-      --green: #06d6a0;
-      --red: #ef476f;
-      --tag-pdf: #4f6ef7;
-      --tag-note: #06d6a0;
-      --tag-url: #ffd166;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, 'Noto Sans TC', 'PingFang TC', BlinkMacSystemFont, sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
-      padding-bottom: 60px;
-    }
-    header {
-      background: linear-gradient(135deg, #1a1d27 0%, #12162a 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 28px 0 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent-light), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: 0.04em;
-    }
-    header .subtitle {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 6px;
-    }
-    header nav {
-      margin-top: 12px;
-    }
-    header nav a {
-      color: var(--accent-light);
-      text-decoration: none;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    header nav a:hover { opacity: 1; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-    .section {
-      margin-top: 36px;
-    }
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--accent-light);
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
-    .section-title .icon { font-size: 1.3rem; }
-    .section-title .count {
-      font-size: 0.75rem;
-      background: var(--surface2);
-      color: var(--muted);
-      padding: 2px 8px;
-      border-radius: 20px;
-      margin-left: auto;
-    }
-
-    /* PDF cards */
-    .pdf-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 18px;
-      transition: border-color 0.2s;
-    }
-    .pdf-card:hover { border-color: var(--accent); }
-    .pdf-card .pdf-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 10px;
-      line-height: 1.4;
-    }
-    .pdf-card .one-liner {
-      background: linear-gradient(90deg, rgba(79,110,247,0.15), transparent);
-      border-left: 3px solid var(--accent);
-      padding: 8px 14px;
-      border-radius: 0 6px 6px 0;
-      color: var(--highlight);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-    .pdf-card .points {
-      list-style: none;
-      margin-bottom: 14px;
-    }
-    .pdf-card .points li {
-      position: relative;
-      padding-left: 18px;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 0.92rem;
-      opacity: 0.9;
-    }
-    .pdf-card .points li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-    .pdf-card .drive-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--accent-light);
-      text-decoration: none;
-      font-size: 0.82rem;
-      border: 1px solid rgba(79,110,247,0.3);
-      padding: 4px 12px;
-      border-radius: 20px;
-      transition: all 0.2s;
-    }
-    .pdf-card .drive-link:hover {
-      background: rgba(79,110,247,0.1);
-      border-color: var(--accent);
-    }
-    .category-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .tag-economy { background: rgba(255,209,102,0.15); color: var(--highlight); }
-    .tag-tech { background: rgba(79,110,247,0.15); color: var(--accent-light); }
-    .tag-health { background: rgba(6,214,160,0.15); color: var(--green); }
-    .tag-space { background: rgba(175,137,255,0.15); color: #af89ff; }
-    .tag-finance { background: rgba(239,71,111,0.15); color: var(--red); }
-    .tag-geopolitics { background: rgba(255,150,70,0.15); color: #ff9646; }
-
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.82rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* Analyze button */
-    .analyze-btn {
-      display: inline-block; margin-top: 8px; padding: 6px 14px;
-      background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
-      color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
-    }
-    .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
-    .copy-toast {
-      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-      background: #4f6ef7; color: white; padding: 10px 20px;
-      border-radius: 8px; font-size: 14px; z-index: 9999;
-      transition: opacity 0.5s; opacity: 1;
-    }
-  
-    .drive-link-btn {
-      display: inline-block; margin-top: 12px; padding: 8px 16px;
-      background: #1e2130; border: 1px solid #4f6ef7; border-radius: 8px;
-      color: #a0aec0; font-size: 13px; text-decoration: none; transition: all 0.2s;
-    }
-    .drive-link-btn:hover { background: #4f6ef720; color: #e8eaf0; }
-  </style>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-05-22 每日彙整</title>
+<style>
+  :root { --bg: #0f1117; --surface: #1a1d2e; --card: #1e2130; --border: #2a2d3e; --text: #e8eaf0; --muted: #a0aec0; --accent: #4f6ef7; --green: #06d6a0; --yellow: #ffd166; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, "PingFang TC", sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+  .page-header { padding: 24px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .page-title { font-size: 1.6rem; font-weight: 700; }
+  .page-subtitle { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .back-link { color: var(--accent); text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 12px; }
+  .stats-bar { display: flex; gap: 16px; margin: 12px 0; font-size: 0.85rem; color: var(--muted); }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+  .section-count { background: var(--surface); border-radius: 12px; padding: 2px 10px; font-size: 0.8rem; color: var(--muted); }
+  .pdf-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .pdf-card-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+  .pdf-category { background: var(--accent); color: white; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+  .pdf-title { font-size: 1rem; font-weight: 600; line-height: 1.4; }
+  .pdf-summary { color: var(--yellow); font-style: italic; margin: 10px 0; line-height: 1.6; font-size: 0.95rem; border-left: 3px solid var(--yellow); padding-left: 12px; }
+  .pdf-points { list-style: none; margin: 10px 0; }
+  .pdf-points li { padding: 5px 0; padding-left: 16px; position: relative; color: var(--muted); line-height: 1.6; font-size: 0.9rem; }
+  .pdf-points li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+  .pdf-links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .drive-link { display: inline-block; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+  .drive-link:hover { border-color: var(--accent); color: var(--text); }
+  .analyze-btn { display: inline-block; padding: 7px 14px; background: transparent; border: 1px solid var(--accent); border-radius: 8px; color: var(--muted); font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+  .analyze-btn:hover { background: rgba(79,110,247,0.15); color: var(--text); }
+  .note-card { background: var(--card); border: 1px solid var(--green); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .note-category { background: var(--green); color: #0f1117; border-radius: 6px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-bottom: 10px; }
+  .note-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+  .note-body h3 { color: var(--accent); font-size: 0.95rem; margin: 14px 0 6px; }
+  .note-body p { color: var(--muted); line-height: 1.7; font-size: 0.9rem; margin-bottom: 8px; }
+  .note-body ul { list-style: none; padding: 0; }
+  .note-body ul li { padding: 4px 0 4px 16px; position: relative; color: var(--muted); line-height: 1.6; font-size: 0.9rem; }
+  .note-body ul li::before { content: "▸"; position: absolute; left: 0; color: var(--green); }
+  .drive-link-btn { display: inline-block; margin-top: 12px; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+  .drive-link-btn:hover { border-color: var(--accent); color: var(--text); }
+  .footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 24px 0 8px; border-top: 1px solid var(--border); margin-top: 24px; }
+  .copy-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; z-index: 9999; transition: opacity 0.5s; opacity: 1; }
+</style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>📰 2026年5月22日 · 星期五</h1>
-      <div class="subtitle">每日閱讀彙整 — 14 篇文章</div>
-      <nav><a href="../../index.html">← 返回首頁</a></nav>
-    </div>
-  </header>
 
-  <div class="container">
+<a href="../../index.html" class="back-link">← 返回首頁</a>
 
-    <!-- 筆記區塊 -->
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">🗒️</span> 筆記
-        <span class="count">2 則</span>
-      </div>
-
-      <div class="pdf-card">
-        <span class="category-tag" style="background: rgba(6,214,160,0.15); color: var(--green); border: 1px solid rgba(6,214,160,0.3);">分析 / AI 操縱</span>
-        <div class="pdf-title">BBC 文章深度分析：Google AI 被操縱事件</div>
-
-        <div class="one-liner" style="border-left-color: var(--green);">
-          AI 工具被惡意 SEO 操縱的機制、危害與反制現狀；批判性思考仍是用戶最重要的自我保護工具。
-        </div>
-
-        <div style="margin-top: 18px;">
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">核心問題：什麼是「AI 投毒」？</div>
-          <p style="color: var(--muted); margin-bottom: 10px;">當 AI 工具（如 ChatGPT、Claude、Google AI）在回答問題時，有時會直接搜尋網路找答案，而非僅依賴訓練資料。這個環節正是漏洞所在。</p>
-          <p style="color: var(--muted); margin-bottom: 16px;">根據 SEO 專家的觀察，AI 工具經常只從單一網頁或社群媒體貼文抓取資訊，使系統極易受到假訊息影響。操縱 AI 回答，可以簡單到只需在網路上發布一篇精心撰寫的部落格文章。</p>
-
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">記者的實驗：20 分鐘製造假冠軍</div>
-          <p style="color: var(--muted); margin-bottom: 10px;">記者 Thomas Germain 在自己的個人網站上發布了一篇關於自己熱狗大胃王實力的文章，隔天 ChatGPT 和 Google 就開始向大眾散播這個謊言。</p>
-          <p style="color: var(--muted); margin-bottom: 16px;">這個看似荒謬的實驗，背後揭示的是一個嚴肅問題：同樣的技巧被用來否定醫療補充品的健康疑慮，或操縱 Google AI 提供的退休財務建議。專家認為這種操縱行為正在大規模且系統性地發生。</p>
-
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">危害有多嚴重？</div>
-          <ul class="points" style="margin-bottom: 16px;">
-            <li><strong style="color: var(--text);">規模面：</strong>全球超過十億人定期使用 AI 聊天機器人，每月有 25 億人看到 Google 的 AI 摘要。</li>
-            <li><strong style="color: var(--text);">實質危害：</strong>偏頗或不準確的資訊會讓你做出錯誤決策，可能影響投票傾向或選擇哪位水電工。</li>
-            <li><strong style="color: var(--text);">最壞情況：</strong>SEO 顧問 Harpreet Chatha 指出，輕則造成經濟損失，重則可能讓你遵循錯誤的醫療建議，或因誤解法律資訊做出違法行為。</li>
-          </ul>
-
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">AI 時代的獨特風險：「唯一答案」陷阱</div>
-          <p style="color: var(--muted); margin-bottom: 16px;">SEO 顧問 Lily Ray 指出，我們正走向「唯一真實答案」的世界。過去 Google 給你 10 個連結讓你自行研究，但現在 AI 直接給你一個答案，讓人極容易照單全收，不加懷疑。</p>
-
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">Google 的回應與反制措施</div>
-          <p style="color: var(--muted); margin-bottom: 10px;">Google 聲稱政策更新只是「釐清說明」，強調反垃圾政策早已適用於生成式 AI 功能。具體反制手段包括：</p>
-          <ul class="points" style="margin-bottom: 16px;">
-            <li>若 AI 懷疑某公司自我宣傳可能將其移除</li>
-            <li>在回答中加入信心不足標籤</li>
-            <li>ChatGPT 和 Claude 已在某些查詢中告知用戶正在過濾垃圾內容</li>
-          </ul>
-
-          <div style="font-weight: 700; color: var(--accent-light); margin-bottom: 8px;">為何難以根除？</div>
-          <p style="color: var(--muted); margin-bottom: 16px;">Chatha 將 Google 做法比喻為「打地鼠」。當 Google 打壓操縱性部落格文章時，企業已轉向付錢給 YouTube 網紅推薦產品，而 Google AI 正在引用 YouTube 影片。循環持續。</p>
-
-          <div style="background: var(--surface2); border-radius: 8px; padding: 14px 18px; border-left: 3px solid var(--green);">
-            <strong style="color: var(--green);">結論：</strong>
-            <span style="color: var(--muted);">在有更好的防護系統建立之前，用戶應假設自己正在被操縱。批判性閱讀和交叉驗證，仍是最重要的自我保護工具。</span>
-          </div>
-        </div>
-      </div><div class="pdf-card">
-  <span class="category-tag tag-finance">金融 / 預測市場</span>
-  <div class="pdf-title">'Monitoring the Situation': Why Young Men Are Drawn to Prediction Markets — 預測市場的男性磁力：數位時代的金融身份認同危機</div>
-  <div class="one-liner">預測市場以期貨交易之名規避賭博監管，利用年輕男性的財富焦慮與風險偏好，構建出一個資訊嚴重不對等的生態系統；散戶「監控情況」的代價，往往由最不了解全局的一方承擔。</div>
-  <div>
-    <div>核心論點</div>
-    <p>這篇 BBC 深度報導揭示，預測市場的急速崛起，折射的不只是一種新型金融工具的誕生，更是一代年輕男性在現實財富焦慮與自我認同掙扎下的集體出口。Polymarket 與 Kalshi 兩大平台，以「商品期貨交易」而非「賭博」的法律定性，規避了美國各州的賭博限制，得以在全 50 州合法運作。它們仿照彭博終端機的介面設計，刻意塑造「智識投資」而非「下注」的品牌形象，卻在結構上複製了賭場的資訊不對等邏輯。</p>
-
-    <div>關鍵發現</div>
-    <ul class="points">
-      <li><strong>用戶高度男性化：</strong>71% 的預測市場用戶為男性（Morning Consult）；美國 18–24 歲男性中有 27% 在過去六個月使用過預測市場或賭博應用程式，遠高於一般大眾的 14%（AIBM / Ipsos）。</li>
-      <li><strong>市場規模龐大：</strong>Kalshi 最新估值達 220 億美元，Polymarket 估值為 90 億美元，兩大平台已成為數十億美元量級的產業。</li>
-      <li><strong>散戶普遍虧損：</strong>Bloomberg 分析指出，2025 年初至四月間，Polymarket 上下注逾千美元的帳戶中，虧損者幾乎是盈利者的兩倍。</li>
-      <li><strong>利潤極度集中：</strong>《華爾街日報》分析發現，67% 的利潤流向 0.1% 的帳戶；約 50 億美元流向不足 2,000 個帳戶——這些帳戶多為配備即時數據源、伺服器與 AI 機器人的機構操盤手。</li>
-      <li><strong>內線交易醜聞：</strong>美軍特種部隊士兵 Gannon Ken Van Dyke 涉嫌在委內瑞拉馬杜羅被捕消息公開前，在 Polymarket 押注贏得 40.9 萬美元，目前已不認罪抗辯；伊朗戰爭開戰前夕亦有用戶重金押注開戰時間並獲利，引發參議員公開質疑。</li>
-      <li><strong>女性用戶成長：</strong>Kalshi 平台女性用戶比例已從 13% 增至 26%，顯示平台積極多元化用戶結構。</li>
-    </ul>
-
-    <div>深度解析</div>
-    <p>「監控情況」（Monitoring the situation）這個從 Jeff Bezos 肌肉照衍生而來的迷因，精準捕捉了當代年輕男性對預測市場的心態——不只是賭博，而是一種「站在資訊高地俯瞰全局」的男性氣質展演。布爾茅斯大學 Elvira Bolat 教授指出，預測市場恰好坐落在多個男性主導的線上文化的交匯點：體育博彩、加密貨幣投機、「金融兄弟」文化、網紅粉絲圈與競技性預測社群。</p>
-    <p>從神經科學角度，Jonathan Cohen 指出年輕男性前額葉皮質尚未發育完全，天生具備更高的風險偏好。而「經濟虛無主義」則是另一關鍵驅動力：面對感覺上縮水的薪資與遙遠的長線投資回報，年輕男性傾向認為「把錢放進標普 500，二十年後才能致富，不如現在在預測市場一搏」。這種思維讓平台的即時性與高波動性成為吸引力，而非警訊。</p>
-    <p>平台的設計語言強化了這種錯覺。仿照彭博終端機的首頁介面、與部分投資 App 的整合，讓用戶感覺自己是在「交易」，而非「賭博」。Bolat 批評，平台與網紅的行銷話術刻意迴避風險揭露，更以「情報市場」、「預測智慧」等敘事框架替代賭博語言，系統性地正常化了投機行為。</p>
-
-    <div>對投資人的啟示</div>
-    <p>預測市場的資訊聚合功能具有真實的分析價值：由於用戶以真金白銀支持自己的觀點，其市場定價理論上比傳統民調更可信，適合作為地緣政治事件、選舉結果等難以量化事件的即時情緒指標。Kalshi 220 億、Polymarket 90 億的估值成長，也代表平台本身的投資機會。然而，多起內線交易案例與兩黨立法討論，顯示監管風險正在上升——尤其是 Polymarket 目前仍在法律灰色地帶運作。對機構而言，預測市場或許是強大的情報工具；對散戶而言，入場前必須清醒認識到，對手很可能是掌握即時數據的量化對沖基金。</p>
-
-    <div>總結</div>
-    <p>預測市場的崛起，是金融創新與監管空白、男性身份焦慮與數位賭博文化三組力量的共振產物。對投資人而言，真正的機會不僅在於平台估值的成長，更在於善用這些市場作為即時情緒指標的資訊價值。然而，當個人散戶與掌握內線資訊的機構、政界人士同場競技時，「監控情況」的代價，往往由最不了解全局的一方默默承擔。</p>
-  <a href="https://drive.google.com/file/d/1rhUKr7MadMJYkq7y-Spho5QypScWRIi3/view" target="_blank" class="drive-link-btn">=� ( Google Drive �_</a>
+<div class="page-header">
+  <div class="page-title">📰 2026年5月22日 · 星期五</div>
+  <div class="page-subtitle">每日閱讀彙整 — 14 篇文章</div>
+  <div class="stats-bar">
+    <span>📄 PDF <strong>12</strong> 篇</span>
+    <span>🗒️ 筆記 <strong>2</strong> 則</span>
   </div>
 </div>
+
+<div class="section">
+  <div class="section-title">🗒️ 筆記 <span class="section-count">2 則</span></div>
+
+  <div class="note-card">
+    <div class="note-category">筆記 / AI 操縱</div>
+    <div class="note-title">BBC 文章深度分析：Google AI 被操縱事件</div>
+    <div class="note-body">
+      <p>AI 工具被惡意 SEO 操縱的機制、擴散規模與防禦困境，暴露出「唯一答案」設計模式的系統性風險。用戶在有更好的防護系統建立之前，仍應假設自己正在被操縱，批判性閱讀和交叉驗證是最重要的自我保護工具。</p>
+      <h3>核心問題：什麼是「AI 投毒」？</h3>
+      <p>當 AI 工具（如 ChatGPT、Claude、Google AI）在回答問題時，有時會直接搜尋網路找答案，而非僅依賴訓練資料。這個環節正是漏洞所在。根據 SEO 專家的觀察，AI 工具經常只從單一網頁或社群媒體貼文抓取資訊，使系統極易受到假訊息影響。</p>
+      <h3>記者的實驗：20 分鐘製造假冠軍</h3>
+      <p>記者 Thomas Germain 在自己的個人網站上發布了一篇關於自己熱狗大胃王實力的文章，隔天 ChatGPT 和 Google 就開始向大眾散播這個謊言。這個看似荒謬的實驗，背後揭示的是同樣的技巧被用來否定醫療補充品的健康疑慮，或操縱 Google AI 提供的退休財務建議。</p>
+      <h3>危害有多嚴重？</h3>
+      <ul>
+        <li>規模面：全球超過十億人定期使用 AI 聊天機器人，每月有 25 億人看到 Google 的 AI 摘要。</li>
+        <li>實質危害：偏頗或不準確的資訊會讓你做出錯誤決策，可能影響投票傾向或選擇哪位水電工。</li>
+        <li>最壞情況：SEO 顧問 Harpreet Chatha 指出，輕則造成經濟損失，重則可能讓你遵循錯誤的醫療建議。</li>
+      </ul>
+      <h3>AI 時代的獨特風險：「唯一答案」陷阱</h3>
+      <p>SEO 顧問 Lily Ray 指出，我們正走向「唯一真實答案」的世界。過去 Google 給你 10 個連結讓你自行研究，但現在 AI 直接給你一個答案，讓人極容易照單全收，不加懷疑。</p>
+      <h3>為何難以根除？</h3>
+      <p>Chatha 將 Google 的做法比喻為「打地鼠」——當 Google 打壓操縱性部落格文章時，企業已轉向付錢給 YouTube 網紅推薦產品，而現在 Google 的 AI 正在引用 YouTube 影片。循環持續。</p>
+      <h3>總結</h3>
+      <p>在有更好的防護系統建立之前，你應該假設自己正在被操縱。批判性閱讀和交叉驗證，仍是每個用戶最重要的自我保護工具。</p>
     </div>
+  </div>
 
-    <!-- PDF 摘要區塊 -->
-    <div class="section">
-      <div class="section-title">
-        <span class="icon">📄</span> PDF 摘要
-        <span class="count">14 篇</span>
-      </div>
-
-      <!-- 1 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-finance">金融 / 伊朗戰爭</span>
-        <div class="pdf-title">$50 Trillion Safe-Haven Debt Market Upended by Iran War Inflation</div>
-        <div class="one-liner">伊朗戰爭引發連鎖通膨衝擊，全球50兆美元主權債券市場面臨二十年來最高殖利率，投資人開始懷疑通膨已結構性升高。</div>
-        <ul class="points">
-          <li>波斯灣能源遭封鎖，油價飆漲再度點燃全球通膨；美、歐、亞債市長端殖利率創2008年後新高。</li>
-          <li>市場普遍預期下任聯準會主席 Kevin Warsh 首次升息，而非降息，徹底翻轉原本寬鬆預期。</li>
-          <li>澳洲央行今年已三度升息，其助理總督指出多波通膨衝擊「接踵而至」，警告通膨預期失錨風險。</li>
-          <li>各國政府推出燃油補貼加劇財政壓力，G7財長雖承諾財政克制，但長期赤字困境難解。</li>
-          <li>AI科技榮景提供中長期通膨緩解希望，惟短期算力建設本身反加劇晶片等需求端通膨。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1q8FwCb96ZhVOGfuFrUYf-WQyGuUnh0pt/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', '$50 Trillion Safe-Haven Debt Market Upended by Iran War Inflation')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 2 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-economy">總經 / 伊朗戰爭</span>
-        <div class="pdf-title">How much damage has the Iran war done to the US economy?</div>
-        <div class="one-liner">伊朗戰爭將美國通膨推升至3.8%三年高點，薪資成長首次被通膨吞噬，但整體GDP與就業市場仍維持韌性。</div>
-        <ul class="points">
-          <li>2026年第一季GDP年化成長2.0%，4月新增就業11.5萬人，失業率維持4.3%，表面數據尚穩。</li>
-          <li>4月CPI年增3.8%達三年高，食品漲3.2%、機票漲20.7%；工資實質購買力時隔三年再度負成長。</li>
-          <li>消費者信心指數跌至歷史新低，低收入族群尤其承受油價上漲衝擊，儲蓄或被迫動支。</li>
-          <li>10年期美債殖利率攀升至近一年高點，恐進一步推高房貸利率，加劇住宅市場凍結。</li>
-          <li>霍爾木茲海峽仍無跡象重開，分析師警告經濟痛點可能進一步深化。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1djA8YqbPoMFz-iQipw-yKiEZ_S9QE_An/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'How much damage has the Iran war done to the US economy?')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 3 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-economy">亞洲經濟 / K型分化</span>
-        <div class="pdf-title">Tech boom vs oil crisis: Asia's new economic reality is a warning for the world</div>
-        <div class="one-liner">亞洲浮現「K型雙軌經濟」：台灣、南韓等科技重鎮因AI晶片熱潮股市創高，但依賴進口能源的傳統產業國面臨人道危機。</div>
-        <ul class="points">
-          <li>台灣第一季GDP創39年高達13.69%；南韓三星、SK Hynix 記憶體獲利破紀錄，首爾股市超越倫敦。</li>
-          <li>伊朗戰爭使亞太880萬人面臨貧窮風險，菲律賓、泰國、印度等能源進口國衝擊更重。</li>
-          <li>台灣半導體業佔GDP成長主力，但僅佔勞動力4%，財富分配極度集中，「K型」社會風險上升。</li>
-          <li>各國央行陷入兩難：是否為8%科技成長升息，還是兼顧其餘80%停滯的傳統經濟？</li>
-          <li>過度依賴單一產業恐使亞洲科技重鎮在AI榮景逆轉時面臨劇烈衝擊，外溢效應已向美國蔓延。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1NwGkSypO8uMe9FjKRw_BFuIWS8koXzhd/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Tech boom vs oil crisis: Asia\'s new economic reality is a warning for the world')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 4 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-finance">市場 / 亞太</span>
-        <div class="pdf-title">Asia-Pacific Markets Set to Open Higher as Investors Assess U.S.-Iran Peace Deal Diplomacy</div>
-        <div class="one-liner">美伊和談外交訊號帶動亞太股市準備開高，但伊朗堅持保留濃縮鈾儲備使談判前景充滿變數。</div>
-        <ul class="points">
-          <li>日經225期貨報62,225，較前一收盤61,684.14上漲；恆生指數期貨25,568，高於收盤25,386.52。</li>
-          <li>澳洲ASX 200期貨8,681，高於前收8,621.7；三大市場均準備開盤走高。</li>
-          <li>伊朗態度仍強硬，表示將在境內保留濃縮鈾，與川普要求拆除核武計畫的立場針鋒相對。</li>
-          <li>油價受和談消息刺激下跌，但談判最終走向仍是能源市場最大變數。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1ybZrXhySEx52ozup07gZhDD2YQfWQD9K/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Asia-Pacific Markets Set to Open Higher as Investors Assess U.S.-Iran Peace Deal Diplomacy')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 5 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-economy">總經 / 日本</span>
-        <div class="pdf-title">Japan Inflation Softens to Over Four-Year Low, Weakening Case for BOJ Rate Hike</div>
-        <div class="one-liner">日本4月核心CPI僅1.4%，創四年多新低，弱化日銀短期升息依據，但經濟韌性與強勁出口仍保留未來升息空間。</div>
-        <ul class="points">
-          <li>核心CPI（剔除鮮食）年增1.4%，遠低於市場預期1.7%；整體CPI連續四個月低於2%目標。</li>
-          <li>能源價格年跌3.9%，伊朗戰爭導致原油成本上升的效應尚未全面反映。</li>
-          <li>日銀已於四月大幅上調通膨展望至2.8%，並指出伊朗衝突帶來的能源成本轉嫁壓力。</li>
-          <li>日幣持續疲軟，政府五月初疑似動用10兆日圓干預匯市，進口成本壓力尚未消散。</li>
-          <li>第一季GDP年化成長2.1%、出口亮眼，為日銀遲早升息提供基本面支撐。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1DpNV5zVY72AMloTFaAWIeKjsaywiLD3a/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Japan Inflation Softens to Over Four-Year Low, Weakening Case for BOJ Rate Hike')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 6 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-tech">科技 / AI</span>
-        <div class="pdf-title">White House Postpones Executive Order on AI</div>
-        <div class="one-liner">川普再度延後AI行政命令簽署，稱草案「礙事」，AI大廠模型預先審查框架懸而未決。</div>
-        <ul class="points">
-          <li>預定週四下午簽署的AI行政令再次延期，此前已多次推遲；川普稱不喜歡草案中某些內容。</li>
-          <li>草案核心為自願性框架：AI大廠須提前提供模型供政府審查，討論中方案有90天和14天兩個版本。</li>
-          <li>川普以「美國在AI上領先中國」為由，擔心命令成為發展阻礙。</li>
-          <li>OpenAI、Anthropic等公司均已與白宮就該命令展開磋商；Anthropic的Mythos模型引發網路安全顧慮是背景誘因。</li>
-          <li>商務部NIST先前宣布的AI模型共享計畫已從官方網站下架，監管走向仍不明朗。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1dBC9Do7sPaIxrZ4FZDv5qX3KSEFeT1Je/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'White House Postpones Executive Order on AI')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 7 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-tech">科技 / AI操縱</span>
-        <div class="pdf-title">Google's AI is Being Manipulated. The Search Giant is Quietly Fighting Back</div>
-        <div class="one-liner">BBC調查揭露AI搜尋回覆遭不實網站大規模操縱，Google已更新反垃圾政策，但攻防戰仍在持續。</div>
-        <ul class="points">
-          <li>記者在20分鐘內透過一篇部落格讓ChatGPT與Google宣稱他是「世界熱狗冠軍」，手法簡單但影響深遠。</li>
-          <li>有業者大規模利用此漏洞操控AI回覆，甚至散布健康、財務方面的錯誤資訊，影響逾25億月活躍用戶。</li>
-          <li>Google上週更新垃圾郵件政策，正式將操縱AI回覆納入違規行為，可能導致網站被降排或移除。</li>
-          <li>SEO專家觀察到Google與ChatGPT悄悄調整算法，疑似在偵測到自我宣傳時移除相關來源名稱。</li>
-          <li>批評者認為此舉形同打地鼠，操縱者已轉向付費網紅影片等更隱蔽手法，AI可信度問題未根本解決。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1nYy9n7zeQWzV0W1Lg5mo6-5cMGkzz_pn/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Google\'s AI is Being Manipulated. The Search Giant is Quietly Fighting Back')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 8 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-tech">科技 / 三星</span>
-        <div class="pdf-title">AI Turned Samsung into a $1 Trillion Company. Its Workers Want a Bigger Slice of the Pie</div>
-        <div class="one-liner">AI記憶體需求讓三星市值突破兆美元，但4.8萬名員工以罷工迫使管理層達成提高獎金的初步協議。</div>
-        <ul class="points">
-          <li>三星第一季營業利益年增8.5倍，超趌2025全年；記憶體晶片短缺預計延續至2028年。</li>
-          <li>三星最大工會要求取消獎金上限、將10.5%年度利潤分配為員工紅利，與SK Hynix待遇看齊。</li>
-          <li>雙方於罷工前達成初步協議：取消現有獎金上限，半導體部門按10.5%營業利潤分紅。</li>
-          <li>SK Hynix部分員工2025年獎金達底薪3000%，平均每人超過46.5萬美元，成為三星工會訴求的參照點。</li>
-          <li>AI記憶體市場SK Hynix佔57%、三星22%、美光21%；任何生產中斷都將加劇晶片供應緊張。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1xePoNUblFW3h4hob6t7VD3yHCo1Cayz1/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'AI Turned Samsung into a $1 Trillion Company. Its Workers Want a Bigger Slice of the Pie')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 9 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-space">太空 / SpaceX IPO</span>
-        <div class="pdf-title">SpaceX 上市文件最大亮點：馬斯克握 85% 投票權、火星殖民成領股條件</div>
-        <div class="one-liner">SpaceX提交S-1上市文件，馬斯克掌控85%投票權，火星百萬居民殖民地成為解鎖10億股獎勵的條件，xAI資本支出已超越火箭部門。</div>
-        <ul class="points">
-          <li>馬斯克持有55.69億股，掌握85.1%投票權；IPO完成後仍對公司重大決策擁有壓倒性主導地位。</li>
-          <li>獎勵條件：市值達7.5兆美元＋火星建立百萬人永久殖民地，可解鎖最高約5,830億美元的股票獎勵。</li>
-          <li>Anthropic每月支付12.5億美元使用SpaceX Colossus超算資源，合約延續至2029年5月，總額達150億美元。</li>
-          <li>AI部門（xAI）2025年資本支出達127.27億美元，遠超火箭部門的38.32億美元。</li>
-          <li>Starlink連通業務2025年營收114億美元、營業利潤44億美元，是公司唯一盈利來源，佔總營收61%。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1scD23kewTXVKtZ1p284GSix62qMojA2b/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX 上市文件最大亮點：馬斯克握 85% 投票權、火星殖民成領股條件')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 10 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-space">太空 / SpaceX</span>
-        <div class="pdf-title">SpaceX Scrubs Test Flight of Massive Starship Rocket, Will Retry Friday</div>
-        <div class="one-liner">SpaceX第12次Starship試飛因故取消，將於週五重試，星艦V3搭載18百萬磅推力新引擎，是IPO前最後一次秀肌肉機會。</div>
-        <ul class="points">
-          <li>Starship V3全高408英尺（約124公尺），採用全新引擎，具備18百萬磅推力，設計目標為完全可重複使用。</li>
-          <li>試飛搭載模擬Starlink衛星，為IPO前最後一次重大技術展示機會，SpaceX計劃在納斯達克上市。</li>
-          <li>SpaceX太空部門2025年營收41億美元但虧損6.57億美元；Starlink為唯一獲利引擎。</li>
-          <li>NASA Artemis IV登月任務預計2028年採用Starship作為登月艙，屆時將是美國太空人半世紀後重返月球。</li>
-          <li>SpaceX於Starship計畫已累計投入逾150億美元，星艦被視為擴大Starlink衛星發射能力的關鍵。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/10L4ixHddLKlHETx2jVJa6tuMPoVNP6eR/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX Scrubs Test Flight of Massive Starship Rocket, Will Retry Friday')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 11 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-tech">科技 / 機器人</span>
-        <div class="pdf-title">Job Training for Robots: How China is Getting Machines Ready to Join the Workforce</div>
-        <div class="one-liner">中國打造「人形機器人學校」，透過動作捕捉與AI訓練機器人上工，目標是2030年主導全球機器人市場與供應鏈。</div>
-        <ul class="points">
-          <li>北京人形機器人資料訓練中心由市政府支持，訓練機器人執行工廠分揀、家政、按摩、收銀等工作場景。</li>
-          <li>「機器人教師」以動作捕捉引導AI機器人學習，一個動作重複數千次直到機器人能獨立執行。</li>
-          <li>人形機器人被中共納入2030年國家產業政策核心，與電動車、AI並列為重點扶持領域。</li>
-          <li>馬斯克承認「中國是人形機器人最大競爭者，在規模化製造方面令人難以置信地出色」。</li>
-          <li>目前機器人在餐廳、便利商店、交警崗位等場景試運行，業者稱將優先承擔危險或重複性工作。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1NIJCHWZQnUyy4svlCGU4HzGL627PkPbT/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Job Training for Robots: How China is Getting Machines Ready to Join the Workforce')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 12 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-health">醫療 / 減重藥</span>
-        <div class="pdf-title">Eli Lilly Says Next-Generation Weight Loss Drug Clears Crucial Obesity Trial</div>
-        <div class="one-liner">禮來新一代減重藥retatrutide三期臨床大成功，最高劑量80週平均減重28.3%，約45%患者達到30%以上減重，接近減重手術效果。</div>
-        <ul class="points">
-          <li>Retatrutide為「三重G」藥物，同時作用GLP-1、GIP、胰高糖素三條路徑，效果優於現有Zepbound（約20-22%）。</li>
-          <li>最高劑量組104週平均減重達30.3%；65%患者BMI降至30以下（肥胖門檻），效果媲美減重手術。</li>
-          <li>較低劑量（4mg）同樣有效（減重19%），停藥率甚至低於安慰劑組（4% vs 5%），耐受性佳。</li>
-          <li>禮來已佔美國肥胖與糖尿病藥市60.1%；TD Cowen預測Retatrutide 2030年銷售額將達38億美元。</li>
-          <li>諾和諾德正以20億美元取得中國同類三重激素藥物授權，試圖追趕禮來，但仍處早期臨床階段。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1APfNO8vTkvOJ8F7VpatmGM2nNpnGAO_O/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Eli Lilly Says Next-Generation Weight Loss Drug Clears Crucial Obesity Trial')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 13 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-health">醫療 / 材料科學</span>
-        <div class="pdf-title">Bone is a Wonder Material. Scientists are Defying Physics to Mimic it for Longer-Lasting Hip Replacements</div>
-        <div class="one-liner">科學家借助AI設計出「仿骨超材料」，成功突破拉伸後既增厚又高剛性的物理矛盾，為人工髖關節帶來革命性突破。</div>
-        <ul class="points">
-          <li>荷蘭萊頓大學醫學中心團隊利用AI搜索「拉伸後變厚（auxetic）且高剛性」的超材料，解決傳統材料物理矛盾。</li>
-          <li>TU Delft研究人員開發「spinodoid」超材料，其微觀結構模擬人體海綿骨，剛性、孔隙率與承載特性高度仿真。</li>
-          <li>AI驅動材料設計可將探索時間從數年縮短至分鐘，一旦訓練完成即可快速生成可行設計方案。</li>
-          <li>新型軟骨植入材料可讓骨細胞在孔隙中生長融合，有望解決金屬植入物因「應力遮蔽效應」導致骨質流失的老問題。</li>
-          <li>未來更可能實現「可程式化形狀記憶植入物」，從小切口放入後在體內自動展開填充缺損。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/14hCpe--gfZUtGFBgXBJUZogwuv_01oFg/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Bone is a Wonder Material. Scientists are Defying Physics to Mimic it for Longer-Lasting Hip Replacements')">🔍 申請深度分析</button>
-      </div>
-
-      <!-- 14 -->
-      <div class="pdf-card">
-        <span class="category-tag tag-finance">金融 / 預測市場</span>
-        <div class="pdf-title">'Monitoring the Situation': Why Young Men Are Drawn to Prediction Markets</div>
-        <div class="one-liner">預測市場市值暴增至數百億美元，71%用戶為男性，但散戶普遍虧損，0.1%帳戶拿走67%獲利，內線交易疑雲浮現。</div>
-        <ul class="points">
-          <li>Kalshi估值220億美元、Polymarket 90億美元，26%美國年輕男性（18-24歲）使用過預測市場或賭博APP。</li>
-          <li>平台在美國被歸類為「商品期貨交易」而非賭博，可合法在全50州運營，不受賭博法規限制。</li>
-          <li>2025年迄今，Polymarket逾1,000美元投注帳戶中，虧損者是獲利者的近兩倍；0.1%頂端帳戶拿走67%獲利。</li>
-          <li>伊朗戰爭期間多名Polymarket用戶在開戰前大注押注並獲利，引發美國參議員質疑是否涉及內線交易。</li>
-          <li>Kalshi已宣布禁止戰爭、恐怖主義等「道德爭議」市場；兩平台均表示已採取措施打擊內線交易。</li>
-        </ul>
-        <a class="drive-link" href="https://drive.google.com/file/d/1rhUKr7MadMJYkq7y-Spho5QypScWRIi3/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
-        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', '\'Monitoring the Situation\': Why Young Men Are Drawn to Prediction Markets')">🔍 申請深度分析</button>
-      </div>
-
-    </div><!-- /section -->
-  </div><!-- /container -->
-
-  <footer>
-    <div class="container">
-      生成時間：2026-05-22 23:00 ·
-      <a href="../../index.html" style="color: var(--accent-light); text-decoration: none;">返回首頁</a>
+  <div class="note-card">
+    <div class="note-category">筆記 / 預測市場</div>
+    <div class="note-title">'Monitoring the Situation': Why Young Men Are Drawn to Prediction Markets — 預測市場的男性磁力：數位時代的金融身份認同危機</div>
+    <div class="note-body">
+      <p>預測市場以期貨交易之名規避賭博監管，利用年輕男性的財富焦慮與風險偏好，構建出一個資訊嚴重不對等的生態系統；散戶「監控情況」的代價，往往由最不了解全局的一方承擔。</p>
+      <h3>核心論點</h3>
+      <p>這篇 BBC 深度報導揭示，預測市場的急速崛起，指向的不只是一種新金融交易工具的誕生，更是一代年輕男性在現實財富焦慮感與自我實現渴望中的雙重出口。Polymarket 與 Kalshi 兩大平台，以「商品期貨交易」規避美國各州的賭博限制，得以在全 50 州合法運作。它們仿科彭博終端機的介面設計，去塑造「資訊聰明」而非「下注」的公眾形象，卻在結構上複製了賭場的資訊不對等邏輯。</p>
+      <h3>關鍵發現</h3>
+      <ul>
+        <li>用戶高度男性化：71% 的預測市場用戶為男性（Morning Consult），現今 18–24 歲男性中有 27% 在過去六個月使用過預測市場或賭博應用程式，遠高於一般大眾的 14%（AIBM / Ipsos）。</li>
+        <li>市場規模龐大：Kalshi 最新估值達 220 億美元，Polymarket 估值約為 90 億美元，兩大平台已累積為數十億美元規模的產業。</li>
+        <li>散戶普遍虧損：Bloomberg 分析指出，2025 年前五個月，Polymarket 上一千萬美元以上的賬戶中，觀察者幾乎比獲利者的利潤的兩倍。</li>
+        <li>利潤極度集中：「華爾街日報」分析發現，67% 的利潤流入 0.1% 的賬戶，約 50 億美元流入不足 2,000 個賬戶——這些賬戶大多為機構量化數據源、伺服器在 AI 機器人的機構性做市商。</li>
+        <li>內線交易隱患：美軍特種部隊士兵 Gannon Ken Van Dyke 被指在消息公開前在 Polymarket 滿注並獲利 40.9 萬美元，傳有新答辯將重新回應，引發兩位議員公開質疑是否涉及內線交易。</li>
+        <li>女性用戶增長：Kalshi 平台女性用戶比例已從 13% 增至 26%，顯示平台積極拓展用戶結構。</li>
+      </ul>
+      <h3>深度解析</h3>
+      <p>「監控情況」（Monitoring the situation）這個衍生自 Jeff Bezos 舊科技圈語彙的迷因，精準擊中了當代年輕男性對預測市場的心態——不只是賭博，更是一種「站在資訊高地俯瞰周遭局勢」的男性氣質展演。帝波大學 Elvira Bolat 曾在文中指出，預測市場吸引力集中在多個男性主導的線上社群的交叉點：高賭彩色、加密貨幣機率、「選舉利益」、網紅粉絲圈競爭性預測社群。</p>
+      <p>從神經科學角度，Jonathan Cohen 指出年輕男性前額葉皮質尚未完全發育，天生擁有更高的風險偏好。而「經濟虛無主義」也是另一關鍵驅動力：面對覺得不縮水的自我資產以及遙不可及的長期目標，年輕男性往往自認「這樣投入 500，五年後才能致富，不如現在在預測市場上賭。」這種思維讓平台的即時性與高波動性成為吸力，而非警示。</p>
+      <p>平台的設計語言強化了這種錯覺。仿科彭博終端機的首頁介面、與部分媒體 App 的整合，讓用戶感覺自己是在「交易」，而非「賭博」。Bolat 批評，平台以及網紅的行銷話術迴避風險揭露，更以「資報市場」、「預測智慧」等議題框架替代賭博語言，系統性地正常化了投機行為。</p>
+      <h3>對投資人的啟示</h3>
+      <p>預測市場的資訊集成功能具有其實際分析價值：由於用戶以真實金錢押注自己的觀點，其市場定價在理論上是即時市場情緒的對價指標，適合作為佐線政治事件、選舉結果等難以量化情境的實時市場情緒指標。Kalshi 220 億、Polymarket 90 億的估值成長，也代表平台本身的投資機會。然而，隨著多起內線交易案例與政治人士下場受利批議立法質疑，顯示監管風險正在上升——尤其是 Polymarket 目前仍在法律灰色地帶下帶領運作。對機構投資者而言，預測市場或許是強大的資訊工具，對散戶而言，下場下注幾乎可以確信將是最快把握即時數據的零和遊戲中輸家。</p>
+      <h3>總結</h3>
+      <p>預測市場的崛起，是金融創新、監管空白、男性身份焦慮與數位賭博文化三力共振下的產物。對投資人而言，真正的機會不在於平台估值的成長，更在於利用這些市場作為即時市場情緒的資訊工具。然而，當局內人掌握內線交易的機構競爭者以及場上政治人士入場與場外競爭時，「監控情況」的代價，往往由最不了解全局的一方黯然承擔。</p>
     </div>
-  </footer>
+    <a href="https://drive.google.com/file/d/1rhUKr7MadMJYkq7y-Spho5QypScWRIi3/view" target="_blank" class="drive-link-btn">📂 在 Google Drive 開啟</a>
+  </div>
+</div>
 
-  <script>
-    function requestAnalysis(btn, date, title) {
-      const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
-      navigator.clipboard.writeText(text).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = '已複製 ✓';
-        setTimeout(() => btn.textContent = orig, 2000);
-        showToast('✅ 已複製！請貼給 Claude');
-      }).catch(() => {
-        // Fallback for non-https or clipboard denied
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        const orig = btn.textContent;
-        btn.textContent = '已複製 ✓';
-        setTimeout(() => btn.textContent = orig, 2000);
-        showToast('✅ 已複製！請貼給 Claude');
-      });
-    }
-    function showToast(msg) {
-      const t = document.createElement('div');
-      t.className = 'copy-toast';
-      t.textContent = msg;
-      document.body.appendChild(t);
-      setTimeout(() => { t.style.opacity = '0'; }, 2000);
-      setTimeout(() => { t.remove(); }, 2500);
-    }
-  </script>
+<div class="section">
+  <div class="section-title">📄 PDF 摘要 <span class="section-count">12 篇</span></div>
 
-</body></html>
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">科技 / 中國機器人</span>
+      <div class="pdf-title">Job training for robots: How China is getting machines ready to join the workforce</div>
+    </div>
+    <p class="pdf-summary">中國以國家政策為後盾，建立人形機器人培訓體系，系統性地將機器人推向量產與就業市場，挑戰美國的技術競爭地位。</p>
+    <ul class="pdf-points">
+      <li>中國正在北京等地設立人形機器人數據訓練中心，由人類教師手把手指導機器人學習工廠操作、家務、按摩等技能，透過動作捕捉將人類動作轉化為訓練數據；北京中心由市政府背書，並隸屬於全國類似中心網絡的一環，單一機器人手部平均需重複訓練逾萬次才能習得一項新技能。</li>
+      <li>人形機器人已被納入中共核心產業政策，與電動車、AI 並列為中國力爭主導的未來技術領域，目標在 2030 年前確保在全球市場與供應鏈中的主導地位。美國商會與榮鼎咨詢在 5 月研究報告中指出，中國的新一代產業政策已從針對特定行業的定向干預，轉型為可稱之為「萬物產業政策」的全面佈局。</li>
+      <li>在硬體競爭上，特斯拉 CEO 馬斯克坦承中國在量產規模化方面「遠超其他競爭者」，但強調 Optimus 機器人的手部設計技術仍領先中國，因為靈巧手的掌握是機器人最難攻克的課題；中國新創 Inspire-Robots 亦同步透過動作追蹤與感測器訓練機器人手部精細動作。</li>
+      <li>目前機器人已在餐廳、酒吧、交通執法等場景進行實地測試，雖然仍需人類輔助，但業界普遍預期機器人在短期內將能獨立執行任務。受訪業者表示其目標是接替對人類危險或重複性過高的工作，「無意取代人類任何領域的工作」。</li>
+      <li>馬斯克明言「來自中國的競爭將遠超其他人形機器人競爭者」，因為中國在規模化製造上極具優勢；這場人形機器人軍備競賽，將深刻影響全球製造業勞動力結構，並在 AI 硬體、感測器、半導體等上游供應鏈引發新一輪爭奪。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1NIJCHWZQnUyy4svlCGU4HzGL627PkPbT/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Job training for robots: How China is getting machines ready to join the workforce')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">總經 / 亞洲分化</span>
+      <div class="pdf-title">Tech boom vs oil crisis: Asia's new economic reality is a warning for the world</div>
+    </div>
+    <p class="pdf-summary">伊朗戰爭引發的能源危機正在亞洲複製「K型」經濟分化——科技重鎮台灣、韓國股市屢創新高，能源依賴型新興國家卻面臨人道主義危機。</p>
+    <ul class="pdf-points">
+      <li>霍爾木茲海峽遭封鎖導致全球能源供應急劇收縮，亞洲各國承受了這波能源衝擊的最大衝擊，但影響並不均衡地分配在區域內部，先進科技型經濟體與傳統製造型經濟體之間的鴻溝正在急速擴大。</li>
+      <li>半導體重鎮台灣與韓國從 AI 浪潮中獲益豐厚：台灣第一季 GDP 年增率高達 13.69%，創 39 年新高，股市規模超越加拿大躍居全球第六；韓國三星、SK 海力士均刷新季度盈利紀錄，股市市值躍居全球第七，兩國均有充足現金儲備支付高油價。</li>
+      <li>相對地，以傳統製造與服務業為主的印度、菲律賓、泰國等國，既無法分享 AI 科技紅利，又須承受中東衝突帶來的更大通膨壓力，面臨燃料短缺、貨幣貶值與成長停滯的三重困境，貧困人口的處境尤為嚴峻。</li>
+      <li>AI 雖然耗能極高，但亞洲科技重鎮的半導體企業擁有充足現金流與市場定價能力，能夠將能源成本轉嫁給終端客戶，抵銷油價上漲的衝擊；美銀分析師指出，AI 相關公司動輒要求 50% 至 100% 的成長率，使傳統產業股無法滿足投資人的期望。</li>
+      <li>美林銀行亞洲首席經濟學家指出，「股市、GDP 或許欣欣向榮，但財富效益並未滲透到區域日常生活中」，這種財富集中化趨勢是全球疫情後不平等惡化的延續，亦為貨幣政策分歧與政治不穩定埋下風險種子。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1NwGkSypO8uMe9FjKRw_BFuIWS8koXzhd/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Tech boom vs oil crisis: Asia\'s new economic reality is a warning for the world')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">總經 / 日本央行</span>
+      <div class="pdf-title">Japan inflation softens to over four year low, weakening case for BOJ rate hike</div>
+    </div>
+    <p class="pdf-summary">日本 4 月通膨意外降至四年低點，為近期升息的必要性降溫，但日圓疲弱與能源補貼政策拉鋸，仍令日銀貨幣正常化路徑撲朔迷離。</p>
+    <ul class="pdf-points">
+      <li>日本 4 月核心通膨（剔除生鮮食品）年增率降至 1.4%，低於路透調查的 1.7% 預期，創 2022 年 3 月以來最低水準；能源價格在伊朗戰爭衝擊下意外反跌 3.9%，成為通膨降溫的主因，完全打亂日銀的原定升息路徑。</li>
+      <li>日銀最關注的「核心核心通膨」（剔除食品與能源）雖從 2.4% 降至 1.9%，但仍接近 2% 目標，顯示服務業薪資推動的基本面通膨仍具韌性；4 月會議日銀已將核心通膨預測從 1.9% 大幅上調至 2.8%，但最新數據顯示短期通膨路徑已明顯偏離這項預測。</li>
+      <li>日圓仍處於弱勢壓力下，日本政府據報 4 月底至 5 月初已動用約 10 兆日圓進行匯市干預，弱勢日圓持續拉高進口成本並侵蝕民眾購買力，在能源價格反跌的同時，恐形成另一波通膨反彈的隱性推力。</li>
+      <li>首相高市早苗表態支持追加預算以補貼能源費用，反對黨更提出 3 兆日圓（約 188 億美元）能源補貼方案；政治面的補貼壓力將持續壓抑通膨數字，使市場更難判斷「真實通膨」究竟是否已達到日銀的升息門檻。</li>
+      <li>日本第一季 GDP 年增率達 2.1%，出口強勁增長令星展銀行分析師認為日銀具備升息信心，但通膨數據的意外走弱已讓「早期升息」的市場押注迅速降溫，貨幣政策前景的高度不確定性將繼續令日圓承壓。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1DpNV5zVY72AMloTFaAWIeKjsaywiLD3a/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Japan inflation softens to over four year low, weakening case for BOJ rate hike')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">科學 / AI 材料</span>
+      <div class="pdf-title">Bone is a wonder material. Scientists are defying physics to mimic it for longer-lasting hip replacements</div>
+    </div>
+    <p class="pdf-summary">科學家借助 AI 設計超材料，突破物理定律限制，打造出能隨骨骼特性彎曲變形的人工植入物，有望大幅延長人工髖關節壽命並革新骨折修復醫學。</p>
+    <ul class="pdf-points">
+      <li>傳統人工髖關節因患者每年約走 200 萬步，植入物在反覆受力下逐漸磨損，通常使用 10 年以上便需更換；荷蘭萊頓大學醫學中心 Amir Zadpoor 教授的研究團隊，希望透過在植入物兩側設計力學行為相反的「拉脹材料」（auxetic material），使其受力時能更貼合骨骼、延長使用壽命。</li>
+      <li>研究核心是一種被稱為「拉脹材料」的罕見物質，它在被拉伸時反而會變厚，物理行為與一般材料完全相反；但現有拉脹材料過於柔軟，無法承受人體關節的高強度負荷，使研究長期陷入「兼顧高硬度與拉脹特性」的兩難困境。</li>
+      <li>研究團隊最終借助 AI 打破僵局：透過訓練 AI 預測不同材料結構的力學行為，讓機器在數分鐘內找出兼具高硬度與拉脹特性的「超材料」（metamaterial）設計方案，而傳統物理模擬方法往往需要長達一年才能完成同等研究，效率提升了「數個量級」。</li>
+      <li>另一組代爾夫特理工大學的研究人員則利用 AI 設計出兼具固體結構與液態聚合物特性的軟性骨骼植入物，旨在模擬骨折癒合初期自然形成的軟組織環境，提升鈦合金或鋼製固定板無法促成的骨骼整合效果，對老年人複雜骨折的修復具有重要臨床意義。</li>
+      <li>機器學習讓材料探索效率大幅躍升，未來甚至可能依照個別患者的解剖結構量身訂製植入物；但研究人員坦承，這類超材料目前仍仰賴精密 3D 列印製造，要進入臨床使用仍需解決規模化生產的技術與法規雙重挑戰。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/14hCpe--gfZUtGFBgXBJUZogwuv_01oFg/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Bone is a wonder material. Scientists are defying physics to mimic it for longer-lasting hip replacements')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">AI / 政策</span>
+      <div class="pdf-title">White House postpones executive order on AI</div>
+    </div>
+    <p class="pdf-summary">白宮再度延後 AI 行政命令簽署，川普以「阻礙創新」為由叫停先期審查框架，折射出美國政府在強化 AI 安全管控與維持科技競爭優勢之間的深層矛盾。</p>
+    <ul class="pdf-points">
+      <li>白宮週四宣布延後川普簽署一項 AI 行政命令，該命令原本要建立自願性框架，要求 AI 公司在模型公開發布前預先向政府提交進行審查，此次延後已是多次推遲中的最新一次，凸顯出政府內部對 AI 監管框架的高度分歧。</li>
+      <li>草案版本顯示，AI 公司需在公開發布前最長 90 天提前提交模型，但包括 OpenAI 和 Anthropic 在內的主要 AI 業者偏好縮短至 14 天；不同利益方在審查期長度上的分歧，被認為是命令遲遲難以定案的核心原因之一。</li>
+      <li>川普本人表示「沒有喜歡其中某些方面」，明確指出擔心這項命令「會阻礙進展」，強調美國在 AI 領域「已經領先中國與所有競爭者」，不應讓監管成為科技發展的絆腳石；這一表態顯示行政當局仍以「保持競爭優勢」為最優先考量。</li>
+      <li>推動此次監管討論的部分背景，是 Anthropic 發布了被稱為 Mythos 的新模型，該公司稱其能以前所未有的速度發掘網路安全漏洞，目前僅透過「Glasswing 計畫」對受控財團開放；相關報導觸發了政府對 AI 系統可能強化網路攻擊的系統性擔憂。</li>
+      <li>商務部的 NIST 已單獨宣布主要科技公司將與政府共享未發布 AI 模型用於安全評估，但這份聲明目前已從商務部官網下架，凸顯出 AI 監管議程的不確定性依然高度存在；在行政命令懸而未決的同時，業界與政府之間的非正式協商仍在持續進行。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1dBC9Do7sPaIxrZ4FZDv5qX3KSEFeT1Je/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'White House postpones executive order on AI')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">總經 / 伊朗戰爭</span>
+      <div class="pdf-title">How much damage has the Iran war done to the US economy?</div>
+    </div>
+    <p class="pdf-summary">伊朗戰爭推升油價至四年高點，引燃三年來最高通膨率，但美國 GDP 仍在成長、就業市場持穩，消費者尚未實質減少支出，「破點」究竟何時到來仍是最大風險。</p>
+    <ul class="pdf-points">
+      <li>美國整體經濟的廣義指標仍表現穩健：第一季 GDP 年增率達 2.0%，4 月就業市場新增 11.5 萬個工作機會、失業率維持在 4.3%，整體數據顯示伊朗戰爭迄今尚未對實體經濟造成顯著傷害，但分析師提醒這些數據的時間滯後性——第一季僅涵蓋一個月的戰爭影響。</li>
+      <li>通貨膨脹是最明顯的警訊：截至 4 月，CPI 年增率升至 3.8%，為三年新高，能源類別漲幅是主因，汽油價格高企讓美國消費者在加油站額外多花了約 200 億美元；消費者信心指數同步跌至歷史低點，顯示民眾對未來的悲觀情緒正在積累。</li>
+      <li>零售銷售數字透露出雙面訊號：3 月因汽油漲價推升名目銷售額，4 月剔除波動因素後的「核心零售」仍月增約 0.5%，顯示消費者在高通膨壓力下仍在持續消費，但部分分析師認為這可能是「惡性消費」，而非真實需求強勁的體現。</li>
+      <li>霍爾木茲海峽重新開放的時間表是最大不確定因素：若封鎖持續，油價維持高位的時間越長，工資「被通膨吃掉」的積累效應就越可能導致消費者集體縮手，進而引發更明顯的經濟下行風險；美伊和談雖有外交進展訊號，但核問題分歧使談判前景仍不明朗。</li>
+      <li>目前最脆弱的族群是中低收入家庭，他們在能源支出上佔收入的比例遠高於富裕階層，已開始減少其他可自由支配消費；若能源衝擊持續至夏季，部分分析師警告第三季 GDP 增長將面臨顯著下行壓力，屆時「明面穩健」的宏觀數據將難以持續。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1djA8YqbPoMFz-iQipw-yKiEZ_S9QE_An/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'How much damage has the Iran war done to the US economy?')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">科技 / 勞資分配</span>
+      <div class="pdf-title">AI turned Samsung into a $1 trillion company. Its workers want a bigger slice of the pie</div>
+    </div>
+    <p class="pdf-summary">AI 驅動的半導體超級週期讓三星市值突破一兆美元，但記憶體部門逾 4.8 萬名工人以史上最大罷工相威脅，迫使資方在薪酬分配上做出讓步，揭示科技榮景下的勞資深層緊張。</p>
+    <ul class="pdf-points">
+      <li>三星電子搭乘 AI 時代對記憶體晶片的強勁需求，今年市值突破一兆美元大關，首季營業利潤較去年同期暴增逾 8.5 倍，甚至超過全年 2025 年的總利潤，成為韓國股市市值升至全球第七大的核心驅動力。</li>
+      <li>然而在創紀錄獲利的同時，超過 4.8 萬名三星員工（佔韓國員工總數約 40%）以罷工相威脅，核心訴求是取消現行 50% 薪資的紅利上限，並要求將 15% 的年度營業利潤撥入員工獎金池，且條款應延續至未來年度。</li>
+      <li>員工的不滿主要源自與競爭對手 SK 海力士的待遇差距：SK 海力士已廢除紅利上限，部分員工 2025 年的獎金高達底薪的 3,000%，平均每人年度獎金達 7 億韓元（約 46.5 萬美元），遠超三星現行薪酬結構，引發業內人才流失警報。</li>
+      <li>韓國政府對這場勞資衝突高度緊張，主因是三星半導體的年收入佔韓國 GDP 超過 12%，任何生產中斷都會對 Nvidia、AMD 等 AI 硬體供應鏈造成直接衝擊；最終在罷工啟動數小時前，勞資雙方達成初步協議，三星同意廢除紅利上限，並將半導體事業部表現獎金比例提高至 10.5%。</li>
+      <li>此案發生在 Meta 裁員近 1.5 萬人、AI 重組浪潮橫掃全球科技業的大背景下，三星工人的勝利被視為科技勞工爭取分享 AI 紅利的重要里程碑；分析師指出，如何在 AI 時代分配科技財富，將成為左右全球主要科技重鎮政治穩定的關鍵議題。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1xePoNUblFW3h4hob6t7VD3yHCo1Cayz1/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'AI turned Samsung into a $1 trillion company. Its workers want a bigger slice of the pie')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">科技 / SpaceX IPO</span>
+      <div class="pdf-title">SpaceX 上市文件最大亮點：馬斯克握 85% 投票權、火星殖民成領股條件</div>
+    </div>
+    <p class="pdf-summary">SpaceX IPO 申報文件首揭財務細節，馬斯克以 85% 投票權鞏固絕對控制，火星百萬人殖民地成薪酬解鎖條件，Anthropic 每月 12.5 億美元算力合約令 xAI 資本支出已超越火箭事業。</p>
+    <ul class="pdf-points">
+      <li>SpaceX 正式提交 S-1 招股書，文件雖未揭露估值與發行定價，但首度公開公司財務細節，包括馬斯克薪酬結構、各事業部資本支出，以及與 Anthropic 的重大商業合作；這是近年來最受矚目的科技 IPO 之一，招股書的揭露內容遠超市場預期。</li>
+      <li>馬斯克的薪酬觸發條件堪稱史上最罕見：除市值里程碑外，他須帶領 SpaceX 在火星建立「至少 100 萬名永久居民的殖民地」才能解鎖 10 億股獎勵；按當前隱含價值估算，這批股票最高達 5,830 億美元，分 15 階段發放，若再加上軌道數據中心的另一項獎勵，他的總報酬上限可達 7,370 億美元。</li>
+      <li>馬斯克透過持有 55.69 億股，掌握公司 85.1% 的綜合投票權，這意味著即便完成上市、引入公開市場股東，他對公司重大決策仍將保有壓倒性的主導地位，是極為罕見的超高控股上市結構，公開市場股東的議事影響力將極為有限。</li>
+      <li>文件揭露 Anthropic 每月向 SpaceX 支付 12.5 億美元購買算力，合約期至 2029 年 5 月，總計將為 SpaceX 帶來約 150 億美元收入；算力來源為 Colossus 與 Colossus II 超級電腦，主要用於 AI 模型訓練，相關服務協議自 2026 年 5 月起正式生效。</li>
+      <li>令人驚訝的是，xAI（旗下包含 Grok）的資本支出已大幅超越 SpaceX 的火箭事業：2025 年 AI 部門資本支出高達 127.27 億美元，遠超太空部門的 38.32 億美元；2026 年第一季 AI 部門單季資本支出亦達 77.23 億美元，超越太空部門的 10.52 億美元，顯示馬斯克的事業重心已明顯向 AI 傾斜。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1scD23kewTXVKtZ1p284GSix62qMojA2b/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX 上市文件最大亮點：馬斯克握 85% 投票權、火星殖民成領股條件')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">金融 / 債券市場</span>
+      <div class="pdf-title">Iran War Upends Inflation Bets in $50 Trillion Debt Market Safe Haven</div>
+    </div>
+    <p class="pdf-summary">伊朗戰爭讓 G7 長期公債殖利率升破後疫情高點，投資人開始擔憂連番供給衝擊將令通膨長期化，各央行面臨比 2022 年更嚴峻的升息兩難困境。</p>
+    <ul class="pdf-points">
+      <li>五十兆美元的 G7 主權公債市場正面臨罕見的信念動搖：伊朗戰爭引發的新一波通膨衝擊，疊加在疫情後通膨尚未完全消退的基礎上，讓市場開始懷疑 2% 通膨目標是否仍是「上限」，還是逐漸淪為「地板」，長期殖利率因此突破後疫情高點，創二十年新高。</li>
+      <li>澳洲儲備銀行已率先行動，今年累計升息三次，助理總裁 Sarah Hunter 在彭博論壇直言：接連發生的供給衝擊讓通膨預期「錨定」愈發困難，一旦通膨預期脫錨，央行需要承受更大的緊縮代價才能恢復物價穩定，這也是全球其他央行面對的共同困境。</li>
+      <li>長期債市的高殖利率背後，不只是這場戰爭，而是多重結構性因素的共振：政府債務規模持續膨脹、地緣政治主導的供應鏈碎片化、軍備競賽推升支出壓力，使市場認為未來十年的通膨波動性將系統性地高於過去三十年。</li>
+      <li>對央行而言，最大困境是石油供給衝擊本質上超出貨幣政策的管控範疇；若為壓制通膨而升息，恐在油價高企已傷害需求的情況下雙重打擊經濟成長；若按兵不動，又可能讓通膨預期失控，重演 1970 年代的停滯性通膨悲劇，央行們正在走鋼索。</li>
+      <li>TS Lombard 管理董事 Dario Perkins 明確指出：「我們正進入一個不同的貨幣政策週期，我的預測是全球範圍內將再次升息。」此預言若成真，將對股市估值（尤其是高本益比科技股）與房地產市場形成長期壓力，投資人需重新評估資產配置策略。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1q8FwCb96ZhVOGfuFrUYf-WQyGuUnh0pt/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Iran War Upends Inflation Bets in $50 Trillion Debt Market Safe Haven')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">醫療 / 減重藥物</span>
+      <div class="pdf-title">Eli Lilly says next-generation weight loss drug clears crucial obesity trial</div>
+    </div>
+    <p class="pdf-summary">禮來新一代減重針劑 retatrutide 三期試驗達成 28% 平均體重降幅，最高劑量組逾四成患者達到外科手術級減重效果，確立其在百億美元肥胖症市場的下一代旗艦地位。</p>
+    <ul class="pdf-points">
+      <li>禮來公布 retatrutide 大型三期試驗成果：共 2,500 名患者中，最高劑量組完成試驗者平均減重 28.3%（約 32 公斤），遠超安慰劑組的 2.2%；逾 45% 患者達到 30% 以上的減重幅度，此前這被認為是只有減重手術才能企及的里程碑，亦顯著超越市場旗艦 Zepbound 的 20–22% 平均值。</li>
+      <li>Retatrutide 採用三重激素受體（GIP＋GLP-1＋胰高血糖素）作用機制，與禮來現有的 Zepbound（雙重激素）及競爭對手 Novo Nordisk 的 Ozempic／Wegovy（單一 GLP-1）截然不同；更廣泛的激素調控路徑被認為是其療效更強大的核心原因，也使它在機制層面形成差異化競爭優勢。</li>
+      <li>試驗同時測試了全新的最低劑量（4 毫克），該組患者減重約 19%，療效相當於 Zepbound 最高劑量，但因副作用停藥率（約 4%）甚至低於安慰劑組（約 5%），展現出遠優於高劑量版本的耐受性；這為對腸胃副作用敏感的患者開闢了新選擇。</li>
+      <li>主要副作用（噁心、腹瀉等腸胃不適）在最高劑量組較為顯著，停藥率達 11.3%，與同類 GLP-1 藥物一致；禮來計劃將 retatrutide 定位為肥胖症事業第三支柱（Zepbound 注射劑、Foundayo 口服藥之後），TD Cowen 分析師估計 retatrutide 2030 年銷售額可達 38 億美元。</li>
+      <li>考量到分析師估計整體 GLP-1 市場 2030 年代可達千億美元規模，此藥的成功對禮來維持對 Novo Nordisk 的市占率領先至關重要；禮來科學長 Dan Skovronsky 稱「30% 體重降幅此前只與減重手術相關聯，我們正在創造歷史」，預計禮來將在試驗數據基礎上儘快向 FDA 提交上市申請。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1APfNO8vTkvOJ8F7VpatmGM2nNpnGAO_O/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Eli Lilly says next-generation weight loss drug clears crucial obesity trial')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">科技 / 星艦</span>
+      <div class="pdf-title">SpaceX scrubs test flight of massive Starship rocket, will retry Friday</div>
+    </div>
+    <p class="pdf-summary">SpaceX 在 IPO 申報後緊接著安排星艦火箭第 12 次試飛，以 Starship V3 的全新設計展示技術躍進，此次試飛是上市前對投資人進行最後一次「技術背書」的關鍵時刻。</p>
+    <ul class="pdf-points">
+      <li>SpaceX 宣布星艦火箭第 12 次試飛因技術因素取消，改至隔日進行；此次試飛是 Starship V3 的首航，全新版本的設計目標為「全重複使用構型下將 100 公噸載荷送入地球軌道」，並實現類似商業航空的快速週轉時間，是星艦計畫在工程能力上的重大躍進。</li>
+      <li>SpaceX 在試飛前一日剛剛提交 IPO S-1 文件，外界普遍認為星艦試飛是 SpaceX 在上市前向投資人展示技術實力的最後機會；公司招股書明確指出，成長策略「高度依賴星艦成功規模化開發」，技術里程碑與資本市場敘事高度綁定。</li>
+      <li>Starship V3 高度達 124 米（408 英尺）時為世界最高火箭，配備新型引擎使推力達到 1,800 萬磅（約 8,165 噸），是迄今推力最大的運載火箭；此次試飛搭載模擬 Starlink 衛星，無乘員或商業貨物，啟用位於德克薩斯州星際基地（原博卡奇卡）的全新發射台。</li>
+      <li>Starlink 是 SpaceX 目前最重要的收入來源，2025 年貢獻了公司 61% 年度總收入（114 億美元）及全部利潤（44 億美元營業利潤）；若沒有星艦提升發射頻率與載荷能力，SpaceX 將無法以足夠快的速度持續擴展 Starlink 星座，衛星互聯網業務的成長將受到根本性制約。</li>
+      <li>馬斯克長期以星艦作為建立火星殖民地的核心工具，NASA 也押注星艦作為 2028 年 Artemis IV 月球任務的登陸器；對投資人而言，星艦的成功與否將是決定 SpaceX 長期願景能否兌現的核心技術風險變數，此次試飛結果將直接影響 IPO 前的市場信心。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/10L4ixHddLKlHETx2jVJa6tuMPoVNP6eR/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX scrubs test flight of massive Starship rocket, will retry Friday')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <div class="pdf-card">
+    <div class="pdf-card-header">
+      <span class="pdf-category">市場 / 亞太</span>
+      <div class="pdf-title">Asia-Pacific markets set to open higher as investors assess U.S.-Iran peace deal diplomacy</div>
+    </div>
+    <p class="pdf-summary">美伊和談外交進展帶動油價回落，亞太股市普遍預計走高，但德黑蘭堅持保留濃縮鈾庫存令談判前景仍充滿不確定性，市場情緒在「樂觀與疑慮」之間謹慎搖擺。</p>
+    <ul class="pdf-points">
+      <li>週五亞太市場預計高開，主要受惠於美國與伊朗外交接觸的積極訊號：市場對霍爾木茲海峽可能逐步重開抱有期望，油價應聲走跌，為飽受通膨壓力與央行升息憂慮困擾的市場提供短暫喘息空間。</li>
+      <li>日本日經 225 指數期貨指向約 62,225 點，高於前收盤的 61,684 點；香港恒生指數期貨指向 25,568 點，高於前收盤的 25,387 點；澳大利亞 S&amp;P/ASX 200 期貨亦顯示小幅高開，整體亞太市場情緒偏向謹慎樂觀。</li>
+      <li>談判的核心障礙在於，伊朗表態將保留其濃縮鈾庫存於國內，而美國總統川普的明確目標是「全面拆除」伊朗核計畫；雙方在核問題上的根本立場差距，使和平談判的前景充滿不確定性，市場的樂觀情緒隨時可能逆轉。</li>
+      <li>從整體背景看，本週全球市場在科技股強勢與能源衝擊之間持續上演拉鋸戰：半導體與 AI 基礎設施相關股票持續受到資金追捧，而能源通膨則持續威脅消費信心與公債市場穩定，兩股力量的對抗主導了市場的短期波動方向。</li>
+      <li>對台灣、韓國等半導體重鎮的投資人而言，和談訊號帶來的油價回落有助於降低通膨壓力，但若談判最終破局、油價重回高位，現有的半導體股多頭部位將面臨整體風險情緒急速逆轉的考驗；投資人宜密切追蹤美伊外交談判的最新進展作為關鍵風險指標。</li>
+    </ul>
+    <div class="pdf-links">
+      <a href="https://drive.google.com/file/d/1ybZrXhySEx52ozup07gZhDD2YQfWQD9K/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Asia-Pacific markets set to open higher as investors assess U.S.-Iran peace deal diplomacy')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>生成時間：2026-05-22 23:00 · <a href="../../index.html" class="back-link">返回首頁</a></p>
+</div>
+
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = `幫我深度分析 ${date} 的 PDF：${title}`;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'copy-toast';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.style.opacity = '0', 2000);
+  setTimeout(() => t.remove(), 2500);
+}
+</script>
+
+</body>
+</html>
