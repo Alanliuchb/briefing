@@ -172,6 +172,20 @@
       font-size: 0.82rem;
       border-top: 1px solid var(--border);
     }
+
+    /* Analyze button */
+    .analyze-btn {
+      display: inline-block; margin-top: 8px; padding: 6px 14px;
+      background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+      color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+    .copy-toast {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      background: #4f6ef7; color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 14px; z-index: 9999;
+      transition: opacity 0.5s; opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -258,6 +272,7 @@
           <li>AI科技榮景提供中長期通膨緩解希望，惟短期算力建設本身反加劇晶片等需求端通膨。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1q8FwCb96ZhVOGfuFrUYf-WQyGuUnh0pt/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', '$50 Trillion Safe-Haven Debt Market Upended by Iran War Inflation')">🔍 申請深度分析</button>
       </div>
 
       <!-- 2 -->
@@ -273,6 +288,7 @@
           <li>霍爾木茲海峽仍無跡象重開，分析師警告經濟痛點可能進一步深化。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1djA8YqbPoMFz-iQipw-yKiEZ_S9QE_An/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'How much damage has the Iran war done to the US economy?')">🔍 申請深度分析</button>
       </div>
 
       <!-- 3 -->
@@ -288,6 +304,7 @@
           <li>過度依賴單一產業恐使亞洲科技重鎮在AI榮景逆轉時面臨劇烈衝擊，外溢效應已向美國蔓延。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1NwGkSypO8uMe9FjKRw_BFuIWS8koXzhd/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Tech boom vs oil crisis: Asia\'s new economic reality is a warning for the world')">🔍 申請深度分析</button>
       </div>
 
       <!-- 4 -->
@@ -302,6 +319,7 @@
           <li>油價受和談消息刺激下跌，但談判最終走向仍是能源市場最大變數。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1ybZrXhySEx52ozup07gZhDD2YQfWQD9K/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Asia-Pacific Markets Set to Open Higher as Investors Assess U.S.-Iran Peace Deal Diplomacy')">🔍 申請深度分析</button>
       </div>
 
       <!-- 5 -->
@@ -317,6 +335,7 @@
           <li>第一季GDP年化成長2.1%、出口亮眼，為日銀遲早升息提供基本面支撐。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1DpNV5zVY72AMloTFaAWIeKjsaywiLD3a/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Japan Inflation Softens to Over Four-Year Low, Weakening Case for BOJ Rate Hike')">🔍 申請深度分析</button>
       </div>
 
       <!-- 6 -->
@@ -332,6 +351,7 @@
           <li>商務部NIST先前宣布的AI模型共享計畫已從官方網站下架，監管走向仍不明朗。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1dBC9Do7sPaIxrZ4FZDv5qX3KSEFeT1Je/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'White House Postpones Executive Order on AI')">🔍 申請深度分析</button>
       </div>
 
       <!-- 7 -->
@@ -347,6 +367,7 @@
           <li>批評者認為此舉形同打地鼠，操縱者已轉向付費網紅影片等更隱蔽手法，AI可信度問題未根本解決。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1nYy9n7zeQWzV0W1Lg5mo6-5cMGkzz_pn/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Google\'s AI is Being Manipulated. The Search Giant is Quietly Fighting Back')">🔍 申請深度分析</button>
       </div>
 
       <!-- 8 -->
@@ -362,6 +383,7 @@
           <li>AI記憶體市場SK Hynix佔57%、三星22%、美光21%；任何生產中斷都將加劇晶片供應緊張。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1xePoNUblFW3h4hob6t7VD3yHCo1Cayz1/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'AI Turned Samsung into a $1 Trillion Company. Its Workers Want a Bigger Slice of the Pie')">🔍 申請深度分析</button>
       </div>
 
       <!-- 9 -->
@@ -377,6 +399,7 @@
           <li>Starlink連通業務2025年營收114億美元、營業利潤44億美元，是公司唯一盈利來源，佔總營收61%。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1scD23kewTXVKtZ1p284GSix62qMojA2b/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX 上市文件最大亮點：馬斯克握 85% 投票權、火星殖民成領股條件')">🔍 申請深度分析</button>
       </div>
 
       <!-- 10 -->
@@ -392,6 +415,7 @@
           <li>SpaceX於Starship計畫已累計投入逾150億美元，星艦被視為擴大Starlink衛星發射能力的關鍵。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/10L4ixHddLKlHETx2jVJa6tuMPoVNP6eR/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'SpaceX Scrubs Test Flight of Massive Starship Rocket, Will Retry Friday')">🔍 申請深度分析</button>
       </div>
 
       <!-- 11 -->
@@ -407,6 +431,7 @@
           <li>目前機器人在餐廳、便利商店、交警崗位等場景試運行，業者稱將優先承擔危險或重複性工作。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1NIJCHWZQnUyy4svlCGU4HzGL627PkPbT/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Job Training for Robots: How China is Getting Machines Ready to Join the Workforce')">🔍 申請深度分析</button>
       </div>
 
       <!-- 12 -->
@@ -422,6 +447,7 @@
           <li>諾和諾德正以20億美元取得中國同類三重激素藥物授權，試圖追趕禮來，但仍處早期臨床階段。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1APfNO8vTkvOJ8F7VpatmGM2nNpnGAO_O/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Eli Lilly Says Next-Generation Weight Loss Drug Clears Crucial Obesity Trial')">🔍 申請深度分析</button>
       </div>
 
       <!-- 13 -->
@@ -437,6 +463,7 @@
           <li>未來更可能實現「可程式化形狀記憶植入物」，從小切口放入後在體內自動展開填充缺損。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/14hCpe--gfZUtGFBgXBJUZogwuv_01oFg/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', 'Bone is a Wonder Material. Scientists are Defying Physics to Mimic it for Longer-Lasting Hip Replacements')">🔍 申請深度分析</button>
       </div>
 
       <!-- 14 -->
@@ -452,6 +479,7 @@
           <li>Kalshi已宣布禁止戰爭、恐怖主義等「道德爭議」市場；兩平台均表示已採取措施打擊內線交易。</li>
         </ul>
         <a class="drive-link" href="https://drive.google.com/file/d/1rhUKr7MadMJYkq7y-Spho5QypScWRIi3/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-22', '\'Monitoring the Situation\': Why Young Men Are Drawn to Prediction Markets')">🔍 申請深度分析</button>
       </div>
 
     </div><!-- /section -->
@@ -463,4 +491,37 @@
       <a href="../../index.html" style="color: var(--accent-light); text-decoration: none;">返回首頁</a>
     </div>
   </footer>
+
+  <script>
+    function requestAnalysis(btn, date, title) {
+      const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '已複製 ✓';
+        setTimeout(() => btn.textContent = orig, 2000);
+        showToast('✅ 已複製！請貼給 Claude');
+      }).catch(() => {
+        // Fallback for non-https or clipboard denied
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const orig = btn.textContent;
+        btn.textContent = '已複製 ✓';
+        setTimeout(() => btn.textContent = orig, 2000);
+        showToast('✅ 已複製！請貼給 Claude');
+      });
+    }
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.className = 'copy-toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; }, 2000);
+      setTimeout(() => { t.remove(); }, 2500);
+    }
+  </script>
+
 </body>
