@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-05-26 每日記錄</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f1117; color: #e8eaf0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
+    line-height: 1.7; padding: 0 0 60px;
+  }
+  .header {
+    background: linear-gradient(135deg, #161b2e 0%, #0f1117 100%);
+    border-bottom: 1px solid #1e2540;
+    padding: 32px 24px 24px;
+    text-align: center;
+  }
+  .header .date-label { font-size: 13px; color: #6b7db3; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #e8eaf0; }
+  .header .weekday { font-size: 16px; color: #4f6ef7; margin-top: 4px; }
+  .nav { text-align: center; padding: 14px; }
+  .nav a { color: #4f6ef7; text-decoration: none; font-size: 14px; }
+  .nav a:hover { text-decoration: underline; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .section { margin-top: 40px; }
+  .section-title {
+    font-size: 18px; font-weight: 600; color: #a0b0d8;
+    border-left: 3px solid #4f6ef7; padding-left: 12px;
+    margin-bottom: 20px;
+  }
+  .pdf-card {
+    background: #161b2e; border: 1px solid #1e2540;
+    border-radius: 10px; padding: 22px 24px; margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  .pdf-card:hover { border-color: #4f6ef7; }
+  .pdf-title { font-size: 17px; font-weight: 700; color: #c8d0e8; margin-bottom: 12px; }
+  .pdf-thesis {
+    background: rgba(79, 110, 247, 0.1);
+    border-left: 3px solid #4f6ef7;
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px; margin-bottom: 14px;
+    font-size: 14px; color: #b0c0e0; font-style: italic; line-height: 1.6;
+  }
+  .pdf-points { list-style: none; padding: 0; }
+  .pdf-points li {
+    position: relative; padding-left: 18px; margin-bottom: 10px;
+    font-size: 14px; color: #9aa8c8; line-height: 1.65;
+  }
+  .pdf-points li::before {
+    content: '•'; color: #4f6ef7; position: absolute; left: 0; font-size: 16px; line-height: 1.4;
+  }
+  .pdf-footer { margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .pdf-link {
+    color: #4f6ef7; text-decoration: none; font-size: 13px;
+    border: 1px solid rgba(79,110,247,0.4); border-radius: 5px; padding: 4px 10px;
+    transition: all 0.2s;
+  }
+  .pdf-link:hover { background: rgba(79,110,247,0.15); }
+  .analyze-btn {
+    display: inline-block; margin-top: 0; padding: 4px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+  .footer-timestamp {
+    text-align: center; color: #4a5578; font-size: 12px; margin-top: 60px; padding-top: 20px;
+    border-top: 1px solid #1a1f35;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date-label">Daily Briefing</div>
+  <h1>2026年05月26日</h1>
+  <div class="weekday">星期二</div>
+</div>
+
+<div class="nav">
+  <a href="../../index.html">← 返回首頁</a>
+</div>
+
+<div class="container">
+
+  <!-- PDF 摘要區塊 -->
+  <div class="section">
+    <div class="section-title">📄 PDF 摘要</div>
+
+    <!-- 1. Palantir -->
+    <div class="pdf-card">
+      <div class="pdf-title">London mayor putting 'politics over safety' Palantir UK boss says</div>
+      <div class="pdf-thesis">倫敦市長薩迪克·汗以預算疑慮與採購違規為由否決大都會警察向 Palantir 採購的 5000 萬英鎊 AI 合約，Palantir 英國執行長反擊指其「將政治凌駕公共安全」，雙方立場尖銳對立。</div>
+      <ul class="pdf-points">
+        <li>倫敦市長辦公室警察委員會（MOPAC）指出，大都會警察未依規定提交採購策略，構成「嚴重違反」採購程序，儘管此要求已事先特別強調。合約金額歷經談判後由每年最高 2500 萬英鎊確定為兩年總計 5000 萬英鎊。</li>
+        <li>Palantir 英國執行長路易斯·莫斯利強烈批評，表示拒絕此軟體將讓敵對國家與犯罪集團取得優勢，並令警察無法增派前線警員，直指市長是在「以政治代替公共安全」。</li>
+        <li>商業大臣彼得·凱爾雖要求市長說明決策理由，卻也藉此強調英國應扶植本土 AI 企業，顯示政府在科技採購上存在更深層的戰略考量。</li>
+        <li>Palantir 由科技億萬富翁彼得·蒂爾創辦，已持有多份英國公部門合約；倫敦市長辦公室另就合約的「性價比」提出質疑，也打算與政府討論採購時是否應考量企業道德標準。</li>
+        <li>大都會警察曾警告若合約不通過將被迫裁員，顯示此次爭議不僅是採購程序問題，更直接牽動警力資源配置與公眾安全。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/17s3UOxisyjWlS_Y6B-Hgh249XuxeqIWg/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'London mayor putting \'politics over safety\' Palantir UK boss says')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 2. Saudi Arabia -->
+    <div class="pdf-card">
+      <div class="pdf-title">How Saudi Arabia's spending spree reached the end of the line</div>
+      <div class="pdf-thesis">沙烏地阿拉伯「2030 願景」巨型建設計畫在油價衝擊與中東戰事雙重壓力下大幅縮水，百億美元級的 The Line 及 The Cube 項目相繼叫停或廢棄，王國正從「野心驅動」轉向務實執行階段。</div>
+      <ul class="pdf-points">
+        <li>NEOM 旗下的標誌性計畫「The Line」——一條橫跨 170 公里、高達 500 公尺的垂直城市——已大幅縮水；預計耗資 500 億美元的「The Cube」則直接廢棄，Trojena 山區度假村也因亞洲冬季運動會主辦資格移交哈薩克而大幅縮減規模。</li>
+        <li>耗資逾 50 億美元的 LIV 高爾夫巡迴賽被評為虧損連連的「昂貴敗筆」，財務與聲譽均未能帶來預期回報，顯示沙國在體育外交上的投入產出比存在嚴重落差。</li>
+        <li>分析師指出，沙國長期存在「大型計畫宣傳華麗、顧問說主顧想聽的話」的慣性，加上政治風險（如 2018 年卡舒吉事件）使外國投資人對可預測性深感疑慮，導致預期的私人資本投入遠未到位。</li>
+        <li>中東戰事進一步打亂計畫方向：戰前沙國欲將 NEOM 重新定位為 AI 產業樞紐，但戰爭使旅遊、製造、外資等核心吸引力受損；主要例外是採礦業，受惠於原材料需求仍保持成長。</li>
+        <li>當局正轉向阿勒烏拉古蹟旅遊、六旗主題樂園及 Diriyah 歷史舊城復興等規模較小、可落地的項目，並已成功爭取 2034 年世界盃足球賽主辦權，期望以此重建對外形象。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1ESDUaUqBmIEQrQUWFlMOxf23RB7oz2VS/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'How Saudi Arabia\'s spending spree reached the end of the line')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 3. Custard Apples -->
+    <div class="pdf-card">
+      <div class="pdf-title">Custard apples: The crop that thrives in the toughest conditions</div>
+      <div class="pdf-thesis">印度農業研究人員透過育種創新，將釋迦（番荔枝）可食果肉率由 30% 大幅提升至 70% 並延長保鮮期，使這種天然耐旱果物成功打入海灣國家、歐洲及美國市場，為乾旱地區農民開闢新出路。</div>
+      <ul class="pdf-points">
+        <li>印度園藝研究所（IIHR）歷時二十年研發的 Arka Sahan 雜交品種，在室溫下可保存一週、籽少肉多，較傳統品種的三至四天保鮮期大幅延長，為農民創造更多銷售彈性，目前已在南印度廣泛推廣。</li>
+        <li>農民 Kaspate 耗費 15 年選育的 NMK-01 品種，每畝產量約 10 公噸，外皮較厚、口感更甜，成為外銷首選品種，已成功拓展至海灣國家、歐洲及美國市場。</li>
+        <li>釋迦天生耐旱、可靠雨水種植、農藥需求低，為水源匱乏地區農民提供低投入的轉型選項；卡納塔卡邦農民 Shivareddy 在僅靠雨水的農地上，透過科學化密植管理達成年產 25 公噸的成績。</li>
+        <li>出口物流高度精密，水果須在採收後預冷五小時、全程冷藏運輸，道路段多選擇夜間行駛以避開 40 度高溫；馬哈拉什特拉邦的氣候特性使溫控管理成為出口成敗的關鍵。</li>
+        <li>冷凍果泥（-18°C）出口正掀起「革命」，成本遠低於空運，可大量供應海外冰淇淋、烘焙業及「果泥吧」，同時解決鮮果保鮮短的痛點；然而從農場端升級至果泥加工，仍需農民克服設備投資的心理障礙。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1xcOVRixpksIl_hHaEis_2sLAv3O5Mq-Z/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'Custard apples: The crop that thrives in the toughest conditions')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 4. Ferrari Luce -->
+    <div class="pdf-card">
+      <div class="pdf-title">Ferrari unveils Luce its first fully electric car</div>
+      <div class="pdf-thesis">法拉利發表首款純電動車 Luce，售價 64 萬美元、由前蘋果設計總監喬尼·艾夫操刀，成為品牌史上首款五人座車型，在競爭對手紛紛縮減電動化計畫之際，走出截然不同的豪華純電路線。</div>
+      <ul class="pdf-points">
+        <li>Luce（義大利文「光」）歷時五年研發，搭載法拉利自製的四輪獨立電動馬達，0 至 96 公里時速僅需約 2.5 秒；所有零件均在內部製造，以保障長期維修能力及車輛轉售價值。</li>
+        <li>法拉利與 LoveFrom 設計事務所合作，打破傳統跑車語彙，打造品牌首款五人座車型，設計風格在社群媒體上引發兩極反應：有人稱其「直送垃圾場」，也有人讚為「劃時代設計傑作」。</li>
+        <li>競爭對手藍寶堅尼放棄純電計畫、保時捷縮減電動車目標，主因是高端 EV 需求疲軟及中國車廠低價競爭；法拉利此時逆勢推出純電旗艦，顯示其高度排他性的銷售策略提供了抵禦市場壓力的緩衝空間。</li>
+        <li>法拉利股價過去一年跌逾 25%，反映全球通膨侵蝕奢侈品消費需求的廣泛趨勢，即便是定位最高端的品牌也難以完全免疫。</li>
+        <li>法拉利明確表示將繼續並行銷售汽油車及混合動力車，Luce 代表品牌的電動化探索，而非全面轉型；設計總監坦承設計方向「具有爭議性」，但相信消費者數月後將改觀。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1kEcCkLn38uV6HpozrRzPZDNC0P9GlPeC/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'Ferrari unveils Luce its first fully electric car')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 5. US Iran Strikes -->
+    <div class="pdf-card">
+      <div class="pdf-title">US launches new strikes on Iran, targeting missile sites and boats</div>
+      <div class="pdf-thesis">美軍以自衛為由對伊朗南部班達爾阿巴斯港附近的飛彈陣地與佈雷船艦發動新一輪空襲，惟美伊和談仍持續推進，協議框架涉及停火延長、霍爾木茲海峽重開及核武問題後續談判。</div>
+      <ul class="pdf-points">
+        <li>美軍中央司令部表示，此次打擊旨在摧毀伊朗飛彈陣地並阻止船艦布置水雷，屬「在現行停火期間行使克制」的自衛行動；目標位於霍爾木茲海峽入口的班達爾阿巴斯港附近。</li>
+        <li>美國國務卿盧比歐強調海峽「必須開放，且必定會開放」，並稱川普希望達成「好的協議或乾脆不達協議」，顯示美方在談判上設有明確底線。</li>
+        <li>伊朗外交部長聲稱談判已有相當進展，但「協議並非迫在眉睫」；最高領導人哈梅內伊據報因在戰爭第一天的以色列空襲中受傷而躲藏於秘密地點，溝通困難也拖慢談判節奏。</li>
+        <li>據報導的協議框架包含將停火延長 60 天、重開霍爾木茲海峽，以及啟動伊朗核武問題的後續協商；川普表示伊朗濃縮鈾須「立即移交美方或就地銷毀」。</li>
+        <li>自 2 月底美以聯軍發動廣泛空襲以來，霍爾木茲海峽運量大幅萎縮——每日約 2000 萬桶、年貿易額約 6000 億美元的石油在此通行，海峽能否重開直接牽動全球能源市場走向。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1bBWb-prBt7QYUE3STUxX-ItNz4xEUHwR/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'US launches new strikes on Iran, targeting missile sites and boats')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 6. Japan Takaichi Budget -->
+    <div class="pdf-card">
+      <div class="pdf-title">Japan's Takaichi unveils $19 billion extra budget, reassures on bond issuance</div>
+      <div class="pdf-thesis">日本首相高市早苗宣布約 3 兆日圓（190 億美元）補充預算，用以補充中東戰事衝擊下耗盡的能源補貼準備金，同時強調整體公債發行量不增加，以安撫殖利率飆至 30 年新高的日本公債市場。</div>
+      <ul class="pdf-points">
+        <li>補充預算的直接誘因是中東戰事導致能源價格急漲，加上日圓持續走弱推升進口成本，政府已先後動用應急準備金補貼汽油及電費，此次追加主要是補充耗盡的儲備，以應對可能持續的中東危機。</li>
+        <li>高市強調赤字國債的資金需求可由稅收超收、非稅收入及預算節餘全額抵銷，整體發行額度維持原計畫不變；但此說法仍無法完全化解市場對日本財政可持續性的疑慮。</li>
+        <li>上週日本 10 年期公債殖利率一度觸及 2.8%，創 1996 年 10 月以來新高；2026 財年一般會計預算中，利息支付及債務償還的債務服務成本已跳升 10.8% 至 31.3 兆日圓，以假設利率 3.0% 計算，為 29 年來最高水準。</li>
+        <li>政府正考慮對食品削減消費稅，此舉每年恐減少高達 5 兆日圓稅收；若長期利率持續高於預算假設，還需另籌資金，使日本財政壓力雪上加霜。</li>
+        <li>日本公債市場對財政前景的高度敏感，折射出全球高通膨環境下利率上升對高債務國的普遍考驗；高市的「不增加整體發行量」承諾被分析師視為當局對市場信心的正面訊號，但執行細節仍有待觀察。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1Cp8Z_ygs5vl0m9EERwOVwEbxt6k9aUOm/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'Japan\'s Takaichi unveils $19 billion extra budget, reassures on bond issuance')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 7. Memory Stocks -->
+    <div class="pdf-card">
+      <div class="pdf-title">Beware the boom and bust cycle of memory stocks, investors warn amid AI excitement</div>
+      <div class="pdf-thesis">AI 浪潮帶動三星、SK 海力士等記憶體股今年大漲逾百分之百，但資產管理業者警告記憶體產業歷史性的景氣循環並未消失，Google 推出的記憶體壓縮技術更顯示供需格局可能在預期外的時間點急遽逆轉。</div>
+      <ul class="pdf-points">
+        <li>自 2022 年 ChatGPT 問世以來，高頻寬記憶體（HBM）需求暴增，三星及 SK 海力士今年分別大漲 114% 及 186%；美國的 Micron 及 SanDisk 亦分別上漲 141% 及 156%，記憶體板塊成為全球最強勢的股票類型之一。</li>
+        <li>BlueBox 資產管理公司投資組合經理德·加爾直言，記憶體產業「長期而言是相當糟糕的行業」，過去每當市場宣稱景氣循環已結束、即將進入長期價值創造，往往是「一切即將急轉直下」的前兆。</li>
+        <li>Google 推出 TurboQuant 壓縮技術，宣稱可將大型語言模型所需記憶體降低六倍，消息一出即重創記憶體股股價；德意志銀行提醒投資人須持續準備迎接「AI 相關顛覆性技術」的衝擊。</li>
+        <li>三星與 SK 海力士合計占韓國 KOSPI 指數逾五成，渣打銀行全球投資長警告對韓股的峰值樂觀情緒「即將出現轉折」，建議客戶獲利了結部分部位、轉向全球分散配置。</li>
+        <li>Ranmore 基金管理公司投資長拉平指出，記憶體產業「一旦漲過頭，資本報酬率歷史上平平」，要求市場以「未來將持續高報酬」定價，風險相當高；但野村仍看多，預估 SK 海力士目標股價可達 400 萬韓元。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1I6CKRGauyzstdwhU6m2xXsr4BKqDh_ow/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'Beware the boom and bust cycle of memory stocks, investors warn amid AI excitement')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 8. AI Energy Trade -->
+    <div class="pdf-card">
+      <div class="pdf-title">An AI trade involving energy and infrastructure that's doubled your money, topping Nvidia</div>
+      <div class="pdf-thesis">相較於 AI 科技巨頭股票組合今年僅上漲約 7%，投資 AI 電力基礎設施與能源供應鏈企業的組合過去一年報酬已翻倍，資金正從晶片製造商外溢至電力、數據中心建設及能源管理等實體基礎設施類股。</div>
+      <ul class="pdf-points">
+        <li>CNBC 能源線報數據顯示，能源類股今年平均上漲 35%，幾乎是資訊科技類股 16% 漲幅的兩倍；AI 基礎設施與能源供應鏈組合（含 TeraWulf、Equinix、Eaton、Trane）過去一年報酬翻倍，表現遠優於輝達。</li>
+        <li>NextEra Energy 宣布以約 670 億美元全股票方式收購 Dominion Energy，合併後市值估達 4200 億美元、有望成為美國最大電力公司；但監管審批複雜性是最大變數，需通過聯邦能源管理委員會、核管委、反壟斷機構及三個州委員會的審查。</li>
+        <li>美國 30 年期公債殖利率本週觸及 5.17%，為 2007 年次貸危機前以來最高水準；能源價格是通膨的核心驅動力，CPI 能源分項年化漲幅兩個月內已達 130%，為 2005 年卡特里娜颶風後僅見。</li>
+        <li>美國能源部長克里斯·萊特在德州 Exxon Mobil Golden Pass LNG 出口設施表示，看好中國成為美國原油更大買家；路易斯安那州 Commonwealth LNG 大型出口設施正式動工，標誌美國 LNG 出口能力將進一步擴張。</li>
+        <li>高盛警告，歷史上類似今年的股市強勁反彈後，往往在接下來數個月面臨「報酬趨平或小幅回落」；Evercore ISI 策略師則相對樂觀，維持年底 S&amp;P 500 目標 7,750 點，並提出「極端牛市情境」可上看 9,000 點。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1Nkrd7duEG2g72cddqLL24iEMHbB5ovhx/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'An AI trade involving energy and infrastructure that\'s doubled your money, topping Nvidia')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 9. Prediction Markets -->
+    <div class="pdf-card">
+      <div class="pdf-title">When are prediction markets most helpful? Evercore ISI has a formula</div>
+      <div class="pdf-thesis">Evercore ISI 策略師研究指出，預測市場在交易量大、臨近結算且問題條件明確的合約上預測準確度最高，但現實中逾六成活躍合約交易量不足千美元，整體效用因流動性低落與問題設計模糊而大受限制。</div>
+      <ul class="pdf-points">
+        <li>Evercore ISI 策略師 Julian Emanuel 領銜分析顯示，合約成交量愈高、距結算日愈近，所產生的機率預測愈可靠；這兩項指標是評估預測市場參考價值的核心量尺。</li>
+        <li>Kalshi 與 Polymarket 兩大平台目前高達 60% 的活躍合約交易量低於 1000 美元，僅約 8% 的合約成交量超過百萬美元，流動性高度集中在少數熱門事件。</li>
+        <li>預測市場的相對優勢在於能即時反應突發總體經濟事件，且市場懲罰機制能融合巨集觀交易員、產業專家與地區參與者的多元視角，減少傳統預測工具的「專家偏誤」問題。</li>
+        <li>問題設計模糊（如「停火是否成立」）可能導致結算結果偏向文字解讀而非實際事件；單一薄流動性大單的湧入，亦可能扭曲市場對事件發生概率的隱含預測。</li>
+        <li>預測市場的高速成長源自 2024 年美國大選的強烈關注，以及 CFTC 當年核准 Kalshi 選舉相關合約；2025 年秋季成交量再度飆升，顯示機構投資者已開始將預測市場納入總體宏觀判斷工具箱。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1JkzVK5K7wxQHYirUZ-C3_tIuWmHivWTB/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'When are prediction markets most helpful? Evercore ISI has a formula')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- 10. China Connection -->
+    <div class="pdf-card">
+      <div class="pdf-title">CNBC's The China Connection newsletter: Tariffs eased. Trust didn't.</div>
+      <div class="pdf-thesis">美中貿易關稅雖已降至峰值的一半，中國科技與消費品企業面臨的品牌信任與資料安全疑慮依然是打入美國市場的核心障礙，雙方企業正趁停戰期積極推進收購、通路合作與本土製造布局。</div>
+      <ul class="pdf-points">
+        <li>特朗普與習近平峰會達成「建設性戰略穩定」共識，美中關稅已從最高逾 100% 降至約一半水準；AI Speech 共同創辦人鄒平表示，最壞情況已過，預計美中關係未來三至五年不會進一步惡化。</li>
+        <li>AI 麥克風與數位記事平板廠 AI Speech 正探索收購美國企業並本土雇用，以解決品牌認知問題；他表示美國客戶資料將由境外數據中心服務，產品本身不上傳用戶資料，以正面回應資料安全疑慮。</li>
+        <li>人形機器人新創 Zeroth 計畫今秋在美、歐推出玩具型互動機器人，CEO 郭仁杰透露正與 Best Buy 洽談通路合作，並在德州探索本土製造選項以降低關稅暴露風險。</li>
+        <li>美中雙方已宣布將就非敏感領域成立貿易與投資委員會；中國快消品牌也傳出洽購永續時尚品牌 Everlane，反映中國零售商藉收購美國品牌快速取得在地認同的戰略意圖。</li>
+        <li>APEC 貿易部長會議期間，美國資深官員強調正積極推動美國 AI 方案在亞洲落地，同時鼓勵更多對美投資；整體氣氛已從對抗轉趨積極，但「關稅可以降低、信任難以重建」的結構性困境短期內仍難解。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1AJZkIiZGbFc_MMp9_ZDzg5bOiYg43Owq/view?usp=drivesdk" target="_blank" class="pdf-link">在 Google Drive 開啟 ↗</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-26', 'CNBC\'s The China Connection newsletter: Tariffs eased. Trust didn\'t.')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+  </div><!-- end .section -->
+
+</div><!-- end .container -->
+
+<div class="footer-timestamp">
+  生成時間：2026-05-26 18:07（台灣時間）
+</div>
+
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
