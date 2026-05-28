@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-05-28 每日記錄</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f1117; color: #e8eaf0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "PingFang TC", "Noto Sans TC", sans-serif;
+    line-height: 1.7; padding: 0 0 60px;
+  }
+  .header {
+    background: linear-gradient(135deg, #161b2e 0%, #0f1117 100%);
+    border-bottom: 1px solid #1e2540;
+    padding: 32px 24px 24px;
+    text-align: center;
+  }
+  .header .date-label { font-size: 13px; color: #6b7db3; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #e8eaf0; }
+  .header .weekday { font-size: 16px; color: #4f6ef7; margin-top: 4px; }
+  .nav { text-align: center; padding: 14px; }
+  .nav a { color: #4f6ef7; text-decoration: none; font-size: 14px; }
+  .nav a:hover { text-decoration: underline; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .section { margin-top: 40px; }
+  .section-title {
+    font-size: 18px; font-weight: 600; color: #a0b0d8;
+    border-left: 3px solid #4f6ef7; padding-left: 12px;
+    margin-bottom: 20px;
+  }
+  .pdf-card {
+    background: #161b2e; border: 1px solid #1e2540;
+    border-radius: 10px; padding: 22px 24px; margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  .pdf-card:hover { border-color: #4f6ef7; }
+  .pdf-title { font-size: 17px; font-weight: 700; color: #c8d0e8; margin-bottom: 12px; }
+  .pdf-thesis {
+    background: rgba(79, 110, 247, 0.1);
+    border-left: 3px solid #4f6ef7;
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px; margin-bottom: 14px;
+    font-size: 14px; color: #b0c0e0; font-style: italic; line-height: 1.6;
+  }
+  .pdf-points { list-style: none; padding: 0; }
+  .pdf-points li {
+    position: relative; padding-left: 18px; margin-bottom: 10px;
+    font-size: 14px; color: #9aa8c8; line-height: 1.65;
+  }
+  .pdf-points li::before {
+    content: "\2022"; color: #4f6ef7; position: absolute; left: 0; font-size: 16px; line-height: 1.4;
+  }
+  .pdf-footer { margin-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .pdf-link {
+    color: #4f6ef7; text-decoration: none; font-size: 13px;
+    border: 1px solid rgba(79,110,247,0.4); border-radius: 5px; padding: 4px 10px;
+    transition: all 0.2s;
+  }
+  .pdf-link:hover { background: rgba(79,110,247,0.15); }
+  .analyze-btn {
+    display: inline-block; padding: 4px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+  .footer-timestamp {
+    text-align: center; color: #4a5578; font-size: 12px; margin-top: 60px; padding-top: 20px;
+    border-top: 1px solid #1a1f35;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date-label">Daily Briefing</div>
+  <h1>2026年05月28日</h1>
+  <div class="weekday">星期四</div>
+</div>
+
+<div class="nav">
+  <a href="../../index.html">&#8592; 返回首頁</a>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">&#128196; PDF 摘要</div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">SK Hynix and Micron: Booming AI chip demand helps create two new $1tn club members</div>
+      <div class="pdf-thesis">人工智慧浪潮帶動記憶體晶片需求爆量，南韓SK海力士與美國美光科技股價飆升，市值雙雙突破兆美元大關，加入全球科技巨頭行列。</div>
+      <ul class="pdf-points">
+      <li>股價強力飆升：SK海力士週三股價單日大漲10%，今年以來累計漲幅超過三倍；美光則受惠於瑞銀將目標股價調高三倍的利多激勵，股價單日暴漲近20%，兩者均成功晉升兆美元俱樂部。</li>
+      <li>AI需求為核心驅動：全球AI資料中心對先進運算晶片的龐大需求是推升股價的核心動力，AI基礎設施建設熱潮直接帶動高頻寬記憶體（HBM）等產品的銷售爆發式增長，並引發全球記憶體晶片短缺。</li>
+      <li>三星同步受惠：南韓三星電子稍早已加入兆美元俱樂部，成為繼台積電之後第二家達成此里程碑的亞洲企業，目前市值約1.34兆美元；旗下工會通過薪資協議化解罷工危機後，股價進一步上揚逾6%。</li>
+      <li>俱樂部持續壯大：隨著SK海力士與美光晉升兆美元行列，成員現包括輝達、亞馬遜、蘋果、微軟、谷歌母公司Alphabet及Meta等科技龍頭，整體科技股市值格局大幅抬升。</li>
+      <li>泡沫疑慮浮現：儘管AI熱潮帶動晶片股大漲，輝達更在10月成為首家市值突破5兆美元的企業，部分投資人已開始示警，認為相關企業估值可能過高，AI泡沫風險是否成真正成為市場的關鍵隱憂。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1gtj8B1K7mC2DYmT1rQsLTXiKjwClu-EL/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'SK Hynix and Micron: Booming AI chip demand helps create two new $1tn club members')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">The world's carmakers are struggling to compete with China</div>
+      <div class="pdf-thesis">全球汽車業正面臨空前挑戰，中國車廠憑藉電動車、電池、軟體與高度自動化製造的多重優勢全面崛起，歐美日傳統大廠在中國市場節節敗退，並加速調整合作策略以求自保。</div>
+      <ul class="pdf-points">
+      <li>自動化工廠震撼外資：BBC記者走訪2026北京國際車展場外的廠房，小米電動車工廠每76秒便有一輛車下線，Honda執行長坦言「我們沒有勝算」，Ford執行長則警告西方車廠「正為生存而戰」。</li>
+      <li>中國優勢遠不止電動車：分析師指出此次競爭並非僅關乎電動車，而是攸關誰主導下一代移動科技。中國在逾315個產品類別中居全球出口之冠，生產電動小型SUV的成本至少比先進經濟體低30%。</li>
+      <li>軟體定義汽車加速洗牌：小米、華為、阿里巴巴等科技巨頭投入電動車賽局，將消費技術基因注入汽車產業；小鵬創辦人宣示未來十年任何車廠都將同時是機器人公司，飛行汽車與人形機器人已列入核心策略。</li>
+      <li>外資市占率腰斬：外資品牌在中國市場占有率從2020年的64%暴跌至2026年的32%；華為問界M9高端轎車以超越保時捷Panamera與BMW 7系加總的銷量，成為百萬元以上最暢銷車款。</li>
+      <li>外資被迫翻轉角色：Stellantis以10億歐元取得東風汽車合作資格並將引進嵐圖品牌進入歐洲；福斯斥資7億美元購入小鵬軟體架構授權，外資大廠從「輸出技術」徹底翻轉為「引進中國技術」。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1X5DNqIhpD4CIcbIeTTBdFoYKiCMjZotH/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'The world\'s carmakers are struggling to compete with China')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">Oil prices fall more than 5% after Rubio says U.S. will give Iran talks 'every chance to succeed'</div>
+      <div class="pdf-thesis">美國國務卿盧比歐公開表態將全力推動與伊朗外交談判，帶動市場對中東局勢緩和的樂觀預期，西德克薩斯原油與布蘭特原油當日雙雙暴跌逾5%。</div>
+      <ul class="pdf-points">
+      <li>談判表態引發油價重挫：盧比歐在白宮內閣會議上表示與伊朗談判已取得若干進展，並宣示「我們將給予外交途徑成功的每一個機會」，此一表態成為WTI原油重挫至每桶88.68美元、布蘭特跌至94.29美元的直接導火線。</li>
+      <li>霍姆茲海峽謎局：伊朗官媒報導德黑蘭承諾協議達成一個月內恢復海峽商業船運至戰前水準，惟白宮隨即斥相關諒解備忘錄為「完全捏造」，雙方說法出現嚴重矛盾。</li>
+      <li>川普劃定底線維持強勢：川普強調任何協議都不允許伊朗控制霍姆茲海峽，重申為國際水域，同時保留在外交失敗時動用其他手段的選項。</li>
+      <li>業界對油流恢復持審慎態度：阿布達比國家石油公司執行長指出，即便衝突立即結束，油流要恢復至正常水準80%至少需四個月；若要完全正常化估計需等到2027年第一或第二季。</li>
+      <li>局勢仍高度脆弱：就在此前，美軍在伊朗南部發動「防衛性」打擊行動，德黑蘭隨即威脅報復，市場先前承受極大不確定性；此次油價下跌雖反映地緣緊張暫緩，但情勢仍易受突發因素逆轉。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1qBY2Jfp_6wT8wW8tqKvwc-u5N5UayI0h/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'Oil prices fall more than 5% after Rubio says U.S. will give Iran talks \'every chance to succeed\'')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">Mark Zuckerberg says a Meta cloud computing business 'definitely on the table'</div>
+      <div class="pdf-thesis">祖克柏在Meta股東年會上明確表示，若AI資本支出過度擴張導致運算資源過剩，進軍雲端運算服務市場「絕對是選項之一」，引發外界對Meta挑戰亞馬遜與微軟雲端霸主地位的高度關注。</div>
+      <ul class="pdf-points">
+      <li>雲端布局表態明確：祖克柏指出已有外部公司持續洽詢Meta是否願意開放API服務或出售閒置運算資源，顯見業界對Meta龐大算力的高度需求，此一表態引爆市場對其雲端服務布局的想像空間。</li>
+      <li>資本支出創歷史新高：Meta於4月將2026年AI相關資本支出指引上調至1,250億至1,450億美元，但股價在優於預期的季度財報公布後仍下跌7%，反映市場對龐大支出規模的深層憂慮。</li>
+      <li>填補四大超大規模業者空缺：Meta是美國四大超大規模業者中唯一尚未建立雲端基礎設施服務的公司，祖克柏坦言若日後確認過度建設，出售雲端服務將是可行後備選項。</li>
+      <li>AI代理人走向收費模式：祖克柏詳談AI個人助理商業模式，WhatsApp企業版AI功能目前雖免費，但公司正積極規劃長期貨幣化模型，高運算版本將有收費機會。</li>
+      <li>率先推出消費者AI訂閱：Meta宣布將在新加坡、瓜地馬拉及玻利維亞試行月費7.99或19.99美元的Meta AI訂閱方案，為公司首次向消費者收取AI功能費用。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1PIGjXna0iluG0JGTZ2moo5_AHawgbDyG/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'Mark Zuckerberg says a Meta cloud computing business \'definitely on the table\'')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">Former CIA chief Petraeus says drone swarms are the next danger — and growth opportunity</div>
+      <div class="pdf-thesis">前CIA局長彼得雷烏斯在瑞銀亞洲投資年會上警告，無人機蜂群將是未來十年最危險的戰場威脅，同時也是國防產業最具結構性成長潛力的投資機遇。</div>
+      <ul class="pdf-points">
+      <li>不對稱成本改寫戰場邏輯：伊朗沙黑德無人機造價僅2至5萬美元，遠低於攔截所需的數百萬美元導彈，這種極端不對稱的成本結構正迫使中東各國大舉投資攻守兩端的無人機能力。</li>
+      <li>蜂群威脅超越現有防禦能力：自主無人機群不受遙控飛行員數量限制，可藉由相互通訊協調適應戰場變化；彼得雷烏斯坦言「對付蜂群，我們目前真的沒有有效防禦手段」。</li>
+      <li>烏克蘭驗證多元反制策略：烏克蘭軍隊展現令人印象深刻的無人機自製能力，並發展出以攔截無人機對抗俄軍無人機、電子戰干擾指揮鏈路，以及皮卡車架設機槍連接目標電腦等多種反制策略。</li>
+      <li>自主化是下一個臨界點：彼得雷烏斯預言未來一年左右戰場將演進至自主系統對抗自主系統的新階段，整個作戰迴路幾乎不需人類介入，令人「真正感到恐懼」。</li>
+      <li>國防投資機遇巨大：彼得雷烏斯明確指出「所有類型的無人系統」是未來十年國防供應鏈最具結構性成長動能的領域，星鏈等太空通訊系統亦為關鍵基礎設施，投資涵義深遠。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1kxjGenJxZzoqrZLBe7g20T4uWjL188KW/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'Former CIA chief Petraeus says drone swarms are the next danger — and growth opportunity')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <div class="pdf-title">Hotel that refused to give tourist tap water acted lawfully, Italian court rules</div>
+      <div class="pdf-thesis">義大利最高法院裁定，多洛米提山區五星飯店拒絕提供自來水予遊客的行為完全合法，理由是義大利法規並未強制餐飲業者供應免費自來水，消費者自主選擇瓶裝水屬於場所政策範疇。</div>
+      <ul class="pdf-points">
+      <li>案件起因：一名羅馬女子於2019年滑雪季在科爾瓦拉的薩松格爾五星飯店用餐時，服務員僅提供每瓶7歐元礦泉水，拒絕提供自來水，引發法律爭議。</li>
+      <li>訴訟全面敗訴：該女子向法院索賠2,700歐元，主張消費者權益遭侵害，並將自來水比喻為「床鋪有床單」般的基本服務；此案歷經三級法院全面遭到駁回。</li>
+      <li>最高法院明確裁示：義大利最高法院裁定，義大利法律並未要求餐飲業者向顧客提供自來水，飯店是否供應屬於各業者自主決定的政策範疇。</li>
+      <li>飯店立場有據可依：代表飯店的律師表示，高端場所只供應封蓋瓶裝水是業界慣例，顧客仍可在飯店其他區域取得自來水，此一區分獲法院認可。</li>
+      <li>跨國法規差異顯著：英格蘭與威爾斯法規明確要求持牌場所必須依顧客要求提供免費飲用水，兩地對「基本服務義務」的定義存在根本性差異，引發廣泛討論。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a href="https://drive.google.com/file/d/1iOoSPXn45HAwY8gdPOSUQsZL8rHCNVPZ/view?usp=drivesdk" target="_blank" class="pdf-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-28', 'Hotel that refused to give tourist tap water acted lawfully, Italian court rules')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+  <div class="footer-timestamp">生成時間：2026-05-28 18:13（台灣時間）</div>
+</div>
+
+<script>
+function requestAnalysis(btn, date, title) {
+  var text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(function() {
+    var orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(function() { btn.textContent = orig; }, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  var t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function() { t.style.opacity = '0'; }, 2000);
+  setTimeout(function() { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
