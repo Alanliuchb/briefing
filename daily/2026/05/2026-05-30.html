@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-05-30 每日彙整</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --text: #e8eaf0;
+    --text-muted: #9095a8;
+    --accent: #4f6ef7;
+    --accent-light: #7b93fa;
+    --highlight: #f0c060;
+    --border: #2e3248;
+    --green: #4caf7d;
+    --red: #e05c5c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'Noto Sans TC', 'PingFang TC', sans-serif;
+    line-height: 1.7;
+    padding: 0 0 60px;
+  }
+  a { color: var(--accent-light); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Header */
+  .page-header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px 28px;
+  }
+  .nav-back { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; display: block; }
+  .nav-back:hover { color: var(--accent-light); }
+  .page-title { font-size: 28px; font-weight: 700; letter-spacing: .5px; }
+  .page-title .weekday { font-size: 16px; font-weight: 400; color: var(--text-muted); margin-left: 12px; }
+  .page-meta { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+
+  /* Sections */
+  .section { max-width: 900px; margin: 40px auto 0; padding: 0 24px; }
+  .section-title {
+    font-size: 17px; font-weight: 600; letter-spacing: .3px;
+    color: var(--text-muted); border-bottom: 1px solid var(--border);
+    padding-bottom: 10px; margin-bottom: 24px;
+  }
+
+  /* PDF Cards */
+  .pdf-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: border-color .2s;
+  }
+  .pdf-card:hover { border-color: var(--accent); }
+  .pdf-card-title {
+    font-size: 18px; font-weight: 700; margin-bottom: 12px; line-height: 1.4;
+  }
+  .pdf-summary-lead {
+    background: var(--surface2);
+    border-left: 3px solid var(--highlight);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 15px;
+    color: var(--highlight);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .pdf-points { list-style: none; padding: 0; }
+  .pdf-points li {
+    padding: 8px 0 8px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: #cdd0e0;
+    position: relative;
+  }
+  .pdf-points li:last-child { border-bottom: none; }
+  .pdf-points li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 12px; top: 9px;
+  }
+  .pdf-footer {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 16px; flex-wrap: wrap;
+  }
+  .pdf-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-muted); padding: 6px 14px; border-radius: 6px;
+    font-size: 13px; transition: all .2s;
+  }
+  .pdf-link:hover { border-color: var(--accent); color: var(--accent-light); text-decoration: none; }
+  .analyze-btn {
+    background: linear-gradient(135deg, #2d3a6e, #3a4a8a);
+    border: 1px solid var(--accent);
+    color: var(--accent-light);
+    padding: 6px 14px; border-radius: 6px;
+    font-size: 13px; cursor: pointer;
+    transition: all .2s;
+  }
+  .analyze-btn:hover {
+    background: linear-gradient(135deg, #3a4a8a, #4a5aaa);
+    box-shadow: 0 0 12px rgba(79,110,247,.3);
+  }
+
+  /* Photo Grid */
+  .photo-grid {
+    column-count: 3;
+    column-gap: 12px;
+  }
+  @media (max-width: 600px) { .photo-grid { column-count: 2; } }
+  .photo-item {
+    break-inside: avoid;
+    margin-bottom: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color .2s, transform .2s;
+  }
+  .photo-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .photo-item img {
+    width: 100%; display: block;
+    aspect-ratio: 4/3; object-fit: cover;
+  }
+  .photo-caption {
+    font-size: 12px; color: var(--text-muted);
+    padding: 8px 10px; line-height: 1.4;
+  }
+  .photo-caption a { color: var(--text-muted); font-size: 11px; }
+  .photo-caption a:hover { color: var(--accent-light); }
+
+  /* Lightbox */
+  .lightbox {
+    display: none; position: fixed; z-index: 9999;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+  .lightbox-close {
+    position: absolute; top: 20px; right: 28px;
+    font-size: 32px; color: #fff; cursor: pointer; line-height: 1;
+  }
+
+  /* Toast */
+  .copy-toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--accent); color: #fff;
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 14px; z-index: 10000;
+    opacity: 0; transform: translateY(10px);
+    transition: all .3s; pointer-events: none;
+  }
+  .copy-toast.show { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  .page-footer {
+    max-width: 900px; margin: 60px auto 0; padding: 0 24px;
+    font-size: 12px; color: var(--text-muted);
+    border-top: 1px solid var(--border); padding-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a class="nav-back" href="../../index.html">← 返回首頁</a>
+  <div class="page-title">2026年5月30日 <span class="weekday">週六</span></div>
+  <div class="page-meta">7 篇文章 · 25 張照片</div>
+</div>
+
+<!-- 📄 PDF 摘要 -->
+<div class="section">
+  <div class="section-title">📄 PDF 摘要</div>
+
+  <!-- 1. Coffee -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">一杯五英鎊咖啡背後的全球經濟亂象</div>
+    <div class="pdf-summary-lead">氣候異變、貿易混亂與新興市場需求同步爆發，導致阿拉比卡與羅布斯塔咖啡豆價格雙雙飆至數十年高點，連帶推動全球咖啡零售價格突破心理關口，揭示當前全球供應鏈的深層脆弱性。</div>
+    <ul class="pdf-points">
+      <li>倫敦街頭的現磨咖啡售價已突破四英鎊心理防線，大杯加植物奶選項更逼近五英鎊；美國星巴克執行長甚至以「九美元的平價高端體驗」為高價辯護，引發消費者強烈反彈。</li>
+      <li>氣候衝擊是供給側的核心問題：越南於2024年初遭遇數十年來最嚴重的旱災，降雨量銳減30%，緊接著颱風又在收成期重創產量；巴西則仍在消化2021年嚴重霜害對阿拉比卡豆的長期影響。</li>
+      <li>價格飆漲使越南數千名咖啡農改變行為模式——每天早上四點半查看期貨報價已成日常儀式，許多農民選擇囤貨惜售以期高點出貨，形同散戶參與商品金融市場。</li>
+      <li>中國中產階級對精品咖啡的旺盛需求，以及星巴克等連鎖品牌的全球擴張，持續推升消費端壓力；Lavazza執行長直言，至少需要巴西連續兩個豐收年才能讓市場回穩。</li>
+      <li>咖啡產業亦面臨結構性轉型壓力：環保爭議迫使廠商重新設計配方（如以餅乾形態取代鋁製膠囊），而氣候風險的長期化也促使部分大型採購商開始布局直接與農場簽訂長期採購合約。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1BMPMEoh_fBjzBUBtlYjc91PDQ4RI-uIR/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '一杯五英鎊咖啡背後的全球經濟亂象')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 2. Medieval AI -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">AI 解密中世紀：愛情信、陰謀與秘方重見天日</div>
+    <div class="pdf-summary-lead">人工智慧正在協助歷史學家破解數百年前的加密文件，使長期塵封於梵蒂岡等各大檔案館的神秘手稿得以重新發聲，不僅揭開了古老醫療秘方與政治陰謀，更可能改寫若干歷史人物的真實面貌。</div>
+    <ul class="pdf-points">
+      <li>梵蒂岡圖書館一部以34種神秘符號寫成的408頁手抄本「博爾格密碼」，沉睡逾四百年後終被機器學習技術破解，內容竟是大量稀奇古怪的醫療偏方，包括飲用數杯高品質紅酒治療痢疾。</li>
+      <li>AI 的價值不只在速度，更在於處理傳統密碼學家難以招架的複雜性——多符號替換同一字母、插入無意義符號混淆視聽，甚至跨越多種未知原始語言，都是過往人力難以系統性突破的障礙。</li>
+      <li>歷史密碼的數位化本身就是一項艱鉅工程：潦草筆跡與褪色墨水令研究者光是謄錄兩頁符號就要耗費整整一天，而 AI 工具的出現正大幅壓縮這道前置作業的時間成本。</li>
+      <li>研究成果已帶來具體的歷史洞見：一批被破解的加密信件證實蘇格蘭女王瑪麗曾積極策劃奪回王位，並揭示她與兒子詹姆士六世之間緊繃的政治角力關係。</li>
+      <li>斯德哥爾摩大學計算語言學教授 Beáta Megyesi 主導的研究計畫，目前正致力於建立更系統化的 AI 破密框架，估計全球各大檔案館中約有 1% 的館藏文件處於完全或部分加密狀態，等待後續解讀。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1VGnh_rvrerSTd_nufaz5vdRTnkUsTMRT/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', 'AI 解密中世紀：愛情信、陰謀與秘方重見天日')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 3. Tipping -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">美式小費文化「失控」，正在向全球蔓延？</div>
+    <div class="pdf-summary-lead">源自美國的高壓小費文化，正借助數位支付終端機的普及加速輸出海外，從冰島到英國乃至墨西哥，消費者開始在咖啡廳付款時被螢幕主動索取小費，引發當地民眾廣泛不滿與文化衝突。</div>
+    <ul class="pdf-points">
+      <li>美國小費壓力已高度內化於服務業薪資結構：紐約服務生的法定時薪僅11美元，實際收入幾乎完全仰賴小費，大城市的「最低期待」已由15%悄然攀升至20%，服務生若收到更低的小費便可能表露不滿。</li>
+      <li>數位支付終端機是本波全球化的主要推手——英國一項數據顯示，2022至2024年間主動提示給小費的咖啡廳與餐廳數量增加了78%；消費者在刷卡當下面對螢幕選項，在社交壓力下更難以拒絕。</li>
+      <li>冰島案例最具代表性：2010年赴冰美國遊客僅約5萬人，去年已暴增至66萬人，帶來的慣性消費行為正在重塑當地餐飲業收費模式，引起工會組織公開表達反對立場。</li>
+      <li>英國餐飲業正面臨增值稅、最低工資調升、國民保險金與食材成本的四重擠壓，部分業者開始將服務費從12.5%調至15%，被分析師解讀為以小費間接補貼員工薪資的策略性操作。</li>
+      <li>康乃爾大學消費行為學教授 Michael Lynn 指出，小費本質上是一種社會規範而非純粹自願行為，一旦數位介面將其「預設化」，即便文化上不接受小費的社會也很難抵擋此一蔓延趨勢。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1PcwGhdTQWYsWavWWJrpQXpH0eFuTWh6e/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '美式小費文化「失控」，正在向全球蔓延？')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 4. Royal Mail -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">英國皇家郵政頭等郵件準時率僅75.7%，監管機構揚言調查</div>
+    <div class="pdf-summary-lead">英國皇家郵政在新私人業主 EP 集團接管後首份年度績效報告中交出慘淡成績單，頭等郵件準時投遞率僅75.7%，遠低於93%的目標，監管機構 Ofcom 宣布下週初將展開正式調查。</div>
+    <ul class="pdf-points">
+      <li>準時率不僅未達標，甚至較前一年度（76.9%）倒退，二等郵件準時率亦僅90.2%，相較98.5%的目標有相當大差距；皇家郵政已連續十年未達頭等郵件投遞目標，連續六年未達二等郵件目標。</li>
+      <li>監管機構 Ofcom 表態「非常擔憂」，並預計下週初正式啟動調查；這已是皇家郵政近年來第三度遭到大規模調查，繼2023及2024年因績效不佳被裁罰後，去年10月更被開出2100萬英鎊的史上第三大罰款。</li>
+      <li>今年2月，多名郵政員工向BBC爆料，部分信件已積壓數週未能投遞，管理層下令優先處理利潤較高的包裹，但皇家郵政高層在3月的國會聽證中斷然否認此一說法。</li>
+      <li>皇家郵政表示已啟動為期五年、耗資5億英鎊的改善計畫，並表示服務質量正在改善，預計能在明年達到新修訂的較低目標（頭等90%、二等95%）；但公民顧問組織批評這不過是「一切如常」。</li>
+      <li>值得關注的背景是，Ofcom 今年4月起已調降目標門檻，理由是舊目標「比歐洲同業更嚴苛」且會推高郵資成本，但批評者認為此舉形同為皇家郵政的持續怠惰提供制度保護傘。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1FXSuhmZiINnwFoQymG0tfFO8w5NRu9sd/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '英國皇家郵政頭等郵件準時率僅75.7%，監管機構揚言調查')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 5. Blue Origin -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">藍色起源火箭於佛羅里達發射台試車時爆炸起火</div>
+    <div class="pdf-summary-lead">貝佐斯旗下太空公司藍色起源（Blue Origin）的火箭在佛羅里達卡納維爾角進行熱點火測試時發生嚴重爆炸，火球吞噬周圍設施，所有人員安全撤離，公司宣布將展開事故原因調查。</div>
+    <ul class="pdf-points">
+      <li>爆炸發生於當地時間晚間9時，現場畫面顯示火箭瞬間化為巨大火球，周邊設施遭大火吞噬；卡納維爾角所在的布里瓦德郡緊急管理機構確認事故不構成公共安全威脅。</li>
+      <li>藍色起源以「發生異常」（experienced an anomaly）描述事故，並強調所有人員均已安全撤離；貝佐斯在社群媒體表示「今天是很艱難的一天，但我們會重建，然後重新起飛」。</li>
+      <li>此次爆炸發生在一次預定發射的前置熱點火測試期間，因屬測試而非正式發射，美國聯邦航空總署（FAA）表示本次測試不在其許可範圍內，並指出事故未造成空域影響。</li>
+      <li>美國太空部隊表示緊急應變人員已抵達現場，正與藍色起源合作評估現有數據以釐清事故原因；NASA 署長亦發文呼籲展開徹底調查，並評估對近期任務的影響。</li>
+      <li>這已是藍色起源近期面臨的第二次重大挫折——上個月，其新一代重型火箭 New Glenn 剛因將 AST SpaceMobile 衛星送入偏低軌道而遭 FAA 勒令調查；此番爆炸事故無疑將進一步延後其商業發射計畫。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1hpinujMzGuZaHpR8giqWFCo-aK7sTipZ/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '藍色起源火箭於佛羅里達發射台試車時爆炸起火')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 6. Trump Trade War Liquor -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">川普貿易戰逼美國酒廠北移：Sour Puss 在加拿大「復活」</div>
+    <div class="pdf-summary-lead">美加貿易戰升溫後，加拿大各省聯合抵制美國酒品，明尼蘇達州家族企業菲利普蒸餾（Phillips Distilling）因旗下 Sour Puss 果味烈酒在加拿大銷量崩跌70%，被迫在蒙特婁設廠本地生產，成為美國廠商北遷加拿大的罕見案例。</div>
+    <ul class="pdf-points">
+      <li>加拿大各省自2025年3月起陸續啟動美國烈酒下架行動，以抵制川普政府的關稅政策；截至2026年5月，十省中僅亞伯達與薩克其萬兩省仍在銷售美國酒品，其餘各省均已停售，安大略省酒品管理委員會更是全球最大批發採購商之一。</li>
+      <li>Sour Puss 是最嚴重的受災戶：這款主打大學生族群的鮮豔水果風味烈酒，在美國每年銷售量僅約1,000箱，但在加拿大卻是主力商品，銷售禁令直接讓公司損失70%的加拿大業務，執行長Andy England形容此乃「一場災難」。</li>
+      <li>菲利普蒸餾在關稅實施後數週內即開始評估北遷選項，並於同年10月與蒙特婁蒸餾商 Station 22 簽署生產協議，成功讓旗下產品重回加拿大各省貨架；魁北克率先開放，帶動了其他省份的談判進展。</li>
+      <li>業界專家指出，並非所有美國酒廠都能複製此一模式——肯塔基波本威士忌或加州葡萄酒受制於地理標示規範，根本無法將生產線移往他國，菲利普蒸餾之所以能夠成功，正是因為 Sour Puss 並不受此類地域限制。</li>
+      <li>貿易談判僵局仍持續：美方已將加拿大酒品銷售禁令列為主要摩擦點，加拿大總理卡尼則表示，若美方降低或取消汽車、金屬與木材等關鍵領域的關稅，各省或可重新考慮開放美國酒品銷售。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1S6_BcQob324fZ_izMTMS-r-VtbbfIos7/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '川普貿易戰逼美國酒廠北移：Sour Puss 在加拿大「復活」')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- 7. Universal Music -->
+  <div class="pdf-card">
+    <div class="pdf-card-title">環球音樂拒絕 Bill Ackman 收購出價：稱嚴重低估公司價值</div>
+    <div class="pdf-summary-lead">全球最大音樂公司環球音樂集團（UMG）董事會正式拒絕億萬富翁投資人 Bill Ackman 旗下 Pershing Square 的收購提案，聲明指出該出價「從根本上嚴重低估」公司價值，並承諾提升財務披露透明度以讓市場重新評估。</div>
+    <ul class="pdf-points">
+      <li>Pershing Square 於今年4月發起收購邀約，構想是將環球音樂以新公司形式在美國重新掛牌，並借此解決其認為影響股價的財務結構問題；Ackman 批評法國博洛雷集團持有的18%股權，以及延遲在紐約證交所掛牌，是壓抑估值的主要因素。</li>
+      <li>博洛雷集團執行長 Cyrille Bolloré 是此次收購案的關鍵阻力，他早在收購案公開前便表態反對，認為出價低估了公司真實價值；董事會最終採納此一立場，以「基本面嚴重低估」為由拒絕了 Pershing Square 的提案。</li>
+      <li>環球音樂主席暨執行長 Sir Lucian Grainge 在聲明中強調，公司將持續執行現有戰略——簽約頂尖藝人、推動產業創新、深化粉絲互動——並將提升財務披露品質，讓外部市場能夠更精確評估公司的長期價值驅動因素。</li>
+      <li>全球音樂市場基本面依然健康：串流訂閱提供了穩定的版稅收入，使唱片業在二十年前遭受盜版重創後得以復甦，年度營收持續成長；但 AI 生成的偽冒音樂深度偽造（deepfake）氾濫，正成為環球音樂等版權持有人亟需應對的新挑戰。</li>
+      <li>此案後續走向備受關注：Pershing Square 目前仍持有環球音樂的部分股份，拒絕回應媒體問詢；分析師認為，Ackman 是否仍會持續透過市場途徑施壓，將是觀察環球音樂未來股權結構的重要指標。</li>
+    </ul>
+    <div class="pdf-footer">
+      <a class="pdf-link" href="https://drive.google.com/file/d/1BCuctP_pRrb4KrwkIdPnlEUD_3Xg8HWu/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-05-30', '環球音樂拒絕 Bill Ackman 收購出價：稱嚴重低估公司價值')">🔍 申請深度分析</button>
+    </div>
+  </div>
+</div>
+
+<!-- 🖼️ 照片 -->
+<div class="section">
+  <div class="section-title">🖼️ 照片（25 張）</div>
+  <div class="photo-grid" id="photoGrid">
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0&sz=w400" alt="IMG_1599" loading="lazy">
+      <div class="photo-caption">IMG_1599 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA&sz=w400" alt="IMG_1600" loading="lazy">
+      <div class="photo-caption">IMG_1600 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3&sz=w400" alt="IMG_1601" loading="lazy">
+      <div class="photo-caption">IMG_1601 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3&sz=w400" alt="IMG_1603" loading="lazy">
+      <div class="photo-caption">IMG_1603 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA&sz=w400" alt="IMG_1609" loading="lazy">
+      <div class="photo-caption">IMG_1609 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1&sz=w400" alt="IMG_1610" loading="lazy">
+      <div class="photo-caption">IMG_1610 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3&sz=w400" alt="IMG_1611" loading="lazy">
+      <div class="photo-caption">IMG_1611 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi&sz=w400" alt="IMG_1612" loading="lazy">
+      <div class="photo-caption">IMG_1612 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a&sz=w400" alt="IMG_1613" loading="lazy">
+      <div class="photo-caption">IMG_1613 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9&sz=w400" alt="IMG_1614" loading="lazy">
+      <div class="photo-caption">IMG_1614 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi&sz=w400" alt="IMG_1615" loading="lazy">
+      <div class="photo-caption">IMG_1615 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz&sz=w400" alt="IMG_1616" loading="lazy">
+      <div class="photo-caption">IMG_1616 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR&sz=w400" alt="IMG_1617" loading="lazy">
+      <div class="photo-caption">IMG_1617 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv&sz=w400" alt="IMG_1618" loading="lazy">
+      <div class="photo-caption">IMG_1618 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d&sz=w400" alt="IMG_1619" loading="lazy">
+      <div class="photo-caption">IMG_1619 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY&sz=w400" alt="IMG_1620" loading="lazy">
+      <div class="photo-caption">IMG_1620 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S&sz=w400" alt="IMG_1621" loading="lazy">
+      <div class="photo-caption">IMG_1621 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe&sz=w400" alt="IMG_1622" loading="lazy">
+      <div class="photo-caption">IMG_1622 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1qc_aMgvCzh2KBhN17387hMutZGDUkJAP&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1qc_aMgvCzh2KBhN17387hMutZGDUkJAP&sz=w400" alt="IMG_1627" loading="lazy">
+      <div class="photo-caption">IMG_1627 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1qc_aMgvCzh2KBhN17387hMutZGDUkJAP/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx&sz=w400" alt="IMG_1628" loading="lazy">
+      <div class="photo-caption">IMG_1628 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c&sz=w400" alt="IMG_1629" loading="lazy">
+      <div class="photo-caption">IMG_1629 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO&sz=w400" alt="IMG_1630" loading="lazy">
+      <div class="photo-caption">IMG_1630 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx&sz=w400" alt="IMG_1631" loading="lazy">
+      <div class="photo-caption">IMG_1631 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s&sz=w400" alt="IMG_1632" loading="lazy">
+      <div class="photo-caption">IMG_1632 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8&sz=w400" alt="IMG_1633" loading="lazy">
+      <div class="photo-caption">IMG_1633 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8/view" target="_blank">Drive</a></div>
+    </div>
+    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-&sz=w1200')">
+      <img src="https://drive.google.com/thumbnail?id=1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-&sz=w400" alt="IMG_1634" loading="lazy">
+      <div class="photo-caption">IMG_1634 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-/view" target="_blank">Drive</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<div class="copy-toast" id="copyToast"></div>
+
+<div class="page-footer">
+  生成時間：2026-05-30 11:43（台灣時間）
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+function showToast(msg) {
+  const t = document.getElementById('copyToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function requestAnalysis(btn, date, title) {
+  const text = `申請深度分析：${date} - ${title}`;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('已複製分析請求！');
+    btn.textContent = '✓ 已申請';
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+  }).catch(() => {
+    showToast('請求：' + title);
+  });
+}
+</script>
+
+</body>
+</html>
