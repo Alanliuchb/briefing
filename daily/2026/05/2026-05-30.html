@@ -111,45 +111,20 @@
   }
 
   /* Photo Grid */
-  .photo-grid {
-    column-count: 3;
-    column-gap: 12px;
-  }
-  @media (max-width: 600px) { .photo-grid { column-count: 2; } }
-  .photo-item {
-    break-inside: avoid;
-    margin-bottom: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color .2s, transform .2s;
-  }
-  .photo-item:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .photo-item img {
-    width: 100%; display: block;
-    aspect-ratio: 4/3; object-fit: cover;
-  }
-  .photo-caption {
-    font-size: 12px; color: var(--text-muted);
-    padding: 8px 10px; line-height: 1.4;
-  }
-  .photo-caption a { color: var(--text-muted); font-size: 11px; }
-  .photo-caption a:hover { color: var(--accent-light); }
+  
+  @media (max-width: 600px) {  }
+  
+  
+  
+  
+  
+  
 
   /* Lightbox */
-  .lightbox {
-    display: none; position: fixed; z-index: 9999;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,.92); align-items: center; justify-content: center;
-  }
-  .lightbox.active { display: flex; }
-  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
-  .lightbox-close {
-    position: absolute; top: 20px; right: 28px;
-    font-size: 32px; color: #fff; cursor: pointer; line-height: 1;
-  }
+  
+  
+  
+  
 
   /* Toast */
   .copy-toast {
@@ -302,112 +277,6 @@
   </div>
 </div>
 
-  <div class="photo-grid" id="photoGrid">
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0&sz=w400" alt="IMG_1599" loading="lazy">
-      <div class="photo-caption">IMG_1599 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1GFbTAL_Fpr_w_MtVa4RKpuknc6yf77-0/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA&sz=w400" alt="IMG_1600" loading="lazy">
-      <div class="photo-caption">IMG_1600 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/139V_VwkeU95xwqAZXBvWrUoBj0JrvJOA/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3&sz=w400" alt="IMG_1601" loading="lazy">
-      <div class="photo-caption">IMG_1601 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1Nq0jmW0GO-95FNSge1orhXuSpJ2WwMu3/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3&sz=w400" alt="IMG_1603" loading="lazy">
-      <div class="photo-caption">IMG_1603 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1AnYXQKgrRGAE9_dO-LSxdwdWBTXsj0G3/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA&sz=w400" alt="IMG_1609" loading="lazy">
-      <div class="photo-caption">IMG_1609 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1cUVPBRnB6zKr-7chj1YS2_Ngrd1riicA/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1&sz=w400" alt="IMG_1610" loading="lazy">
-      <div class="photo-caption">IMG_1610 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1pkcixQA9sS6qWU3_QmPtUHVRv6A7SOx1/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3&sz=w400" alt="IMG_1611" loading="lazy">
-      <div class="photo-caption">IMG_1611 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1Y2kihWGm7qL7ISDiP-Hbw-UAdy_cC4T3/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi&sz=w400" alt="IMG_1612" loading="lazy">
-      <div class="photo-caption">IMG_1612 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1BY3dgJjmtQdu6Ed8NOTOubPwXFWKxKdi/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a&sz=w400" alt="IMG_1613" loading="lazy">
-      <div class="photo-caption">IMG_1613 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1v7SaV_Wfrpd00zSM30Zr_ocL5P1OpN2a/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9&sz=w400" alt="IMG_1614" loading="lazy">
-      <div class="photo-caption">IMG_1614 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1aSwomK_nIGEA9CHJ4eQKIYAco19LL-W9/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi&sz=w400" alt="IMG_1615" loading="lazy">
-      <div class="photo-caption">IMG_1615 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/13ci2QWM7L33LF82jJGpMCzSt6CR4x0hi/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz&sz=w400" alt="IMG_1616" loading="lazy">
-      <div class="photo-caption">IMG_1616 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/10ho0I8OKU2citPu_sXD8kbz-nrMMVXuz/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR&sz=w400" alt="IMG_1617" loading="lazy">
-      <div class="photo-caption">IMG_1617 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1IgHXHn5Uva7NuZfHJcdmTB1N6mZ9B-eR/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv&sz=w400" alt="IMG_1618" loading="lazy">
-      <div class="photo-caption">IMG_1618 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1pU4DzqZd1x1nB8HswGLeJWnenKvZJKFv/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d&sz=w400" alt="IMG_1619" loading="lazy">
-      <div class="photo-caption">IMG_1619 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1l0gjBzcO9uDIQf_qETff3H_VsKHv-R4d/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY&sz=w400" alt="IMG_1620" loading="lazy">
-      <div class="photo-caption">IMG_1620 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/105ZsGgU93MjTfI8tkYmgaBpCMbmflPHY/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S&sz=w400" alt="IMG_1621" loading="lazy">
-      <div class="photo-caption">IMG_1621 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1fWgo5Ej29ca7D4R7QrYA58pEE186RF5S/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe&sz=w400" alt="IMG_1622" loading="lazy">
-      <div class="photo-caption">IMG_1622 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1mGqm5DMyz6KBwjWDqGGnl9RW6vTXvhPe/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1qc_aMgvCzh2KBhN17387hMutZGDUkJAP&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1qc_aMgvCzh2KBhN17387hMutZGDUkJAP&sz=w400" alt="IMG_1627" loading="lazy">
-      <div class="photo-caption">IMG_1627 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1qc_aMgvCzh2KBhN17387hMutZGDUkJAP/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx&sz=w400" alt="IMG_1628" loading="lazy">
-      <div class="photo-caption">IMG_1628 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1in2540vQCXFRfPb5Ho-cdPl5C_XDAlnx/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c&sz=w400" alt="IMG_1629" loading="lazy">
-      <div class="photo-caption">IMG_1629 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/16ZZ2FhN1NFbxGRe6Kl2Y77sl2Murue1c/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO&sz=w400" alt="IMG_1630" loading="lazy">
-      <div class="photo-caption">IMG_1630 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1V5AssG35RfVc-zvCQ31Ov8xXlRdC7cHO/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx&sz=w400" alt="IMG_1631" loading="lazy">
-      <div class="photo-caption">IMG_1631 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1hDNFE1xvy8brb_wXOWlFalCicPGPbFwx/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s&sz=w400" alt="IMG_1632" loading="lazy">
-      <div class="photo-caption">IMG_1632 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1jO3tCrGL9Kg7GidHsuUvgW6sptMETH0s/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8&sz=w400" alt="IMG_1633" loading="lazy">
-      <div class="photo-caption">IMG_1633 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1zKS2wHgEMhmoh71_ZSy-ft3PsRjg_Or8/view" target="_blank">Drive</a></div>
-    </div>
-    <div class="photo-item" onclick="openLightbox('https://drive.google.com/thumbnail?id=1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-&sz=w1200')">
-      <img src="https://drive.google.com/thumbnail?id=1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-&sz=w400" alt="IMG_1634" loading="lazy">
-      <div class="photo-caption">IMG_1634 &nbsp;·&nbsp; <a href="https://drive.google.com/file/d/1HcPdktCqxfUrsB_9DOXB_H2KreVUMM7-/view" target="_blank">Drive</a></div>
-    </div>
-  </div>
 </div>
 
 
@@ -418,13 +287,6 @@
 </div>
 
 <script>
-function openLightbox(src) {
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightbox').classList.add('active');
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-}
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 function showToast(msg) {
