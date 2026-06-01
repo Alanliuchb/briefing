@@ -129,6 +129,28 @@ h1 {
   margin-top: 40px;
   text-align: center;
 }
+
+/* Collapsible month sections */
+.month-header {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.toggle-arrow {
+  font-size: 0.7rem;
+  color: #4b5563;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.month-entries {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.month-entries.collapsed {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -192,7 +214,12 @@ fetch('manifest.json?t=' + Date.now())
         const sec = document.createElement('div');
         sec.className = 'month-section' + (i === 0 ? ' visible' : '');
         sec.dataset.year = yr;
-        sec.innerHTML = `<div class="month-header">${yr} 年 ${MONTHS_ZH[parseInt(mo)-1]}</div>`;
+        const isFirst = (i === 0 && months.indexOf(mo) === 0);
+        const arrowChar = isFirst ? '▼' : '▶';
+        sec.innerHTML = `<div class="month-header"><span>${yr} 年 ${MONTHS_ZH[parseInt(mo)-1]}</span><span class="toggle-arrow">${arrowChar}</span></div>`;
+        const entriesDiv = document.createElement('div');
+        entriesDiv.className = 'month-entries' + (isFirst ? '' : ' collapsed');
+        sec.appendChild(entriesDiv);
 
         grouped[yr][mo].sort((a,b) => b.date.localeCompare(a.date)).forEach(e => {
           const card = document.createElement('a');
@@ -208,7 +235,14 @@ fetch('manifest.json?t=' + Date.now())
             </div>
             <span class="arrow">›</span>
           `;
-          sec.appendChild(card);
+          entriesDiv.appendChild(card);
+        });
+        // Collapsible click handler
+        const header = sec.querySelector('.month-header');
+        header.addEventListener('click', () => {
+          const isCollapsed = entriesDiv.classList.contains('collapsed');
+          entriesDiv.classList.toggle('collapsed', !isCollapsed);
+          header.querySelector('.toggle-arrow').textContent = isCollapsed ? '▼' : '▶';
         });
         containerEl.appendChild(sec);
       });
