@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日彙整 2026-06-03 星期三</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2e3350;
+    --text: #e8eaf0;
+    --text-muted: #8892b0;
+    --accent: #4f6ef7;
+    --accent-light: #7b93fa;
+    --green: #43d9ad;
+    --yellow: #ffd080;
+    --red: #ff6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif; line-height: 1.7; padding: 0; }
+  
+  header { background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem 2rem; }
+  header .nav { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+  header .nav a { color: var(--accent-light); text-decoration: none; }
+  header .nav a:hover { text-decoration: underline; }
+  header h1 { font-size: 2rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+  header .meta { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.5rem; }
+  header .badge { display: inline-block; background: var(--accent); color: #fff; border-radius: 4px; padding: 0.1em 0.5em; font-size: 0.8rem; margin-left: 0.5rem; vertical-align: middle; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  
+  .section { margin-bottom: 3rem; }
+  .section-title { font-size: 1.2rem; font-weight: 700; color: var(--accent-light); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  
+  .pdf-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .pdf-card:hover { border-color: var(--accent); }
+  .pdf-card .card-title { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; line-height: 1.4; }
+  .pdf-card .summary-lead {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--yellow);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .pdf-card .points { list-style: none; padding: 0; }
+  .pdf-card .points li {
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+    color: #c8cfe8;
+    position: relative;
+    line-height: 1.65;
+  }
+  .pdf-card .points li:last-child { border-bottom: none; }
+  .pdf-card .points li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .pdf-card .card-footer { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+  .pdf-card .drive-link { font-size: 0.82rem; color: var(--accent-light); text-decoration: none; border: 1px solid var(--accent); border-radius: 6px; padding: 0.25em 0.75em; }
+  .pdf-card .drive-link:hover { background: var(--accent); color: #fff; }
+  
+  .analyze-btn {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 6px;
+    padding: 0.25em 0.8em;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: var(--green); color: #0f1117; }
+  .analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem;
+    background: var(--surface2); border: 1px solid var(--green);
+    color: var(--green); padding: 0.8rem 1.2rem; border-radius: 10px;
+    font-size: 0.9rem; z-index: 9999; opacity: 0; transition: opacity 0.3s;
+    max-width: 320px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .toast.show { opacity: 1; }
+
+  footer { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding: 2rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav"><a href="../../index.html">← 回彙整首頁</a></div>
+  <h1>2026年6月3日 星期三 <span class="badge">4 篇 PDF</span></h1>
+  <div class="meta">每日彙整 · 財經新聞摘要</div>
+</header>
+
+<main>
+
+<section class="section">
+  <div class="section-title">📄 PDF 摘要</div>
+
+  <!-- PDF 1 -->
+  <div class="pdf-card">
+    <div class="card-title">SpaceX IPO 估值爭議：Morningstar 警告高估近一倍</div>
+    <div class="summary-lead">Morningstar 分析師警告 SpaceX 即將上市的 IPO 估值嚴重高估，其合理市值僅 7,800 億美元，約為 1.75 兆美元 IPO 目標的 44%，散戶宜待股價回落後再尋買點。</div>
+    <ul class="points">
+      <li>SpaceX 預計 6 月 12 日在 Nasdaq 掛牌交易，目標募資 750 億美元、估值 1.75 兆美元，若成功將超越沙烏地阿美，成為史上規模最大的首次公開發行。</li>
+      <li>Morningstar 採折現現金流估值法，計算出 SpaceX 合理市值約 7,800 億美元，較其私募市場估值 1.5 兆美元低約 48%，認為 IPO 定價並非散戶最佳入場時機，長線投資人應等待「更大安全邊際」的機會。</li>
+      <li>SpaceX 旗下 xAI 部門被 Morningstar 視為「價值破壞的重大威脅」，其經濟護城河至今仍屬「不確定」，上季淨虧損高達 25 億美元，是集團財務的最大拖累。</li>
+      <li>Starlink 衛星網路是目前唯一獲利的業務，單季貢獻 32.6 億美元收入，占集團總收入 69%；太空業務虧損 6.19 億美元，顯示商業模式仍高度依賴網路連線服務。</li>
+      <li>SpaceX 在 S-1 招股書中坦承「有虧損歷史，未來可能無法達到盈利」，AI 相關業務需數年巨額資本支出後方可獲利，AJ Bell 市場主管亦警告 67 倍本益比遠高於輝達，估值泡沫風險不容忽視。</li>
+    </ul>
+    <div class="card-footer">
+      <a href="https://drive.google.com/file/d/1PY7qMyYBUPHAV3QxUaRLv7KrFjkm1TMe/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-03', 'SpaceX IPO 估值爭議：Morningstar 警告高估近一倍')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- PDF 2 -->
+  <div class="pdf-card">
+    <div class="card-title">Alphabet 出售 800 億美元股票：高盛稱進入「前所未見領域」</div>
+    <div class="summary-lead">Alphabet 宣布出售 800 億美元股票以融資 AI 基礎建設，高盛國際聯席執行長 Gutman 稱此為資本市場「前所未見的領域」，此舉同時揭開 2026 年科技巨頭 IPO 大年序幕。</div>
+    <ul class="points">
+      <li>Alphabet（Google 母公司）宣布以股票發行方式募集 800 億美元，用以支應 AI 運算基礎設施的龐大資本需求，其中 100 億美元透過私募配售給波克夏·海瑟威集團，由 Greg Abel 接棒巴菲特後首次重量級投資出手。</li>
+      <li>高盛國際聯席 CEO Anthony Gutman 接受 CNBC 訪問時表示，此次發行創下「任何標準下的紀錄水準」，但以整體股票市值比例衡量仍屬可控，市場對大型股權融資存在強勁需求，整體資本市場環境依然有利。</li>
+      <li>高盛、摩根大通與摩根士丹利擔任此次聯席主承銷商，高盛同時承接私募安排行角色，三大投行的高度介入顯示機構對 Alphabet AI 戰略的信心，也預示科技股承銷業務將迎來豐收年。</li>
+      <li>2026 年資本市場正累積龐大能量，SpaceX 計劃 6 月 12 日上市、OpenAI 與 Anthropic 亦相繼宣布 IPO 計畫，科技業融資潮有望推動全球股票承銷量創歷史新高。</li>
+      <li>Gutman 對此保持審慎樂觀，強調「這些卓越公司只要妥善規劃路徑，就有能力完成資本籌措」，但也坦言所有人都應以「謙遜與謹慎的態度」進入這片前所未有的市場領域。</li>
+    </ul>
+    <div class="card-footer">
+      <a href="https://drive.google.com/file/d/1W3ehyRPmEzDMpOhzXVF9kjOglM3lS6wg/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-03', 'Alphabet 出售 800 億美元股票：高盛稱進入「前所未見領域」')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- PDF 3 -->
+  <div class="pdf-card">
+    <div class="card-title">美國以強迫勞動為由對 60 國祭出 10–12.5% 新關稅</div>
+    <div class="summary-lead">美國對包含英國、歐盟、台灣、中國在內的 60 個貿易夥伴宣布課徵 10 至 12.5% 關稅，理由是這些國家未能有效禁止強迫勞動製成品進口，歐中英三方均強烈反駁。</div>
+    <ul class="points">
+      <li>美國貿易代表 Jamieson Greer 宣布，對涵蓋美國幾乎所有進口來源的 60 個貿易夥伴課徵新關稅，依執法力度分為兩級：英國、歐盟、加拿大、台灣等 15 國適用 10%，中國、印度等其餘 45 國適用 12.5%，此為最高法院推翻「解放日」關稅後的第二波行動。</li>
+      <li>中國外交部發言人毛寧否認一切強迫勞動指控，稱「中國沒有所謂強迫勞動」，並批評美方以此進行政治操弄；歐盟則表示關稅「沒有正當性」，強調仍致力於履行去年雙邊聯合聲明的關稅承諾。</li>
+      <li>英國政府表示已積極打擊強迫勞動，持續與美方展開談判溝通，並說明本國採取的具體措施，立場較中歐更傾向外交斡旋而非對抗。</li>
+      <li>印度智庫 GTRI 分析師 Ajay Srivastava 認為此舉屬美方「更廣泛施壓策略」的一環，建議印度挑戰 Section 301 關稅的法律基礎，並考慮仿效馬來西亞退出雙邊貿易協議談判以示抵制。</li>
+      <li>新關稅尚未正式生效，仍需經過行政程序；而現行 10% 臨時全球關稅將於 7 月到期，是否延長或升至 15% 仍待國會決定，整體貿易政策走向存在重大不確定性。</li>
+    </ul>
+    <div class="card-footer">
+      <a href="https://drive.google.com/file/d/1JuPIzFUrJaEowEQYgqoMh74pRZrDjVcz/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-03', '美國以強迫勞動為由對 60 國祭出 10–12.5% 新關稅')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- PDF 4 -->
+  <div class="pdf-card">
+    <div class="card-title">美司法部放棄 18 億美元「反武器化」補償基金</div>
+    <div class="summary-lead">美國司法部代理部長 Todd Blanche 在國會聽證宣布放棄設立 18 億美元「反武器化」補償基金，此前法院已下令凍結，部分共和黨重量級人士亦公開反對，使該計畫在政治與法律雙重壓力下胎死腹中。</div>
+    <ul class="points">
+      <li>代理司法部長 Blanche 在國會聽證會明確表示「我們不再推進這個基金」，此為對聯邦法官 Brinkema 凍結裁定的直接回應，法院已排定 6 月 12 日舉行初步聆訊，進一步限縮政府的操作空間。</li>
+      <li>該基金原係為解決特朗普控告國稅局（IRS）外洩稅務申報資料的訴訟而設立，申請資格定義寬鬆，民主黨及部分共和黨議員擔憂 1 月 6 日國會山莊暴亂的定罪者、包括攻擊警察者亦可受益。</li>
+      <li>參議院多數黨領袖 John Thune 公開反對，表示若政府自行關閉基金，有助於推動 720 億美元預算協調方案的國會通過；前副總統 Mike Pence 亦稱此計畫「從一開始就是壞主意」，黨內反彈不容小覷。</li>
+      <li>民主黨參議院領袖 Schumer 宣示將推動立法永久禁止此類基金，稱之為「腐敗的 MAGA 私庫」，顯示此議題已演變為 2026 年期中選舉前的重要政治戰場。</li>
+      <li>Blanche 雖在口頭承諾放棄基金，但拒絕出具任何書面聲明，此舉引發民主黨議員質疑承諾缺乏約束力；司法部事後在 X 平台發文堅稱基金設計對所有黨派開放，立場矛盾引人關注。</li>
+    </ul>
+    <div class="card-footer">
+      <a href="https://drive.google.com/file/d/1T20YqEPg1VnYxVoEYpFMCg_CkJsmQrZW/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-03', '美司法部放棄 18 億美元「反武器化」補償基金')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>生成時間：2026-06-03 19:41（台灣時間）</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+function requestAnalysis(btn, date, title) {
+  btn.disabled = true;
+  btn.textContent = '✅ 已申請';
+  showToast('深度分析申請已記錄：' + title.substring(0, 30) + '…');
+}
+</script>
+
+</body>
+</html>
