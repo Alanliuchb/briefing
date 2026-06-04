@@ -1,62 +1,177 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2026-06-04 每日彙整</title>
 <style>
-  :root { --bg: #0f1117; --text: #e8eaf0; --accent: #4f6ef7; --card: #1e2130; --muted: #a0aec0; }
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #222536;
+    --accent: #4f6ef7;
+    --accent2: #7c8ff5;
+    --text: #e8eaf0;
+    --text2: #9da3b4;
+    --border: #2e3245;
+    --tag-pdf: #2d3f7a;
+    --tag-pdf-text: #a3b4ff;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; padding: 32px 16px; }
-  .container { max-width: 800px; margin: 0 auto; }
-  .nav { margin-bottom: 24px; }
-  .nav a { color: var(--accent); text-decoration: none; font-size: 14px; }
-  .nav a:hover { text-decoration: underline; }
-  h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; }
-  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
-  .empty-state { text-align: center; padding: 80px 20px; color: var(--muted); }
-  .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
-  .empty-state p { font-size: 16px; }
-  footer { margin-top: 60px; text-align: center; color: var(--muted); font-size: 12px; border-top: 1px solid #2a2f45; padding-top: 20px; }
-  .analyze-btn {
-    display: inline-block; margin-top: 8px; padding: 6px 14px;
-    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
-    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
-  }
-  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
-  .copy-toast {
-    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-    background: #4f6ef7; color: white; padding: 10px 20px;
-    border-radius: 8px; font-size: 14px; z-index: 9999;
-    transition: opacity 0.5s; opacity: 1;
-  }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif; line-height: 1.7; }
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; font-size: 0.85rem; color: var(--text2); }
+  .nav a { color: var(--accent2); }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { margin-bottom: 40px; }
+  header h1 { font-size: 2rem; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+  header .subtitle { color: var(--text2); margin-top: 6px; font-size: 0.95rem; }
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 1.1rem; font-weight: 600; color: var(--accent2); margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--accent); }
+  .card-title { font-size: 1.05rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .card-summary { font-size: 0.9rem; color: var(--text2); line-height: 1.75; }
+  .card-summary .lead { color: var(--text); font-size: 0.95rem; margin-bottom: 14px; font-weight: 500; border-left: 3px solid var(--accent); padding-left: 12px; }
+  .card-summary ul { list-style: none; padding: 0; }
+  .card-summary ul li { padding: 6px 0 6px 16px; position: relative; border-bottom: 1px solid var(--border); }
+  .card-summary ul li:last-child { border-bottom: none; }
+  .card-summary ul li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+  .card-actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .card-actions a { font-size: 0.8rem; color: var(--accent2); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; }
+  .card-actions a:hover { background: var(--accent); color: #fff; text-decoration: none; }
+  .analyze-btn { font-size: 0.8rem; color: var(--accent2); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; cursor: pointer; transition: all 0.2s; }
+  .analyze-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .footer { text-align: center; color: var(--text2); font-size: 0.8rem; padding-top: 40px; border-top: 1px solid var(--border); }
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--surface2); border: 1px solid var(--accent); color: var(--text); padding: 12px 20px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 9999; }
+  .toast.show { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
+<div class="nav"><a href="../../index.html">← 每日彙整首頁</a></div>
 <div class="container">
-  <nav class="nav"><a href="../../index.html">← 回首頁</a></nav>
-  <h1>2026-06-04（星期四）</h1>
-  <p class="subtitle">每日閱讀彙整</p>
-  <div class="empty-state">
-    <div class="icon">📭</div>
-    <p>今天尚未新增任何內容</p>
-  </div>
-  <footer>生成時間：2026-06-04 18:04（台灣時間）</footer>
+  <header>
+    <h1>2026年6月4日・星期四</h1>
+    <div class="subtitle">今日共收錄 5 篇文章</div>
+  </header>
+
+  <div class="section">
+    <div class="section-title">📄 PDF 摘要</div>
+
+    <!-- PDF 1 -->
+    <div class="card">
+      <div class="card-title">CNBC Daily Open：股市感受到轉折訊號</div>
+      <div class="card-summary">
+        <div class="lead">SpaceX 史上最大 IPO 定價、以黎停火協議達成、伊朗核談可能本週末突破，多重重大事件同步推進，全球投資人正屏息等待市場關鍵轉折。</div>
+        <ul>
+          <li>SpaceX 正式確認以每股 135 美元定價進行 IPO，整體估值達 1.77 兆美元，執行長馬斯克將因此成為全球有史以來第一位身價達兆美元的富豪，但歷史數據顯示大型 IPO 股票在上市首年普遍面臨下跌與劇烈震盪。</li>
+          <li>亞太及歐美期貨市場普遍走低，延續華爾街前夜的跌勢；以黎停火協議簽署後，油價小幅回落，布蘭特原油降至每桶約 97 美元，市場期待此舉能為更廣泛的美以伊談判鋪路。</li>
+          <li>川普確認將赴法國埃維昂出席 G7 峰會，並暗示與伊朗的談判可能在本週末取得進展；OpenAI 執行長 Sam Altman 也獲馬克宏總統個人邀請出席，科技外交動向備受矚目。</li>
+          <li>歐盟公布「科技主權」一攬子計畫，旨在降低對美中科技巨頭的依賴，但前英國副首相、Meta 前全球事務總裁尼克·克萊格批評相關歐盟 AI 法規是「一鍋大雜燴」，推進力道明顯不足。</li>
+          <li>軟銀今年股價飆漲約 70%，市值超越豐田躍居日本第一，惟分析師警告其 AI 押注帶來的高槓桿資產負債表風險正在積累，此前在 WeWork 的失敗已造成逾 140 億美元的累計投資損失。</li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a href="https://drive.google.com/file/d/1VD515TSA_mQlDKXvd9CfbYNP66s88LSR/view" target="_blank">在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-04', 'CNBC Daily Open：股市感受到轉折訊號')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 2 -->
+    <div class="card">
+      <div class="card-title">油價因以黎停火消息下跌</div>
+      <div class="card-summary">
+        <div class="lead">以色列與黎巴嫩在美國斡旋下達成停火協議，市場對中東緊張局勢緩和抱持期待，國際原油期貨隨即小幅回落，惟供需缺口持續支撐油價中長期走勢。</div>
+        <ul>
+          <li>布蘭特原油期貨下跌 0.69% 至每桶 97.14 美元，美國西德州中級原油亦跌 0.65% 至 95.4 美元；兩大基準油價在週三曾因以伊衝突升溫上漲約 2%，停火消息出現後漲勢逆轉。</li>
+          <li>美國共和黨主導的眾議院通過決議案，試圖限制川普在未獲國會授權下繼續對伊朗用兵，但決議案若要生效，仍須參議院通過並以三分之二多數覆蓋幾乎確定的總統否決。</li>
+          <li>川普暗示本週末可能在伊朗談判上有所進展；伊朗外長表示與美方的溝通管道未中斷，但雙方目前仍在研究互換的文本，談判實質進展有限。</li>
+          <li>根據美國能源資訊署最新數據，截至五月底當周，美國原油庫存大幅下降 800 萬桶至 4.337 億桶，遠超分析師預期的 400 萬桶降幅，顯示市場需求依然強勁。</li>
+          <li>匯通期貨在研究報告中指出，全球原油庫存持續快速下滑，供需失衡情況仍在，油價未來走向可能偏向當前區間的上緣，中長期支撐力道不弱。</li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a href="https://drive.google.com/file/d/1rwZd_SHFufBzSlJCiesRBQBMyjk09Jdz/view" target="_blank">在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-04', '油價因以黎停火消息下跌')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 3 -->
+    <div class="card">
+      <div class="card-title">以色列與黎巴嫩同意實施停火（條件為真主黨停止攻擊）</div>
+      <div class="card-summary">
+        <div class="lead">在美國四輪斡旋後，以色列與黎巴嫩就重新落實停火及在黎巴嫩設立「試點安全區」達成協議，惟全面履行的前提是真主黨完全停止一切攻擊行動。</div>
+        <ul>
+          <li>三方聯合聲明要求真主黨從以黎邊境至利塔尼河以南約三十公里的區域全面撤出武裝人員，美國將協助建立由黎巴嫩正規武裝部隊獨家管控、排除所有非國家武裝的試點區域，但聲明未附地圖或具體操作細節。</li>
+          <li>協議簽署當日，以色列仍持續對黎巴嫩南部實施空襲，造成包括敘利亞人及巴勒斯坦人在內至少九人死亡；黎巴嫩衛生部指控以軍「直接攻擊救護車」，造成兩名醫護人員殉職，批評以方「蔑視國際人道法」。</li>
+          <li>此次衝突源於去年三月真主黨為報復以色列刺殺伊朗最高領袖而對以色列發動火箭攻擊，以色列隨即展開空中打擊及地面入侵；截至目前，黎巴嫩已有逾三千五百人死亡，逾百萬人流離失所。</li>
+          <li>以黎雙方代表定於六月二十二日再度在華盛頓會面，以期達成更全面的停火協議，目前的部分停火是四月十六日美國主導停火失敗後的再次嘗試。</li>
+          <li>以色列極右派國家安全部長班格維爾強烈批評協議是「嚴重錯誤」，認為此舉將讓真主黨坐大；真主黨方面則表示將擇期正式回應。</li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a href="https://drive.google.com/file/d/1Cs51xp6AvTelFoCL69j6vtu3AqKJm7Sg/view" target="_blank">在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-04', '以色列與黎巴嫩同意實施停火')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 4 -->
+    <div class="card">
+      <div class="card-title">2026 世界盃：FIFA 引入新越位科技輔助 VAR</div>
+      <div class="card-summary">
+        <div class="lead">FIFA 宣布在 2026 年世界盃導入精進版半自動越位系統，透過即時音訊提示讓助理裁判更快舉旗，並為全體參賽球員建立 AI 驅動的 3D 數位分身，大幅提升越位判定的速度與精準度。</div>
+        <ul>
+          <li>新系統一旦偵測到球員越位超過十公分，即向助理裁判發出即時音訊警報，判定門檻較此前在俱樂部世界盃及洲際盃測試版本的五十公分大幅收緊，預計能顯著縮短延遲舉旗的情形。</li>
+          <li>裁判仍保有最終判定權，若懷疑系統發生故障得選擇不舉旗；FIFA 表示已內建多重防錯機制，但該技術目前仍無法判斷最貼近越位線的情況，亦不適用於需主觀詮釋的「干擾對手」越位認定。</li>
+          <li>FIFA 將為 48 支球隊、共一千二百四十八名球員建立 AI 驅動的高精度 3D 數位分身，每位球員的掃描流程僅需一秒，在賽前拍照環節完成即可，全程不增加球員負擔。</li>
+          <li>新科技的引入部分源於安全考量：2025 年五月，諾定漢森林前鋒阿沃尼伊在助理裁判延遲舉旗的情況下撞柱，須被緊急送醫並進入人工昏迷，事件引發各界對延遲越位判定的強烈關注。</li>
+          <li>改良後的越位動畫畫面亦將同步升級，讓球場內的球迷與電視轉播觀眾都能更清晰地看到裁判的判定依據，進一步提升比賽透明度。</li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a href="https://drive.google.com/file/d/1iIrWkt7daynwqB0l7M-XRHsEvS3aPSAr/view" target="_blank">在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-04', '2026 世界盃：FIFA 引入新越位科技輔助 VAR')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 5 -->
+    <div class="card">
+      <div class="card-title">微軟宣稱新量子晶片較前代可靠度提升千倍</div>
+      <div class="card-summary">
+        <div class="lead">微軟發布第二代量子晶片 Majorana 2，量子位元平均存活時間從毫秒躍升至 20 秒，可靠度提升千倍，公司預計最快 2029 年推出能解決商業問題的量子電腦。</div>
+        <ul>
+          <li>Majorana 2 的核心改良在於將超導體材料從鋁換成鉛，使量子位元存活時間從毫秒級提升至平均 20 秒，微軟將此進步比擬為「手機從每天需充電變成數年才需充電一次」；不過目前晶片僅有 12 個量子位元，距離商業應用所需的數百萬個仍有極大差距。</li>
+          <li>微軟量子副總裁阿拉姆表示，公司將在 2029 年推出能解決商業上可行問題的量子機器，應用場景包括清除微塑膠、研發新肥料等需要數十年傳統計算才能破解的難題。</li>
+          <li>微軟的拓撲量子位元研究路徑曾飽受爭議，2018 年一篇宣稱找到 Majorana 粒子證據的《自然》期刊論文事後被迫撤稿；此次最新發布論文雖已提交，但尚未完成同行評審，部分科學家表示仍需更多資訊才能驗證聲明。</li>
+          <li>微軟已加入美國國防高等研究計畫署（DARPA）量子開發計畫最後階段，該計畫目標為「驗證與確認公司的實用規模量子電腦概念」，微軟表示已向 DARPA 分享包含商業機密在內的所有研究資料。</li>
+          <li>薩里大學物理教授史蒂文森認為微軟的時間表「聽起來合理」，並指出若研究成果屬實，微軟將從「沒有量子電腦產品的玩家」躍升為「下一代容錯量子機器競賽中的重量級選手」。</li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a href="https://drive.google.com/file/d/13xvOZDAK5APAcRx_H0qe6zP0n363eroS/view" target="_blank">在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-04', '微軟宣稱新量子晶片較前代可靠度提升千倍')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+  </div><!-- /section -->
+
+  <div class="footer">生成時間：2026-06-04 18:14（台灣時間）</div>
 </div>
+
+<div class="toast" id="toast"></div>
+
 <script>
-function requestAnalysis(btn, date, title) {
-  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent; btn.textContent = '已複製 ✓';
-    setTimeout(() => btn.textContent = orig, 2000);
-    showToast('✅ 已複製！請貼給 Claude');
-  });
-}
 function showToast(msg) {
-  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(() => { t.style.opacity = '0'; }, 2000);
-  setTimeout(() => { t.remove(); }, 2500);
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+function requestAnalysis(btn, date, title) {
+  btn.disabled = true;
+  btn.textContent = '✓ 已申請';
+  showToast('「' + title + '」深度分析申請已送出');
 }
 </script>
 </body>
