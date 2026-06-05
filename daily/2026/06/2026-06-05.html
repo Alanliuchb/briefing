@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026年6月5日 · 每日彙整</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f1117;
+      color: #e8eaf0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: #161a24;
+      border-bottom: 1px solid #232840;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    nav a {
+      color: #8b9fc7;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #4f6ef7; }
+    nav .sep { color: #3d4460; }
+    nav .current { color: #e8eaf0; font-weight: 600; }
+
+    /* ── HEADER ── */
+    header {
+      padding: 48px 32px 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header .date-label {
+      font-size: 0.8rem;
+      color: #4f6ef7;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #e8eaf0;
+      letter-spacing: -0.02em;
+    }
+    header .subtitle {
+      margin-top: 10px;
+      color: #6b7a99;
+      font-size: 0.95rem;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 32px 48px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #232840;
+    }
+    .section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #c5cadc;
+      letter-spacing: 0.01em;
+    }
+    .section-header .count-badge {
+      background: #1e2440;
+      color: #4f6ef7;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 10px;
+    }
+
+    /* ── PDF CARD ── */
+    .pdf-card {
+      background: #161a24;
+      border: 1px solid #232840;
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s;
+    }
+    .pdf-card:hover { border-color: #4f6ef7; }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e8eaf0;
+      line-height: 1.45;
+      flex: 1;
+    }
+    .drive-link {
+      white-space: nowrap;
+      font-size: 0.78rem;
+      color: #4f6ef7;
+      text-decoration: none;
+      background: #1e2440;
+      border: 1px solid #2d3a6b;
+      border-radius: 6px;
+      padding: 4px 12px;
+      transition: background 0.2s;
+    }
+    .drive-link:hover { background: #28357a; }
+
+    .summary-highlight {
+      background: linear-gradient(135deg, #1a2045 0%, #1e2648 100%);
+      border-left: 3px solid #4f6ef7;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      color: #b8c4e0;
+      line-height: 1.65;
+    }
+
+    .points-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4f6ef7;
+      margin-bottom: 12px;
+    }
+    .points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .points-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: #9aaac8;
+      line-height: 1.65;
+    }
+    .point-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #1e2440;
+      border: 1px solid #2d3a6b;
+      color: #4f6ef7;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .analyze-btn {
+      background: #1e2440;
+      border: 1px solid #2d3a6b;
+      color: #7a90c8;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .analyze-btn:hover {
+      background: #28357a;
+      border-color: #4f6ef7;
+      color: #c5d0f0;
+    }
+    .analyze-btn.requested {
+      background: #1a2d1a;
+      border-color: #2d6b3a;
+      color: #5cba6e;
+      cursor: default;
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #232840;
+      border: 1px solid #4f6ef7;
+      color: #c5d0f0;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #3d4460;
+      font-size: 0.8rem;
+      border-top: 1px solid #1c2030;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../../index.html">🏠 首頁</a>
+  <span class="sep">›</span>
+  <a href="#">2026</a>
+  <span class="sep">›</span>
+  <a href="#">06</a>
+  <span class="sep">›</span>
+  <span class="current">2026-06-05</span>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="date-label">📅 Daily Briefing</div>
+  <h1>2026年6月5日 · 星期五</h1>
+  <p class="subtitle">今日彙整 · 4 篇 PDF 摘要</p>
+</header>
+
+<!-- PDF SECTION -->
+<div class="section">
+  <div class="section-header">
+    <h2>📄 PDF 摘要</h2>
+    <span class="count-badge">4</span>
+  </div>
+
+  <!-- CARD 1 -->
+  <div class="pdf-card">
+    <div class="card-top">
+      <div class="card-title">Perplexity CEO tells CNBC one metric will determine who wins the AI race</div>
+      <a class="drive-link" href="https://drive.google.com/file/d/1-EoBk0q7w5ybu2r90BLuoAESyyymcpI3/view" target="_blank">📂 Drive</a>
+    </div>
+    <div class="summary-highlight">
+      Perplexity執行長阿拉文德·斯里尼瓦斯指出，「每瓦特每用戶的Token價值」將成為AI產業最終競爭格局的核心指標，善用能源效益、同時兼顧準確性與成本的公司，才能在長期競爭中建立真正的護城河。
+    </div>
+    <div class="points-label">五大重點</div>
+    <ul class="points-list">
+      <li>
+        <span class="point-num">1</span>
+        <span>斯里尼瓦斯接受CNBC訪問時表示，AI競爭的決勝關鍵不在於收入規模，而在於「每瓦特每用戶的Token價值（token value per watt per user）」。能同時兼顧準確性、延遲、成本、隱私與智慧的公司，才是長期贏家；高昂模型價格帶來的收入只是短期現象。</span>
+      </li>
+      <li>
+        <span class="point-num">2</span>
+        <span>Perplexity積極布局代理人（agentic）AI，旗下新產品Personal Computer定位為「AI協調器」，可自動判斷最佳模型與處理位置，並即將登陸Windows系統，整合Word、Outlook等微軟核心應用。</span>
+      </li>
+      <li>
+        <span class="point-num">3</span>
+        <span>公司採取跨平台中立策略，整合Anthropic、OpenAI等多家廠商模型。斯里尼瓦斯強調，Anthropic模型每次效能提升，Perplexity也同步受益，今年以來年化營收已成長三倍。</span>
+      </li>
+      <li>
+        <span class="point-num">4</span>
+        <span>AI運算從雲端資料中心下移至本地裝置是重要趨勢。Perplexity Personal Computer可自動分流處理位置，實現更低延遲、更高安全性及更節能的運算模式，斯里尼瓦斯形容為「資料中心正走進你的筆記型電腦」。</span>
+      </li>
+      <li>
+        <span class="point-num">5</span>
+        <span>儘管面對OpenAI、Anthropic、Google、微軟及蘋果的多面夾擊，Perplexity最新估值達200億美元，公司認為其「混合中立協調層」策略能跨越不同晶片、作業系統與硬體供應商，在激烈競爭中維持差異化優勢。</span>
+      </li>
+    </ul>
+    <div class="card-footer">
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-05', 'Perplexity CEO：每瓦特Token價值決定AI競賽勝負')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="pdf-card">
+    <div class="card-top">
+      <div class="card-title">China poaches more AI talent from the U.S. as it eyes the next 'super-app'</div>
+      <a class="drive-link" href="https://drive.google.com/file/d/1edvp3OtCnPkMqgscTr1iVBMPLHYcd8A6/view" target="_blank">📂 Drive</a>
+    </div>
+    <div class="summary-highlight">
+      前OpenAI研究員姚順宇出任騰訊首席AI科學家，標誌著中國科技業正積極引進矽谷AI人才，將建立長期AGI組織的美式願景帶入中國市場，中美AI人才爭奪戰進入全新階段。
+    </div>
+    <div class="points-label">五大重點</div>
+    <ul class="points-list">
+      <li>
+        <span class="point-num">1</span>
+        <span>前OpenAI研究員姚順宇近期加入騰訊，出任首席AI科學家，並在北京公開表示個人目標是「在中國建立長期AGI組織」。這一人才流動顯示中美AI競爭已進入搶奪頂尖研究人才的新階段。</span>
+      </li>
+      <li>
+        <span class="point-num">2</span>
+        <span>中國企業長期受美國晶片出口管制限制，過往聚焦AI在工廠、消費電子等垂直應用場景；但隨著矽谷人才回流，中國AI的發展方向正逐漸向AGI這個終極目標靠攏，與美國發展路徑趨於一致。</span>
+      </li>
+      <li>
+        <span class="point-num">3</span>
+        <span>姚順宇認為ChatGPT或Claude都不會是唯一的「超級應用」，AI市場潛在商機高達數兆美元。他指出中國路徑應以小型模型與基礎任務的穩定表現為主，而非一味追求大模型規模。</span>
+      </li>
+      <li>
+        <span class="point-num">4</span>
+        <span>與中國方面的積極樂觀形成對比，Anthropic近日警告前沿模型正趨近可自我改進、無需人類監督的臨界點，呼籲業界放緩或暫停新模型開發，中美AI發展的節奏與風險認知出現明顯分歧。</span>
+      </li>
+      <li>
+        <span class="point-num">5</span>
+        <span>此次人才流動反映中國科技公司在薪酬待遇與研究自由度上，對頂尖AI研究員的吸引力持續提升。美國業界對AI核心人才外流至中國競爭對手的隱憂，將在政策層面引發更多討論。</span>
+      </li>
+    </ul>
+    <div class="card-footer">
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-05', '中國挖角美國AI人才：騰訊首席AI科學家的AGI野心')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="pdf-card">
+    <div class="card-top">
+      <div class="card-title">Anthropic co-founder Jack Clark warns AI needs a 'brake pedal'</div>
+      <a class="drive-link" href="https://drive.google.com/file/d/17xNEVJzmLTRqEcL4wRzDJJHA4jVfdWy4/view" target="_blank">📂 Drive</a>
+    </div>
+    <div class="summary-highlight">
+      Anthropic共同創辦人傑克·克拉克警告，AI產業目前只有「油門」而缺乏「煞車機制」，呼籲社會與政府盡速建立監管框架，確保人類在AI技術加速演進的當下仍能持續掌握主控權。
+    </div>
+    <div class="points-label">五大重點</div>
+    <ul class="points-list">
+      <li>
+        <span class="point-num">1</span>
+        <span>克拉克接受BBC Newsnight訪問時表示，AI發展正逼近自我迭代的臨界點。他形容現況為「只有油門、沒有煞車的狀態」，強調必須透過政府政策讓人類持續掌控AI系統，並呼籲各國政府盡快制定新監管法規。</span>
+      </li>
+      <li>
+        <span class="point-num">2</span>
+        <span>克拉克揭露，Anthropic旗艦產品Claude所撰寫的程式碼中，已有80%由AI系統自行產出。他預估兩年內可能達到100%，屆時對整個產業結構與社會就業將帶來深遠衝擊。</span>
+      </li>
+      <li>
+        <span class="point-num">3</span>
+        <span>克拉克以上個世紀初石油繁榮時代為類比，認為社會最終需要建立類似石油業的政策與監管框架，讓大眾對AI技術抱持信任，而不必將信心寄托在個別企業領導人的道德自律上。</span>
+      </li>
+      <li>
+        <span class="point-num">4</span>
+        <span>儘管Anthropic積極倡導AI安全，公司仍歡迎川普政府相對寬鬆的AI行政命令，且Anthropic、OpenAI、Google等主要廠商均未宣布暫停研究，業界在安全倡議與商業加速之間的張力依然存在。</span>
+      </li>
+      <li>
+        <span class="point-num">5</span>
+        <span>克拉克坦言擔憂AI對就業市場的衝擊，但指出具備創意、廣泛閱讀與旺盛好奇心的人才將最能受益於AI時代，建議年輕世代培養人文素養與創造力，以在AI浪潮中維持不可取代的競爭優勢。</span>
+      </li>
+    </ul>
+    <div class="card-footer">
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-05', 'Anthropic共同創辦人克拉克：AI產業缺乏煞車機制')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="pdf-card">
+    <div class="card-top">
+      <div class="card-title">Donald Trump unveils $700m 'beautiful, clean coal' investment</div>
+      <a class="drive-link" href="https://drive.google.com/file/d/1klV_fJg73oySUWHIbPSnMyD8EmLHtxyH/view" target="_blank">📂 Drive</a>
+    </div>
+    <div class="summary-highlight">
+      美國總統川普援引《國防生產法》，宣布投入7億美元重振煤炭產業，包括保護14座煤電廠、興建2座新廠及1座出口碼頭，以應對美伊衝突引發的荷姆茲海峽封鎖與能源價格飆漲危機。
+    </div>
+    <div class="points-label">五大重點</div>
+    <ul class="points-list">
+      <li>
+        <span class="point-num">1</span>
+        <span>川普援引冷戰時期的《國防生產法》，以國家安全為由向煤炭業注入7億美元聯邦資金。其中5億美元用於維持現有14座煤電廠運作及在加州奧克蘭建設出口碼頭，另外2億美元用於在阿拉斯加和西維吉尼亞興建美國2013年以來的首批新煤電廠。</span>
+      </li>
+      <li>
+        <span class="point-num">2</span>
+        <span>此舉背景是美國與以色列對伊朗發動軍事打擊後，伊朗關閉荷姆茲海峽，導致全球石油天然氣供應嚴重中斷。美國汽油均價已從衝突前的每加侖2.98美元急升至4.24美元，整體能源消費者價格年增17.9%。</span>
+      </li>
+      <li>
+        <span class="point-num">3</span>
+        <span>川普宣稱此計畫將創造約14,000個就業機會，其中奧克蘭出口碼頭本身即可帶來1,400個職位，同時聲稱此舉將節省500億美元的未來能源成本，有效降低消費者電費負擔。</span>
+      </li>
+      <li>
+        <span class="point-num">4</span>
+        <span>川普在白宮將煤炭定性為「清潔、美麗的能源」，並批評投資風能等再生能源的國家是「失敗國家」，彰顯其政府在能源政策上與全球再生能源轉型主流趨勢的根本分歧與對立立場。</span>
+      </li>
+      <li>
+        <span class="point-num">5</span>
+        <span>受益煤電廠分布於肯塔基、北卡羅來納、印第安納等十個州，並涵蓋42座煤礦。整個計畫規模反映川普政府在面對地緣政治能源危機時，選擇以傳統化石燃料作為能源安全核心支柱的戰略取向。</span>
+      </li>
+    </ul>
+    <div class="card-footer">
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-05', '川普援引國防生產法：7億美元復興煤炭產業')">🔍 申請深度分析</button>
+    </div>
+  </div>
+
+</div><!-- /.section -->
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  生成時間：2026-06-05 20:12（台灣時間）
+</footer>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  function requestAnalysis(btn, date, title) {
+    if (btn.classList.contains('requested')) return;
+    btn.classList.add('requested');
+    btn.textContent = '✅ 已申請深度分析';
+    showToast('深度分析申請已記錄：' + title);
+    console.log('[深度分析申請]', { date, title, timestamp: new Date().toISOString() });
+  }
+</script>
+
+</body>
+</html>
