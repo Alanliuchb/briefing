@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026年6月6日 · 每日彙整</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0f1117;
+      color: #e8eaf0;
+      font-family: 'Segoe UI', 'PingFang TC', 'Noto Sans TC', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: #4f6ef7; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid #1e2130;
+      background: #0d1020;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 1.1rem; font-weight: 700; color: #4f6ef7; letter-spacing: 0.04em; }
+    .nav-back {
+      font-size: 0.88rem;
+      color: #8b92b3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #4f6ef7; text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      padding: 56px 40px 36px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-date {
+      font-size: 0.82rem;
+      color: #4f6ef7;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #f0f2ff;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: #6b7298;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, #4f6ef733 0%, #4f6ef711 100%);
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+
+    /* ARTICLES */
+    .articles {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .article-card {
+      background: #13161f;
+      border: 1px solid #1e2235;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .article-card:hover {
+      border-color: #4f6ef755;
+      box-shadow: 0 4px 32px #4f6ef710;
+    }
+
+    .article-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #1e2235;
+    }
+    .article-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #1a1f35;
+      color: #4f6ef7;
+      border: 1px solid #2a3260;
+      border-radius: 4px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+    .article-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #dde1f5;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .article-summary {
+      font-size: 0.93rem;
+      color: #9ba3c7;
+      background: #0d1020;
+      border-left: 3px solid #4f6ef7;
+      padding: 12px 18px;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* POINTS */
+    .article-body { padding: 24px 32px 28px; }
+    .points-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4f6ef7;
+      margin-bottom: 14px;
+    }
+    .points-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .points-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .point-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: #1a1f35;
+      border: 1px solid #2a3260;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #4f6ef7;
+      margin-top: 2px;
+    }
+    .point-text { font-size: 0.92rem; color: #c3c9e0; line-height: 1.65; }
+
+    /* FOOTER ACTIONS */
+    .article-footer {
+      padding: 16px 32px 20px;
+      border-top: 1px solid #1a1e2e;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .drive-link {
+      font-size: 0.82rem;
+      color: #5a7aff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .drive-link:hover { color: #7a9aff; }
+    .analyze-btn {
+      margin-left: auto;
+      background: linear-gradient(135deg, #2a3580, #1e2a6a);
+      border: 1px solid #3a4eaa;
+      color: #99aeff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+    .analyze-btn:hover {
+      background: linear-gradient(135deg, #3a45a0, #2e3d8a);
+      color: #c0d0ff;
+    }
+    .analyze-btn:active { transform: scale(0.97); }
+    .analyze-btn.loading { opacity: 0.7; pointer-events: none; }
+    .analyze-btn.done {
+      background: #0f2a1a;
+      border-color: #1e5a30;
+      color: #5aaa70;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1a2060;
+      color: #c0ccff;
+      border: 1px solid #2a3a90;
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: 0 8px 40px #00000060;
+      z-index: 9999;
+      opacity: 0;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      text-align: center;
+      min-width: 240px;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* PAGE FOOTER */
+    .page-footer {
+      text-align: center;
+      padding: 32px;
+      color: #3d4260;
+      font-size: 0.8rem;
+      border-top: 1px solid #1a1e2e;
+    }
+    @media (max-width: 680px) {
+      .nav { padding: 14px 20px; }
+      .hero { padding: 36px 20px 24px; }
+      .articles { padding: 0 20px 60px; }
+      .article-header, .article-body, .article-footer { padding-left: 20px; padding-right: 20px; }
+      .hero-title { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-logo">📰 每日彙整</span>
+  <a href="../../index.html" class="nav-back">← 回到首頁</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-date">Saturday · 2026年6月6日 · 星期六</div>
+  <h1 class="hero-title">2026年6月6日 每日彙整</h1>
+  <p class="hero-subtitle">今日收錄 4 篇重點財經科技新聞，涵蓋指數調整、AI 製藥、政府入股 AI 企業與科技股重挫。</p>
+</section>
+
+<div class="section-divider"></div>
+
+<main class="articles">
+
+  <!-- Article 1 -->
+  <article class="article-card">
+    <div class="article-header">
+      <div class="article-tag">指數 · 半導體</div>
+      <h2 class="article-title">Marvell Technology 與 Flex 加入 S&amp;P 500，取代 Pool Corp 與 Campbell's</h2>
+      <p class="article-summary">Marvell Technology 與 Flex 將於 6 月 22 日正式納入 S&amp;P 500 指數，取代 Pool Corp 與 Campbell's，凸顯科技與 AI 基礎建設類股在美股市場的地位持續攀升，Nvidia CEO 黃仁勳更預言 Marvell 可能成為「下一個兆元公司」。</p>
+    </div>
+    <div class="article-body">
+      <div class="points-title">五大重點</div>
+      <ul class="points-list">
+        <li>
+          <span class="point-num">1</span>
+          <span class="point-text">Marvell Technology 為 AI 基礎建設關鍵晶片製造商，Flex 則是蘋果、Nvidia 等科技大廠的合約製造夥伴，兩家公司均確認將於 6 月 22 日正式加入 S&amp;P 500 指數。此次調整將同步移除游泳池產品供應商 Pool Corp 與老牌食品集團 Campbell's。</span>
+        </li>
+        <li>
+          <span class="point-num">2</span>
+          <span class="point-text">消息公布後，Marvell 盤後股價勁揚 5%，Flex 上漲 4%，投資人對兩家公司納入主要指數後將獲得被動資金持續買盤，抱持高度正面預期。</span>
+        </li>
+        <li>
+          <span class="point-num">3</span>
+          <span class="point-text">Nvidia 執行長黃仁勳本週公開讚揚 Marvell，稱其有潛力成為「下一個兆元市值公司」；Nvidia 同時宣布對 Marvell 投資 20 億美元，為雙方深化 AI 晶片合作奠定基礎。</span>
+        </li>
+        <li>
+          <span class="point-num">4</span>
+          <span class="point-text">本次調整延續 S&amp;P 500 近年來持續向科技傾斜的趨勢，Veeva Systems、AppLovin、Datadog、DoorDash、Robinhood 等科技公司皆已在近年陸續加入指數，傳統消費與工業類股比重則逐步下降。</span>
+        </li>
+        <li>
+          <span class="point-num">5</span>
+          <span class="point-text">Marvell 創立於 1995 年，總部位於加州聖塔克拉拉，最初專注於硬碟零件製造，現已轉型為 AI 時代的核心晶片供應商。Flex 前身為 Flextronics，總部設於新加坡，在美國與亞洲均設有大規模生產基地。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="article-footer">
+      <a class="drive-link" href="https://drive.google.com/file/d/1na_uToB5zS3Dc8DQDHgqIi21IfrChcZo/view" target="_blank">📄 原始 PDF</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-06', 'Marvell Technology 與 Flex 加入 S&P 500，取代 Pool Corp 與 Campbell's')">🔍 申請深度分析</button>
+    </div>
+  </article>
+
+  <!-- Article 2 -->
+  <article class="article-card">
+    <div class="article-header">
+      <div class="article-tag">AI · 製藥</div>
+      <h2 class="article-title">阿斯特捷利康 CEO：AI 正重塑藥物開發，並提升臨床試驗成功率</h2>
+      <p class="article-summary">阿斯特捷利康執行長 Pascal Soriot 指出，AI 正深度改變製藥業的研發流程，透過加速藥物設計、優化分子結構、提升三期臨床試驗成功率，為藥廠帶來龐大的生產力紅利，每項試驗動輒耗資逾 3 億美元，成功率的提升意義深遠。</p>
+    </div>
+    <div class="article-body">
+      <div class="points-title">五大重點</div>
+      <ul class="points-list">
+        <li>
+          <span class="point-num">1</span>
+          <span class="point-text">Soriot 在接受 CNBC 採訪時強調，AI 在製藥業最核心的價值在於提升生產力，能讓新藥設計更快速、更聰明，並非僅是概念性工具，而是已具體落地於研發流程之中。</span>
+        </li>
+        <li>
+          <span class="point-num">2</span>
+          <span class="point-text">AI 技術可協助科學家識別過去未知的新藥靶點，同時對候選分子進行優化，提前移除可能導致副作用的化學結構，從源頭提高藥物安全性與有效性。</span>
+        </li>
+        <li>
+          <span class="point-num">3</span>
+          <span class="point-text">透過與 Tempus AI 的戰略合作，阿斯特捷利康開發出一款整合臨床與實驗室數據的 AI 代理系統，能夠預測候選藥物在三期臨床試驗中的成功機率，協助管理層做出更精準的研發投資決策。</span>
+        </li>
+        <li>
+          <span class="point-num">4</span>
+          <span class="point-text">Soriot 透露，一項三期臨床試驗的成本高達 3 億至 5 億美元，若能透過 AI 提升成功率，生產力改善的效益將極為顯著，可大幅降低研發失敗所帶來的鉅額損失。</span>
+        </li>
+        <li>
+          <span class="point-num">5</span>
+          <span class="point-text">此番言論正值市場廣泛質疑 AI 龐大資本投入能否產生實質回報之際，阿斯特捷利康的案例提供了 AI 在高度監管的醫療產業中確實創造商業價值的具體佐證。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="article-footer">
+      <a class="drive-link" href="https://drive.google.com/file/d/1hCbk7khjDQEL1G37gE83TfS_MjHA2sdo/view" target="_blank">📄 原始 PDF</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-06', '阿斯特捷利康 CEO：AI 正重塑藥物開發，並提升臨床試驗成功率')">🔍 申請深度分析</button>
+    </div>
+  </article>
+
+  <!-- Article 3 -->
+  <article class="article-card">
+    <div class="article-header">
+      <div class="article-tag">AI · 政策</div>
+      <h2 class="article-title">川普宣布將與 AI 企業領袖會面，研議政府入股 AI 公司方案</h2>
+      <p class="article-summary">美國總統川普宣布計畫與 Google、微軟、OpenAI 等主要 AI 企業執行長在白宮會面，研討聯邦政府直接入股 AI 公司的可行性，藉此建立「政府與全民共享 AI 成果」的新型夥伴關係，並暗示與民主黨參議員桑德斯的主權財富基金構想立場並不遙遠。</p>
+    </div>
+    <div class="article-body">
+      <div class="points-title">五大重點</div>
+      <ul class="points-list">
+        <li>
+          <span class="point-num">1</span>
+          <span class="point-text">川普在空軍一號上宣布，政府投資 AI 公司的核心目標是「創造近似與美國人民的夥伴關係」，讓廣大民眾能從 AI 技術的商業成功中直接受益，藉此改善美國民眾對 AI 技術日益負面的觀感。</span>
+        </li>
+        <li>
+          <span class="point-num">2</span>
+          <span class="point-text">預計下週在白宮召開會議，邀請 Google、微軟、OpenAI、SpaceX、Anthropic 等頂尖 AI 公司的執行長出席，屆時 OpenAI、Anthropic 等企業的 IPO 時程亦備受市場關注。</span>
+        </li>
+        <li>
+          <span class="point-num">3</span>
+          <span class="point-text">川普以去年聯邦政府取得英特爾 10% 股份為例，聲稱美國已從該項投資獲利，並以此類比說明政府直接持股科技公司並非先例，具有實際可行性。</span>
+        </li>
+        <li>
+          <span class="point-num">4</span>
+          <span class="point-text">民主黨參議員桑德斯提出由政府持有 AI 公司 50% 股份的主權財富基金構想，川普明確表示已考慮政府入股 AI 議題逾一年，並暗示雙方立場「並不那麼遙遠」，顯示跨黨派共識正在形成。</span>
+        </li>
+        <li>
+          <span class="point-num">5</span>
+          <span class="point-text">Anthropic 雖目前與美國國防部存在合約條款法律糾紛，但本週公開讚揚川普的 AI 行政命令，共同創辦人 Jack Clark 也表示公司與美國政府「每日保持溝通」，正積極尋找協助國家安全的方式，顯示緊張關係有所緩和。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="article-footer">
+      <a class="drive-link" href="https://drive.google.com/file/d/11WJ1QugAoZ5oIF6-wjIsz2oh5g-ZTD9U/view" target="_blank">📄 原始 PDF</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-06', '川普宣布將與 AI 企業領袖會面，研議政府入股 AI 公司方案')">🔍 申請深度分析</button>
+    </div>
+  </article>
+
+  <!-- Article 4 -->
+  <article class="article-card">
+    <div class="article-header">
+      <div class="article-tag">股市 · 總經</div>
+      <h2 class="article-title">強勁就業數據引發升息憂慮，美股科技板塊遭拋售那斯達克重挫逾 4%</h2>
+      <p class="article-summary">強勁的美國就業數據引發市場對聯準會延後降息的擔憂，科技股遭到大幅拋售，那斯達克指數創下 2025 年 4 月以來最大單日跌幅，S&amp;P 500 收跌 2.6%，市場資金明顯轉向醫療、公用事業等防禦性類股，並非全面出場。</p>
+    </div>
+    <div class="article-body">
+      <div class="points-title">五大重點</div>
+      <ul class="points-list">
+        <li>
+          <span class="point-num">1</span>
+          <span class="point-text">美國 4 月就業報告意外強勁，引發投資人對聯準會維持高利率更久的擔憂，那斯達克重挫逾 4%、S&amp;P 500 收跌 2.6%、道瓊工業指數下跌 1.35%，創下近一年多來最顯著的單日回檔。</span>
+        </li>
+        <li>
+          <span class="point-num">2</span>
+          <span class="point-text">比特幣等數位資產同步大幅下跌，投資人全面拋售風險性資產，反映市場對高利率環境的高度敏感，以及在通膨依然頑固的背景下，降息預期的迅速退場。</span>
+        </li>
+        <li>
+          <span class="point-num">3</span>
+          <span class="point-text">麥格理集團首席經濟學家 David Doyle 指出此次就業數據「好得過頭」，在通膨持續的背景下，反而提升聯準會今年升息的可能性，迫使原本押注降息的投資人被迫快速調整部位。</span>
+        </li>
+        <li>
+          <span class="point-num">4</span>
+          <span class="point-text">大型投資基金撤出 AI 與半導體類股後，資金並未全面離開股市，而是轉進醫療保健、公用事業、消費必需品等防禦性板塊，Kraft Heinz、Keurig Dr Pepper 等傳統消費品股逆勢走強，顯示本次為典型的類股輪動行情。</span>
+        </li>
+        <li>
+          <span class="point-num">5</span>
+          <span class="point-text">川普批評市場對就業好消息的負面反應，表示「希望市場學會當數字好看時應該上漲而非下跌」。與此同時，他預告下週將邀請頂尖 AI 高管至白宮，討論政府持股方案，科技股後市走向仍受政策面高度牽引。</span>
+        </li>
+      </ul>
+    </div>
+    <div class="article-footer">
+      <a class="drive-link" href="https://drive.google.com/file/d/1wceghpx3nb5asqWncryspSzuXBmrHRGI/view" target="_blank">📄 原始 PDF</a>
+      <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-06', '強勁就業數據引發升息憂慮，美股科技板塊遭拋售那斯達克重挫逾 4%')">🔍 申請深度分析</button>
+    </div>
+  </article>
+
+</main>
+
+<footer class="page-footer">
+  生成時間：2026-06-06 10:35（台灣時間）
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showToast(msg, duration = 3500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+function requestAnalysis(btn, date, title) {
+  btn.classList.add('loading');
+  btn.textContent = '⏳ 申請中…';
+  setTimeout(() => {
+    btn.classList.remove('loading');
+    btn.classList.add('done');
+    btn.textContent = '✅ 已申請';
+    showToast('深度分析申請已送出：' + title);
+  }, 900);
+}
+</script>
+
+</body>
+</html>
