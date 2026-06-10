@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-10 每日彙整</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1e2130;
+    --text: #e8eaf0;
+    --muted: #a0aec0;
+    --accent: #4f6ef7;
+    --border: #2d3148;
+    --highlight: #2a2f4a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; line-height: 1.7; padding: 0 0 60px; }
+  header { border-bottom: 1px solid var(--border); padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  header h1 { font-size: 1.3rem; font-weight: 700; color: var(--text); }
+  header .nav a { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+  header .nav a:hover { text-decoration: underline; }
+  .container { max-width: 860px; margin: 0 auto; padding: 28px 20px 0; }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 1.05rem; font-weight: 700; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .pdf-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin-bottom: 18px; }
+  .pdf-card .pdf-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.4; }
+  .pdf-card .pdf-abstract { background: var(--highlight); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 14px; font-size: 0.93rem; color: #c5cbe8; font-style: italic; line-height: 1.65; }
+  .pdf-card .pdf-points { list-style: none; padding: 0; }
+  .pdf-card .pdf-points li { font-size: 0.91rem; color: var(--muted); padding: 5px 0 5px 18px; position: relative; line-height: 1.65; border-bottom: 1px solid var(--border); }
+  .pdf-card .pdf-points li:last-child { border-bottom: none; }
+  .pdf-card .pdf-points li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 7px; }
+  .pdf-card .pdf-footer { margin-top: 14px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .pdf-card .pdf-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; }
+  .pdf-card .pdf-link:hover { text-decoration: underline; }
+  .analyze-btn {
+    display: inline-block; margin-top: 0; padding: 6px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+  footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+  <h1>📰 2026年6月10日 星期三</h1>
+  <div class="nav"><a href="../../index.html">← 返回總覽</a></div>
+</header>
+<div class="container">
+
+  <div class="section">
+    <div class="section-title">📄 PDF 摘要</div>
+
+    <!-- PDF 1: Claude Mythos -->
+    <div class="pdf-card">
+      <div class="pdf-title">Claude Mythos：Anthropic 發布強大 AI 工具儘管承認存在安全風險</div>
+      <div class="pdf-abstract">Anthropic 在承認其最新人工智慧模型具有重大安全風險的同時，仍決定對外發布具備強大網路攻擊能力的 Claude Mythos（對外版本名稱 Fable），並向特定網路防禦機構開放更無限制版本的 Mythos 5。</div>
+      <ul class="pdf-points">
+        <li>Anthropic 於週二正式宣布推出 Claude Mythos（對外版本名稱為 Fable），該模型被公司內部評估為迄今發布功能最強大的 AI 工具，即便公司承認「釋出這樣具有能力的模型伴隨著相當風險」，最終仍選擇在加入使用者限制與安全防護機制後公開發布。</li>
+        <li>此前 Mythos 僅開放給小型預覽組織，原因在於其能夠有效利用或入侵電腦系統的能力令安全專家憂慮；外界對此存在分歧，加拿大財政部長等政府官員公開表達關切，部分批評者則質疑相關能力是否存在行銷炒作的成分。</li>
+        <li>已參與預覽計畫的約 150 個組織現已獲得 Claude Mythos 5 的使用資格，這個版本在特定用途下已移除對網路安全及生物學領域的使用限制，Anthropic 表示未來將透過「更廣泛的受信任存取計畫」擴大開放範圍。</li>
+        <li>目前使用 Mythos 的企業與機構已向 Anthropic 回報發現超過一萬個重要系統安全漏洞，顯示該模型在協助機構識別與修補資安弱點方面具備相當實用價值。</li>
+        <li>Fable 與 Mythos 本質上為同一基礎模型，差異在於所施加的安全防護與使用限制層級，兩者均能在人類指令下「無人監督」地執行超越以往 Claude 模型的長時間連續任務，這也引發外界對 AI 自主運作邊界的進一步關注。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a class="pdf-link" href="https://drive.google.com/file/d/1lOH7emsd7Pue6dzrthMaapCYmz6aCY4H/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-10', 'Claude Mythos：Anthropic 發布強大 AI 工具儘管承認存在安全風險')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 2: US and Iran -->
+    <div class="pdf-card">
+      <div class="pdf-title">美伊交火：美軍巡邏直升機在荷姆茲海峽遭擊落後雙方爆發軍事衝突</div>
+      <div class="pdf-abstract">美國與伊朗在荷姆茲海峽爆發軍事交火，美軍完成針對伊朗防空系統的精準打擊，伊朗則以無人機與飛彈反擊美軍駐海灣地區基地，雙邊緊張情勢急遽升溫，但川普總統表示和平協議已進入最後階段。</div>
+      <ul class="pdf-points">
+        <li>美軍一架阿帕契直升機於週一在荷姆茲海峽巡邏任務中遭伊朗無人機擊落，兩名飛行員隨後由美軍海上無人艦艇成功救援；這是美國軍方首次公開確認以此類無人船艦執行實戰救援任務，兩名飛行員均安全無虞。</li>
+        <li>美國中央司令部宣布對伊朗防空系統、地面控制站及雷達設施進行定點打擊，並將此次行動定性為「比例原則下的自衛性回應」；美方隨後宣布任務「已完成」，但伊朗革命衛隊則將相關攻擊描述為「凶猛的侵犯行為」。</li>
+        <li>伊朗革命衛隊宣稱對駐巴林與約旦美軍基地的 21 個目標發動攻擊，科威特軍方也表示正在攔截一波來襲攻擊；巴林當局隨即發出空襲警報，並表示伊朗攻擊已遭成功攔截，整個海灣地區美軍基地進入高度戒備狀態。</li>
+        <li>伊朗外交部長阿拉格齊在社群媒體上對美方提出嚴厲警告，表示伊朗「不會放任任何攻擊或威脅不予回應」，並要求美軍若想確保安全就應撤出中東地區；伊朗首席核談判代表卡利巴夫也暗示將採取報復行動。</li>
+        <li>川普總統稱美伊談判「已進入最後階段」，預計協議達成後荷姆茲海峽將立即重新開放；此前該海峽自美國二月下旬首次對伊朗發動攻擊後實際上已陷入封閉，對全球能源供應與航運安全造成重大衝擊。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a class="pdf-link" href="https://drive.google.com/file/d/1GYxJMAhl6ELTbZ_NneYLjI4JnUBxLGwj/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-10', '美伊交火：美軍巡邏直升機在荷姆茲海峽遭擊落後雙方爆發軍事衝突')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <!-- PDF 3: TSMC -->
+    <div class="pdf-card">
+      <div class="pdf-title">台積電：全球最大晶片製造商不排除因成本上升而調漲價格</div>
+      <div class="pdf-abstract">台積電財務長黃仁昭接受 BBC 專訪時表示，通貨膨脹導致營運成本攀升，公司不排除調漲晶片報價，但最先進製程生產線將繼續留在台灣，且對 AI 需求的長期成長態勢抱持高度信心。</div>
+      <ul class="pdf-points">
+        <li>台積電財務長黃仁昭在年度股東大會期間接受 BBC 獨家專訪，坦言通貨膨脹已切實推升公司的營運成本，暗示未來存在調漲晶片代工報價的可能性，但強調不會實施突然性的「四、五倍」大幅漲價，而是會逐步反映自身技術領導地位與製造卓越能力所創造的價值。</li>
+        <li>台積電正積極向美國、德國與日本擴張製造版圖，已承諾在亞利桑那州投入 1,650 億美元，但黃仁昭駁斥此舉是回應美中政府壓力的說法，強調海外擴廠完全源於客戶需求；他特別指出，將最先進製程的完整製造生態系移轉至美國，至少需要五至十年甚至更長時間。</li>
+        <li>台積電的定價決策影響層面極廣：作為輝達、超微、蘋果等科技巨頭最先進晶片的唯一代工廠，任何報價調整都將向上傳遞至 AI 基礎建設成本，最終可能反映在消費性電子產品的市場售價上。</li>
+        <li>黃仁昭對 AI 熱潮表達強烈信心，否認外界對科技股估值泡沫化的疑慮；他表示與下游超大規模雲端業者密切溝通後，確認這些財務體質健全的企業具備持續大規模投資 AI 基礎建設的能力，AI 需求將長期維持強勁態勢。</li>
+        <li>在美中貿易摩擦日益加劇的地緣政治背景下，中國國家主席習近平近期警告美方若處理不當，台灣問題恐將使中美關係陷入「極度危險處境」，顯示台積電所處的半導體供應鏈安全已成為大國博弈的核心戰略議題。</li>
+      </ul>
+      <div class="pdf-footer">
+        <a class="pdf-link" href="https://drive.google.com/file/d/1pMq740G7ffYmtbxSPjF0XegmKbk9ViE9/view?usp=drivesdk" target="_blank">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-10', '台積電：全球最大晶片製造商不排除因成本上升而調漲價格')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+  </div><!-- end section -->
+</div><!-- end container -->
+
+<footer>
+  <p>生成時間：2026-06-10 18:05（台灣時間）</p>
+</footer>
+
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
