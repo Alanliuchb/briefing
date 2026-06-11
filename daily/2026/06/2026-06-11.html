@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-06-11 每日記錄</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --surface: #161b27;
+      --card: #1e2130;
+      --border: #2a3045;
+      --text: #e8eaf0;
+      --muted: #8892a4;
+      --accent: #4f6ef7;
+      --accent-hover: #6b85ff;
+      --highlight: #f0c040;
+    }
+    body { background: var(--bg); color: var(--text); font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; line-height: 1.7; padding: 0; }
+    .page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .page-header .nav-link { color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8; transition: opacity 0.2s; }
+    .page-header .nav-link:hover { opacity: 1; }
+    .page-header h1 { font-size: 22px; font-weight: 600; color: var(--text); flex: 1; min-width: 200px; }
+    .page-header .date-badge { font-size: 13px; color: var(--muted); }
+    main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+    .section { margin-bottom: 44px; }
+    .section-title { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .pdf-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; transition: border-color 0.2s; }
+    .pdf-card:hover { border-color: var(--accent); }
+    .pdf-card .pdf-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+    .pdf-card .pdf-gist { font-size: 14px; color: var(--highlight); background: rgba(240,192,64,0.08); border-left: 3px solid var(--highlight); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 16px; line-height: 1.65; }
+    .pdf-card .pdf-points { list-style: none; padding: 0; }
+    .pdf-card .pdf-points li { font-size: 14px; color: #c8cfdb; padding: 8px 0; padding-left: 18px; border-bottom: 1px solid var(--border); position: relative; line-height: 1.7; }
+    .pdf-card .pdf-points li:last-child { border-bottom: none; }
+    .pdf-card .pdf-points li::before { content: "▸"; color: var(--accent); position: absolute; left: 0; }
+    .pdf-card .pdf-footer { margin-top: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .pdf-card .drive-link { color: var(--accent); text-decoration: none; font-size: 13px; border: 1px solid var(--accent); border-radius: 6px; padding: 5px 12px; transition: all 0.2s; }
+    .pdf-card .drive-link:hover { background: rgba(79,110,247,0.12); }
+    .analyze-btn {
+      display: inline-block; padding: 5px 13px;
+      background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+      color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+    .copy-toast {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      background: #4f6ef7; color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 14px; z-index: 9999;
+      transition: opacity 0.5s; opacity: 1;
+    }
+    .page-footer { text-align: center; font-size: 12px; color: var(--muted); padding: 24px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <a href="../../index.html" class="nav-link">← 回首頁</a>
+    <h1>2026年6月11日 週四</h1>
+    <span class="date-badge">每日記錄</span>
+  </header>
+  <main>
+
+    <!-- PDF 摘要 -->
+    <section class="section">
+      <div class="section-title">📄 PDF 摘要</div>
+
+      <!-- PDF 1 -->
+      <div class="pdf-card">
+        <div class="pdf-title">企業從新加坡遷往馬來西亞的趨勢加速，全球供應鏈重組再掀波瀾</div>
+        <div class="pdf-gist">多家跨國企業將部分業務從新加坡遷往馬來西亞，以降低成本、享受稅務優惠並拓展更廣大的市場，顯示全球企業在供應鏈重組浪潮下，正積極尋求更具競爭力的營運據點。</div>
+        <ul class="pdf-points">
+          <li>H&amp;M、Heineken、Gardenia、Yeo's 等多家企業相繼宣布將部分業務或生產線從新加坡遷往馬來西亞，主要驅動力為當地較低廉的租金、薪資與營運成本，以及更具吸引力的稅務獎勵措施。</li>
+          <li>新加坡管理大學社會學副教授林清宇指出，自 2026 年初以來，企業遷往馬來西亞的趨勢明顯加速，背後反映了政策信號與成本壓力的雙重疊加效應，此次遷移潮的規模較 2025 年更為顯著。</li>
+          <li>分析師將此一趨勢定性為「區域多元化」而非全面撤離新加坡——多數企業仍將高價值功能、研發中心及地區總部留在獅城，僅將生產或後勤作業移往成本更低的馬來西亞。</li>
+          <li>柔佛—新加坡特別經濟區（JS-SEZ）是加速兩地整合的重要催化劑，佔地逾 3,500 平方公里，涵蓋商業服務、數位經濟等 11 個產業，馬來西亞並對符合資格的企業提供最低 5% 的優惠稅率。</li>
+          <li>這波企業遷移是全球供應鏈重組的縮影——在疫情後遺症與地緣政治緊張的雙重壓力下，企業積極分散生產布局，以兼顧成本效益、供應安全與市場速度三大目標。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/1pKZMz8zmo_OOGmCJMoLUzV22dD00QCQG/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-11', '企業從新加坡遷往馬來西亞的趨勢加速，全球供應鏈重組再掀波瀾')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 2 -->
+      <div class="pdf-card">
+        <div class="pdf-title">OpenAI 醞釀大砍 AI 定價，與 Anthropic 的市場爭奪戰正式升溫</div>
+        <div class="pdf-gist">OpenAI 正考慮大幅降低旗下 AI 產品的 Token 計費價格，以應對 Anthropic 的競爭壓力，此舉發生在兩家公司皆已秘密提交 IPO 申請、商業化競爭白熱化的關鍵時刻。</div>
+        <ul class="pdf-points">
+          <li>《華爾街日報》報導，OpenAI 正評估大幅調降 AI 產品的 Token 費率，預期 Anthropic 將採取類似措施，雙方正展開一場搶奪企業與消費者市場的激烈競逐。</li>
+          <li>目前 OpenAI 提供每月 8 美元、20 美元及 100 美元以上的分級訂閱方案；Anthropic 則收取年付月均 17 美元的 Claude Pro，以及月費 100 美元以上的 Claude Max，兩者定價結構截然不同。</li>
+          <li>兩家公司在商業化布局上同步推進：OpenAI 已秘密向美國證管會提交 IPO 申請，緊隨 Anthropic 上市腳步；Anthropic 則在 5 月 28 日完成 H 輪融資，估值達 9,650 億美元，略高於 OpenAI 3 月份的 8,520 億美元。</li>
+          <li>ChatGPT 在 2026 年 5 月成為全球首個月活躍用戶突破 10 億的應用程式，約在推出三年後達此里程碑，超越 Google Maps 約五年才達成的紀錄，展現 OpenAI 在消費端的龐大用戶基礎。</li>
+          <li>這場 AI 巨頭的定價戰標誌著 AI 產業正式從技術競賽轉向商業市佔率的爭奪，降價策略背後折射出企業對市場主導地位的高度重視，也可能進一步壓縮整個行業的利潤空間。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/11cYR7sadB3Jo8S6ql9idlMRbx_sH3TkC/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-11', 'OpenAI 醞釀大砍 AI 定價，與 Anthropic 的市場爭奪戰正式升溫')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 3 -->
+      <div class="pdf-card">
+        <div class="pdf-title">美軍新一輪伊朗打擊引爆油價急漲，荷莫茲供應風險再度升高</div>
+        <div class="pdf-gist">美國對伊朗發動新一輪軍事打擊，引發市場對能源供應中斷的憂慮，國際油價應聲大幅上漲，但分析師指出當前市場承壓能力較歷史危機時期更佳。</div>
+        <ul class="pdf-points">
+          <li>美國中央司令部宣布對伊朗境內多處目標發動新一輪自衛性軍事打擊，伊朗國家媒體則報導德黑蘭以飛彈及無人機回擊美軍艦艇，衝突持續螺旋上升，地緣政治風險溢價急速擴大。</li>
+          <li>受地緣政治緊張局勢影響，美國 WTI 原油 7 月期貨上漲 2.94% 至每桶 92.68 美元，國際基準布蘭特原油 8 月期貨亦上漲 2.52% 至 95.45 美元，油市波動加劇。</li>
+          <li>能源諮詢機構 Rystad Energy 分析，儘管局勢升溫，但當前油市承壓能力優於以往，主因是美國原油出口創歷史新高、中國需求相對疲軟，以及替代出口航線的建立降低了對荷莫茲海峽的依賴程度。</li>
+          <li>然而 Rystad Energy 資深副總裁萊昂警告，近期外交突破的可能性已大幅降低，投資人需密切觀察衝突是否從局部升溫演變為更廣泛的持久戰，油價仍面臨劇烈波動的風險。</li>
+          <li>川普表示將持續強化對伊軍事壓力，同時推動德黑蘭與美方達成協議，顯示此次衝突短期內難以收場，全球能源市場的高度不確定性料將延續。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/18F4uy8b_VJ_dg7lk1QUlxE04pBBIGH2S/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-11', '美軍新一輪伊朗打擊引爆油價急漲，荷莫茲供應風險再度升高')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 4 -->
+      <div class="pdf-card">
+        <div class="pdf-title">美國 5 月 CPI 創三年新高達 4.2%，川普「愛通膨」言論掀軒然大波</div>
+        <div class="pdf-gist">美國 5 月消費者物價年增率攀升至三年來最高的 4.2%，主因為美伊戰爭推升能源成本，川普「喜歡通膨」的失言引發廣泛爭議，聯準會貨幣政策前景也因此更加複雜難解。</div>
+        <ul class="pdf-points">
+          <li>美國勞工統計局公布，5 月 CPI 年增率由 4 月的 3.8% 升至 4.2%，創三年來新高，主要驅動力來自美伊戰爭導致的能源價格飆升，整體能源帳單較去年同期大漲近四分之一。</li>
+          <li>川普在白宮脫口而出「我喜歡這個通膨，數字很棒」，隨即引爆輿論譁然；他事後向《紐約郵報》澄清言論遭斷章取義，強調本意是通膨「遠低於預期」，但已難以平息政治風波。</li>
+          <li>自伊朗在 2 月底有效封鎖荷莫茲海峽以來，美國汽油均價從每加侖 2.98 美元急漲至 4.15 美元，對消費者荷包造成顯著衝擊，並持續推高整體通膨預期。</li>
+          <li>此波通膨持續攀升，使聯準會新任主席凱文·沃許在首次利率決策前陷入兩難。市場目前預期利率維持在 3.5% 至 3.75% 不變，但若通膨持續升溫，不排除被迫升息以抑制過熱的通膨壓力。</li>
+          <li>川普堅稱一旦伊朗戰爭結束，通膨將迅速降至戰前水準，但經濟學家警告，即便衝突迅速落幕，荷莫茲海峽貨物通行的正常化可能也要等到 2027 年，中短期通膨壓力實難消退。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/1cM0oMRccBDuNqWdmGo5neS3OoRDW4L6q/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-11', '美國 5 月 CPI 創三年新高達 4.2%，川普「愛通膨」言論掀軒然大波')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="page-footer">生成時間：2026-06-11 18:02（台灣時間）</footer>
+
+  <script>
+  function requestAnalysis(btn, date, title) {
+    var text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+    navigator.clipboard.writeText(text).then(function() {
+      var orig = btn.textContent; btn.textContent = '已複製 ✓';
+      setTimeout(function() { btn.textContent = orig; }, 2000);
+      showToast('✅ 已複製！請貼給 Claude');
+    });
+  }
+  function showToast(msg) {
+    var t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(function() { t.style.opacity = '0'; }, 2000);
+    setTimeout(function() { t.remove(); }, 2500);
+  }
+  </script>
+</body>
+</html>
