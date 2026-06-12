@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-06-12 每日記錄</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --surface: #161b27;
+      --card: #1e2130;
+      --border: #2a3045;
+      --text: #e8eaf0;
+      --muted: #8892a4;
+      --accent: #4f6ef7;
+      --accent-hover: #6b85ff;
+      --highlight: #f0c040;
+    }
+    body { background: var(--bg); color: var(--text); font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; line-height: 1.7; padding: 0; }
+    .page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .page-header .nav-link { color: var(--accent); text-decoration: none; font-size: 14px; opacity: 0.8; transition: opacity 0.2s; }
+    .page-header .nav-link:hover { opacity: 1; }
+    .page-header h1 { font-size: 22px; font-weight: 600; color: var(--text); flex: 1; min-width: 200px; }
+    .page-header .date-badge { font-size: 13px; color: var(--muted); }
+    main { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+    .section { margin-bottom: 44px; }
+    .section-title { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .pdf-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 20px; transition: border-color 0.2s; }
+    .pdf-card:hover { border-color: var(--accent); }
+    .pdf-card .pdf-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.4; }
+    .pdf-card .pdf-gist { font-size: 14px; color: var(--highlight); background: rgba(240,192,64,0.08); border-left: 3px solid var(--highlight); padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 16px; line-height: 1.65; }
+    .pdf-card .pdf-points { list-style: none; padding: 0; }
+    .pdf-card .pdf-points li { font-size: 14px; color: #c8cfdb; padding: 8px 0; padding-left: 18px; border-bottom: 1px solid var(--border); position: relative; line-height: 1.7; }
+    .pdf-card .pdf-points li:last-child { border-bottom: none; }
+    .pdf-card .pdf-points li::before { content: "▸"; color: var(--accent); position: absolute; left: 0; }
+    .pdf-card .pdf-footer { margin-top: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .pdf-card .drive-link { color: var(--accent); text-decoration: none; font-size: 13px; border: 1px solid var(--accent); border-radius: 6px; padding: 5px 12px; transition: all 0.2s; }
+    .pdf-card .drive-link:hover { background: rgba(79,110,247,0.12); }
+    .analyze-btn {
+      display: inline-block; padding: 5px 13px;
+      background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+      color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+    .copy-toast {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      background: #4f6ef7; color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 14px; z-index: 9999;
+      transition: opacity 0.5s; opacity: 1;
+    }
+    .page-footer { text-align: center; font-size: 12px; color: var(--muted); padding: 24px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <a href="../../index.html" class="nav-link">← 回首頁</a>
+    <h1>2026年6月12日 星期五</h1>
+    <span class="date-badge">每日記錄</span>
+  </header>
+  <main>
+
+    <!-- PDF 摘要 -->
+    <section class="section">
+      <div class="section-title">📄 PDF 摘要</div>
+
+      <!-- PDF 1 -->
+      <div class="pdf-card">
+        <div class="pdf-title">中國新創追覓科技的擴張疑雲，揭開北京引導基金模式的系統性裂縫</div>
+        <div class="pdf-gist">中國吸塵器新創公司追覓科技的過度擴張遭官方盯上，連帶引爆北京依賴地方政府「引導基金」推動科技業的財政策略正面臨失控風險，地方官員盲目跟注明星企業的模式已引發中央整頓。</div>
+        <ul class="pdf-points">
+          <li>追覓科技（Dreame Technology）在 2026 年第一季躍居全球最大掃地機器人銷售商後，創辦人虞豪聲稱將打造「人類史上首個市值百兆美元的企業生態」，業務觸角延伸至電動車、智慧型手機、人形機器人、奶茶與衛星網路等多元領域，擴張速度令外界咋舌。</li>
+          <li>江蘇省某市政府近期要求轄區企業自查對追覓相關實體的資金暴露程度，創辦人虞豪的微博帳號亦遭停用，顯示北京已開始收緊對該公司的管控，官方向來不吝讚揚的明星企業首度成為整頓對象。</li>
+          <li>追覓旗下「天工廠創投基金」管理資產達 416 億元人民幣，其中約八成資金來自蘇州、廈門等地的地方政府引導基金，高度集中於單一企業的結構引發系統性風險疑慮；中國資產管理協會亦同步要求各基金強化單一標的超過九成資產時的揭露義務。</li>
+          <li>歐亞集團中國主任丹·王（Dan Wang）指出，地方政府為彌補房地產崩盤後的財政缺口，紛紛以股權投資取代土地財政，卻因缺乏專業評估能力，傾向在少數政治上討喜的科技明星企業全力押注，一旦判斷失準，公共財政將直接曝險。</li>
+          <li>蓋洛克德拉戈諾米克斯（Gavekal Dragonomics）產業政策分析師張蒂利（Tilly Zhang）補充，中國「耐心資本」的扶植模式反而誘使企業競相包裝成符合政策優先領域，以爭取國家資金，滋生出大量技術含量不足卻政治標籤鮮明的投資案，為整體資源配置效率埋下隱患。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/12qL5rH7Waz4qHFJg47tF3oD6CXwOSmPy/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-12', '中國新創追覓科技的擴張疑雲，揭開北京引導基金模式的系統性裂縫')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 2 -->
+      <div class="pdf-card">
+        <div class="pdf-title">川普宣稱與伊朗達成戰爭和解，但德黑蘭隨即否認，停火協議真實性再度存疑</div>
+        <div class="pdf-gist">美國總統川普宣稱美伊已達成「戰爭和解協議」並取消當日空襲計畫，預計數日內完成簽署，然而伊朗官方媒體隨即否認批准任何草案，使得協議的真實性再度籠罩疑雲，中東局勢仍高度不確定。</div>
+        <ul class="pdf-points">
+          <li>川普在白宮橢圓形辦公室向媒體表示，美國「剛與伊朗達成絕佳和解」，預計「未來幾天」完成簽署，霍爾木茲海峽將於協議生效後立即重開，美國海軍封鎖令則持續到正式簽署為止。然而，此前同日上午川普才以強硬措辭威脅要「今晚重擊伊朗」，前後態度的大幅轉變再度令外界困惑。</li>
+          <li>伊朗官方媒體法爾斯通訊社（Fars）在 Telegram 上隨即回應，否認德黑蘭已批准任何備忘錄文本，並將川普此舉定性為「在未能增添新細節後，從軍事威脅中戰術性撤退」，指美方才是回頭接受伊朗此前提案的一方，雙方說法嚴重分歧。</li>
+          <li>以色列總理內塔尼亞胡辦公室確認雙方通話，表明以色列雖非談判當事方，但期盼最終協議包含限制伊朗核能力及其他挑釁行為的相關條款，顯示以色列仍在幕後積極掌握談判走向，同時以軍對黎巴嫩的軍事行動持續進行。</li>
+          <li>股市與油市在川普宣布停火訊息後隨即劇烈反應，股指飆升、油價大跌，重演過去數月來因川普超過 30 次宣稱「和談在即」所引發的市場波動循環，市場對政策訊號的高度敏感性顯示投資人仍難以判斷協議是否真有其事。</li>
+          <li>此次事件再度暴露美伊衝突談判的結構性難題——川普政府的訊息管理始終不透明，誇大進展的慣性已讓盟友與市場產生「狼來了」效應，即便最終達成協議，公信力的重建也將是更長遠的挑戰。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/1bE_5IRTsfrqgCN5VdnR7vF07YyXvpO2s/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-12', '川普宣稱與伊朗達成戰爭和解，但德黑蘭隨即否認，停火協議真實性再度存疑')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 3 -->
+      <div class="pdf-card">
+        <div class="pdf-title">SpaceX IPO 正式登場：誰能買、值不值，以及馬斯克如何確保永遠說了算</div>
+        <div class="pdf-gist">SpaceX 首次公開募股以每股 135 美元、總估值約 1.75 兆美元的規模登上那斯達克，個人投資者亦可透過券商申購，但公司歷史性虧損與馬斯克近乎絕對的投票控制權，使潛在股東面臨不容忽視的風險。</div>
+        <ul class="pdf-points">
+          <li>SpaceX 於本週五正式啟動 IPO，計劃以每股 135 美元出售超過 5.5 億股新股，籌資目標至少達 750 億美元，預計成為美國史上規模最大的股市掛牌案，並一舉躋身全球前十大上市公司之列，估值達約 1.75 兆美元。</li>
+          <li>個人投資者可透過特定投資平台或券商申購 SpaceX 股票；即便未直接持股，持有指數型基金或退休帳戶的投資人，也可能因基金自動買入大型新上市股而間接受 SpaceX 股價波動牽連，影響範圍遠超一般 IPO。</li>
+          <li>SpaceX 的業務版圖涵蓋太空探索、Starlink 衛星通訊、社群媒體 X 以及人工智慧平台 Grok，上市說明書更大膽揭示殖民火星、開採小行星、在太空建設 AI 資料中心等宏大願景，引發市場對其基本面與天馬行空敘事之間落差的深切質疑。</li>
+          <li>SpaceX 去年營收達 186 億美元，但淨虧損高達 49 億美元，公司在說明書中坦承「有虧損歷史，且未來可能無法實現盈利」，目前估值相當於未來多年收入的數十倍，財務現實與高估值之間的落差已成為市場最大疑慮。</li>
+          <li>馬斯克透過 A 類與 B 類股的組合，掌握約 84% 的投票控制權，不僅遠超祖克柏在 Meta 約 60% 的控制比例，SpaceX 董事會更無需設置任何獨立董事；哈佛法學院分析指出，此結構將允許內部人士主導包括收購其他馬斯克旗下公司及薪酬決策等重大事項，對小股東而言潛藏可觀治理風險。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/1-dEnqtYIFMoNUZjf56ZspI6dGYIkRmFS/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-12', 'SpaceX IPO 正式登場：誰能買、值不值，以及馬斯克如何確保永遠說了算')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+      <!-- PDF 4 -->
+      <div class="pdf-card">
+        <div class="pdf-title">SpaceX 完成 750 億美元史上最大 IPO 募資，馬斯克持股結構鎖定兆億富翁地位</div>
+        <div class="pdf-gist">SpaceX 以每股 135 美元確認完成 750 億美元的 IPO 募資，以約 1.8 兆美元的估值創下史上最高股市掛牌紀錄，馬斯克因持股預計成為全球首位兆億富翁，但其超過 84% 的投票控制權引發企業治理爭議，也為後續 Anthropic、OpenAI 上市定下基準。</div>
+        <ul class="pdf-points">
+          <li>SpaceX 正式向美國證券交易委員會提交申報文件，確認以每股 135 美元完成 750 億美元的發行，與公司上週預估吻合，預計上市市值接近 1.8 兆美元，超越 Anthropic 與 OpenAI 等同業，但仍落後谷歌、蘋果、微軟、亞馬遜等科技巨頭；此次掛牌也是三大 AI 相關巨型上市案中的首砲。</li>
+          <li>全球券商 Oppenheimer 等機構分析師已將 SpaceX 目標股價設定在 190 美元以上，反映機構投資人對其未來成長潛力的高度樂觀；IPO 成功與否亦被視為 Anthropic 與 OpenAI 後續上市的重要風向指標，整體 AI 板塊的市場估值邏輯正在此次發行中受到檢驗。</li>
+          <li>SpaceX 第一任員工、現任 Impulse Space 創辦人湯姆·穆勒（Tom Mueller）接受 BBC 採訪時感嘆「簡直難以置信」，回顧公司從首具火箭引擎爆炸、多次失敗，直至 2008 年首度成功入軌的漫長旅程，形容整段歷程「無與倫比」，也為這場里程碑式的上市增添了真實的人情底色。</li>
+          <li>透過 A 類與 B 類股的組合，馬斯克握有 SpaceX 約 40% 的股權，並轉換為 84% 以上的投票控制力，這套設計使他即便未來出售部分股份，仍能牢牢鎖住公司決策主導權。SpaceX 已完成對旗下 xAI 的收購，xAI 本身也於 2025 年整合了馬斯克 2022 年買下的前 Twitter 平台 X，形成龐大的馬斯克生態系。</li>
+          <li>哈佛法學院分析指出，SpaceX 的雙重股權結構將允許內部人士主導包括收購其他馬斯克旗下公司及薪酬決策等重大事項，即便馬斯克日後出售 A 類股以套現，也無法動搖其對公司的鐵腕掌控，這對尋求保護的小股東而言構成相當的治理風險。</li>
+        </ul>
+        <div class="pdf-footer">
+          <a href="https://drive.google.com/file/d/1w-HaLXIoWD1DMcYG1CS7puWHDwok_OGL/view?usp=drivesdk" target="_blank" class="drive-link">在 Google Drive 開啟</a>
+          <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-12', 'SpaceX 完成 750 億美元史上最大 IPO 募資，馬斯克持股結構鎖定兆億富翁地位')">🔍 申請深度分析</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    生成時間：2026-06-12 18:06（台灣時間）
+  </footer>
+
+  <script>
+  function requestAnalysis(btn, date, title) {
+    const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent; btn.textContent = '已複製 ✓';
+      setTimeout(() => btn.textContent = orig, 2000);
+      showToast('✅ 已複製！請貼給 Claude');
+    });
+  }
+  function showToast(msg) {
+    const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity = '0'; }, 2000);
+    setTimeout(() => { t.remove(); }, 2500);
+  }
+  </script>
+</body>
+</html>
