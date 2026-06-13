@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-13 每日簡報</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1e2130;
+    --border: #2d3147;
+    --text: #e8eaf0;
+    --muted: #a0aec0;
+    --accent: #4f6ef7;
+    --highlight-bg: #1a2040;
+    --success: #48bb78;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Segoe UI', sans-serif;
+    line-height: 1.75;
+    padding: 0 0 60px;
+  }
+  header {
+    background: linear-gradient(135deg, #0d1535 0%, #1a1f3a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 24px 20px;
+  }
+  .nav-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .nav-link:hover { opacity: 1; }
+  header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  header .date-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+  .section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  /* PDF Cards */
+  .pdf-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .pdf-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .pdf-original-title {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .highlight-box {
+    background: var(--highlight-bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .highlight-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .summary-one {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .pdf-points {
+    margin-bottom: 16px;
+  }
+  .pdf-points strong {
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pdf-points ul {
+    list-style: none;
+    padding: 0;
+  }
+  .pdf-points ul li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #c8cde0;
+    line-height: 1.75;
+  }
+  .pdf-points ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+    top: 3px;
+  }
+  .pdf-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .drive-link {
+    display: inline-block;
+    padding: 7px 16px;
+    background: rgba(79,110,247,0.15);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .drive-link:hover { background: rgba(79,110,247,0.3); }
+  .analyze-btn {
+    display: inline-block; padding: 6px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+  .footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="../../index.html" class="nav-link">← 回首頁</a>
+  <h1>📰 2026年6月13日 星期六</h1>
+  <p class="date-sub">每日財經科技簡報</p>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <h2 class="section-title">📄 PDF 摘要（共 4 篇）</h2>
+    
+    <div class="pdf-card">
+      <h3 class="pdf-title">馬斯克成全球首位兆萬富翁，SpaceX IPO 創歷史</h3>
+      <p class="pdf-original-title">原標題：Elon Musk becomes world's first trillionaire as SpaceX soars in stock market debut</p>
+      <div class="highlight-box">
+        <span class="highlight-label">一句話主旨</span>
+        <p class="summary-one">SpaceX 掛牌上市首日市值逼近 2.2 兆美元，馬斯克個人資產突破 1.11 兆美元，躍升為史上首位兆萬富翁，然而公司目前仍處於虧損狀態，估值主要建立在對太空、衛星與人工智慧業務的龐大未來想像之上。</p>
+      </div>
+      <div class="pdf-points">
+        <strong>重點摘要</strong>
+        <ul>
+<li>SpaceX 以每股 135 美元定價在那斯達克掛牌，開盤即跳升至 150 美元，盤中最高觸及 176.50 美元，終場收於約 161 美元，單日漲幅逾 19%，此次 IPO 共從投資人及承銷商募資 750 億美元，創下有史以來最大規模首次公開發行紀錄。</li>
+<li>馬斯克持有 SpaceX 約 42% 股權，依彭博富豪榜計算，其在 SpaceX 的股份市值達 7,671 億美元，加計特斯拉持股及選擇權，總淨資產超過 1.11 兆美元，成為人類史上首位「兆萬富翁」，引發美國民主黨參議員桑德斯、華倫等人強烈批評，呼籲對超級富豪徵收財富稅。</li>
+<li>SpaceX 目前業務橫跨火箭製造與發射、星鏈衛星網路，以及透過今年收購 xAI 跨入的人工智慧領域，公司計畫將 IPO 資金用於推進軌道數據中心等前瞻性計畫。然而公司 2025 至 2026 年累計虧損超過 90 億美元，基本面尚未獲利，多位分析師提醒投資人應謹慎看待公司對未來收益的高度樂觀預測。</li>
+<li>SpaceX 上市也使逾 4,400 名現任及前任員工，因持有公司股票而晉升百萬富翁行列；而 Laffer Tengler Investments 執行長 Nancy Tengler 則預期 SpaceX 與特斯拉未來兩年內可能合併，若成真，合併後市值將遠超任何一家單獨估算的數字。</li>
+<li>馬斯克的財富急速膨脹再度引發全球財富不均討論：其個人淨資產已相當於波蘭或瑞士的整體年度 GDP，而他過去主導美國政府效率部（DOGE）大幅削減聯邦開支的行動，被研究人員估計恐於 2030 年前造成逾 1,400 萬人額外死亡，政治與社會爭議至今持續延燒。</li>
+        </ul>
+      </div>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1cFhpoNbZPyqtuW_pN45SHJ9ETscyF-pL/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-13', '馬斯克成全球首位兆萬富翁，SpaceX IPO 創歷史')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">SpaceX 上市帶動三大指數收紅，美伊和談傳出重大進展</h3>
+      <p class="pdf-original-title">原標題：Stocks end higher as SpaceX soars in debut, U.S.-Iran deal nears</p>
+      <div class="highlight-box">
+        <span class="highlight-label">一句話主旨</span>
+        <p class="summary-one">SpaceX 掛牌首日大漲逾 19%，帶動美股三大指數全面收高，美伊和平協議談判同步傳出最終文本已達成共識，有望最快週日在瑞士簽署，油價卻因川普發出強硬警告而大幅回落逾 3%。</p>
+      </div>
+      <div class="pdf-points">
+        <strong>重點摘要</strong>
+        <ul>
+<li>週五收盤，標普 500 上漲 0.5%、收 7,431.46 點，那斯達克綜合指數上揚 0.31%、收 25,888.84 點，道瓊工業平均指數則大漲 353.51 點（0.7%），收 51,202.26 點，三大指數齊步收紅，SpaceX 的亮眼首秀被市場解讀為 IPO 浪潮即將全面啟動的訊號。</li>
+<li>SuRo Capital 執行長 Mark Klein 形容 SpaceX 上市是「IPO 閱兵」轉變為「IPO 大軍壓境」的轉捩點，並稱其為未來 IPO 市場的風向標；KKM Financial 執行長 Jeff Kilburg 則重申 AI 主題持續升溫，相信「七巨頭」的市場領導地位不會輕易動搖。</li>
+<li>美伊和談方面，巴基斯坦總理謝里夫宣布最終協議文本已達成，伊朗國家媒體披露草案內容包括美方承諾解除石油制裁、伊朗承諾重新開放荷姆茲海峽，彭博報導指協議最快可於週日在瑞士簽署，消息帶動股市在午後跌勢中回穩拉升。</li>
+<li>川普在 Truth Social 發文警告伊朗「最好整頓好自己」，一度引發市場不安，西德克薩斯中級原油期貨應聲跌逾 3.2%，收每桶 84.88 美元；科技股表現分歧，輝達微漲、AMD 及 Alphabet 分別上漲 4.7% 與 0.5%，博通、Palantir、亞馬遜及 Meta 則收跌。</li>
+<li>UBS 分析師 Michel Lerner 提醒投資人，高通膨數據帶來聯準會重演 1999 至 2000 年間激進升息的風險，動能股市場僅約三分之一個股在過去三個月跑贏大盤，為逾三十年來最低，建議在確認市場方向前不宜貿然「逢低買進」。</li>
+        </ul>
+      </div>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1Zek1qBuKVya-v4pi2VzjKkPy4SNu_uJn/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-13', 'SpaceX 上市帶動三大指數收紅，美伊和談傳出重大進展')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">ChatGPT 月活用戶破十億，公眾疑慮升溫之際 Claude 與 Meta AI 增速更驚人</h3>
+      <p class="pdf-original-title">原標題：ChatGPT hits a billion monthly app users despite souring public AI sentiment</p>
+      <div class="highlight-box">
+        <span class="highlight-label">一句話主旨</span>
+        <p class="summary-one">OpenAI 旗下 ChatGPT 於 2026 年 5 月達成單月 App 活躍用戶十億人的里程碑，成為史上最快達成此目標的應用程式，但同期 Anthropic Claude 與 Meta AI 的年增率分別高達 640% 與 973%，遠超 ChatGPT 的 62%，顯示 AI 競爭格局已從「一強獨大」走向全面白熱化。</p>
+      </div>
+      <div class="pdf-points">
+        <strong>重點摘要</strong>
+        <ul>
+<li>據市場情報公司 Sensor Tower 統計，ChatGPT 在 2026 年 5 月達成十億月活躍用戶，約在 2022 年 11 月上線後 3.5 年達標，打破 Google 地圖約 5 年才達成同等規模的紀錄；OpenAI 先前亦公布每週活躍用戶逾 9 億，網頁與行動平台的月度訪問量為第二名 AI 平台的六倍以上。</li>
+<li>競爭對手的成長速度令人矚目：Claude 年增 640%、Meta AI 年增 973%，相較之下 ChatGPT 僅成長 62%。Sensor Tower 高級分析師 Abe Yousef 指出，競品的高速成長源於模型本身的實質進步，以及部分用戶因 ChatGPT 與美國國防部合作而產生的情緒性轉移。</li>
+<li>2026 年 2 月 28 日，OpenAI 宣布與美國國防部合作將其模型部署於五角大廈機密網路，消息一出當天 ChatGPT 的解除安裝率單日飆升約 295%，反觀 Anthropic 因明確拒絕參與五角大廈業務，Claude 隨即登上 App Store 美國下載榜首，首度超越 ChatGPT，凸顯用戶已開始以道德立場作為選擇 AI 工具的依據。</li>
+<li>波士頓顧問集團 BCG X 的常務董事 Hanno Stegmann 表示，AI 採用趨勢的強勁動能尚無放緩跡象，儘管公眾對 AI 的疑慮上升——包括教宗良在致信警告財富不平等加劇，以及 Anthropic 本身也呼籲暫停全球 AI 發展——市場數據顯示整體使用量仍持續攀升。</li>
+<li>OpenAI 與 Anthropic 均已啟動 IPO 程序，前者週一遞交 IPO 申請文件，後者則在一週前已向美國證管會提交上市說明書，兩家 AI 巨頭同步走向公開市場，標誌著 AI 商業化競爭進入全新階段。</li>
+        </ul>
+      </div>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1eq47kui8o-e39oPGOh9rkzeXlowAmiXV/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-13', 'ChatGPT 月活用戶破十億，公眾疑慮升溫之際 Claude 與 Meta AI 增速更驚人')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">Anthropic、OpenAI 競相擴張倫敦版圖，人才磁吸效應背後隱藏辦公空間與基礎設施危機</h3>
+      <p class="pdf-original-title">原標題：Why U.S. AI giants like Anthropic, OpenAI are launching major expansions in London</p>
+      <div class="highlight-box">
+        <span class="highlight-label">一句話主旨</span>
+        <p class="summary-one">Anthropic、OpenAI、Google、Cursor 等美國 AI 巨頭接連宣布在倫敦大幅擴編，看重其十年積累的深厚 AI 人才生態與頂級金融資本網絡，但辦公空間供給短缺的結構性瓶頸，以及能源、運算力、住房等基礎設施壓力，正成為倫敦能否守住「美國以外最重要 AI 重鎮」地位的關鍵考驗。</p>
+      </div>
+      <div class="pdf-points">
+        <strong>重點摘要</strong>
+        <ul>
+<li>Anthropic 於今年 4 月宣布在倫敦知識區（Knowledge Quarter）取得可容納 800 人的辦公空間，約為現有倫敦員工數的四倍；OpenAI 亦擴大了英國首都的辦公面積，程式碼輔助平台 Cursor 計畫今夏在倫敦設立總部，Google 也宣布將陸續將團隊遷入國王十字（Kings Cross）一棟 11 層新大樓。</li>
+<li>倫敦能吸引 AI 巨頭的核心競爭力在於人才。高管獵頭公司 Heidrick & Struggles 合夥人 Frederic Groussolles 指出，倫敦憑藉 DeepMind、頂尖研究機構與牛津、劍橋等名校的長期投入，已形成美國以外最深厚的前沿 AI 人才庫，涵蓋 AI 研究、工程及商業領袖等各層次人才。</li>
+<li>資金面同樣形成強大助力：全球新創企業今年截至目前已募資 3,921 億美元，遠超 2025 年全年 2,159 億美元的歷史紀錄，倫敦作為全球主要金融中心，提供了風險投資、成長型股權及企業發展網路等多元融資管道。</li>
+<li>辦公空間短缺是倫敦科技業最嚴峻的結構性挑戰。英國地產商 British Land 估計，倫敦至 2030 年將短缺逾 1,040 萬平方英尺的全新或大規模翻修辦公空間，超高速成長的 AI 公司與傳統金融及專業服務業者爭搶同一批頂級辦公室，供需缺口短期內難以彌補。</li>
+<li>本地 VC 機構 LocalGlobe 合夥人 Ziv Reichert 警告，人才固然將 AI 實驗室吸引至倫敦，但能否留住這些企業，取決於英國能否持續在運算力、能源、住房與交通等基礎設施上跟上成長步伐；獵頭公司 Erevena 則指出，資金雄厚的美國科技巨頭以極具吸引力的薪酬與股票選擇權搶人，正讓本地新創公司的招募難度大幅提升。</li>
+        </ul>
+      </div>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/12maVyCIwUj4ZGDchW7vsacElrBbKG6ix/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-13', 'Anthropic、OpenAI 競相擴張倫敦版圖，人才磁吸效應背後隱藏辦公空間與基礎設施危機')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer">
+    生成時間：2026-06-13 18:06（台灣時間）
+  </div>
+
+</div>
+
+<div id="lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;cursor:pointer;align-items:center;justify-content:center;">
+  <img id="lightbox-img" style="max-width:90%;max-height:90vh;border-radius:8px;">
+</div>
+
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+function openLightbox(url) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+</script>
+</body>
+</html>
