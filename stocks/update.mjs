@@ -46,7 +46,20 @@ function decrypt(env, password) {
 }
 
 // ---- 抓取 Yahoo 報價 ----
-async function fetchQuote(symbol) {
+const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+// 先取得 Yahoo 工作階段 cookie,降低 GitHub 共用 IP 被 429 封鎖的機率
+let YAHOO_COOKIE = '';
+async function initYahooSession() {
+  try {
+    const res = await fetch('https://fc.yahoo.com/', { headers: { 'User-Agent': UA } });
+    const cookies = res.headers.getSetCookie ? res.headers.getSetCookie() : [];
+    YAHOO_COOKIE = cookies.map(c => c.split(';')[0]).join('; ');
+  } catch (e) { /* 沒拿到 cookie 也可以繼續,靠重試 */ }
+}
+
+async function fetchQuote(symbol, attempt = 0) {
   const hosts = ['query1.finance.yahoo.com', 'query2.finance.yahoo.com'];
   let lastErr;
   for (const host of hosts) {
@@ -54,10 +67,12 @@ async function fetchQuote(symbol) {
       const url = `https://${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
       const res = await fetch(url, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
-          'Accept': 'application/json'
+          'User-Agent': UA,
+          'Accept': 'application/json',
+          ...(YAHOO_COOKIE ? { 'Cookie': YAHOO_COOKIE } : {})
         }
       });
+      if (res.status === 429) throw new Error('HTTP 429');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const j = await res.json();
       const meta = j?.chart?.result?.[0]?.meta;
@@ -65,10 +80,16 @@ async function fetchQuote(symbol) {
       return { price: meta.regularMarketPrice, prev: meta.chartPreviousClose ?? meta.previousClose ?? meta.regularMarketPrice };
     } catch (e) { lastErr = e; }
   }
+  // 被限流(429)或暫時失敗時,指數退避重試
+  if (attempt < 6) {
+    await sleep(2000 * (attempt + 1) + Math.floor(Math.random() * 1000));
+    return fetchQuote(symbol, attempt + 1);
+  }
   throw new Error(`${symbol}: ${lastErr?.message || '抓取失敗'}`);
 }
 
 async function main() {
+  await initYahooSession();
   // 匯率 USD→TWD
   const fxQ = await fetchQuote('TWD=X');
   const fx = fxQ.price;
@@ -76,6 +97,7 @@ async function main() {
   const rows = [];
   let totalVal = 0, totalCost = 0, totalValPrev = 0;
   for (const h of HOLDINGS) {
+    await sleep(700);
     const q = await fetchQuote(h.sym);
     const rate = h.ccy === 'USD' ? fx : 1;
     const valNative = q.price * h.shares;
