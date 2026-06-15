@@ -1,5 +1,9 @@
 // stocks/update.mjs
-// 由 GitHub Actions 執行:抓取 Yahoo 報價 → 計算台幣總資產 → 加密寫入 data.enc
+// 由 GitHub Actions 執行:抓取報價 → 計算台幣總資產 → 加密寫入 data.enc
+// 資料來源(皆免金鑰、可從雲端伺服器存取，避開 Yahoo 對 GitHub IP 的封鎖):
+//   美股 / ETF        CNBC quote 服務(單次批次查詢)
+//   匯率 USD→TWD      open.er-api.com
+//   台股 ETF          台灣證交所 TWSE 官方 API
 // 需要兩個環境變數(GitHub Secrets):
 //   VIEW_PASSWORD        看板開啟密碼
 //   PORTFOLIO_HOLDINGS   持股清單 JSON(陣列)
@@ -45,60 +49,99 @@ function decrypt(env, password) {
   return JSON.parse(pt.toString('utf8'));
 }
 
-// ---- 抓取 Yahoo 報價 ----
+// ---- 共用工具 ----
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const num = v => parseFloat(String(v).replace(/[,%\s]/g, ''));
 
-// 先取得 Yahoo 工作階段 cookie,降低 GitHub 共用 IP 被 429 封鎖的機率
-let YAHOO_COOKIE = '';
-async function initYahooSession() {
-  try {
-    const res = await fetch('https://fc.yahoo.com/', { headers: { 'User-Agent': UA } });
-    const cookies = res.headers.getSetCookie ? res.headers.getSetCookie() : [];
-    YAHOO_COOKIE = cookies.map(c => c.split(';')[0]).join('; ');
-  } catch (e) { /* 沒拿到 cookie 也可以繼續,靠重試 */ }
+async function withRetry(fn, label, tries = 4) {
+  let last;
+  for (let i = 0; i < tries; i++) {
+    try { return await fn(); }
+    catch (e) { last = e; if (i < tries - 1) await sleep(1500 * (i + 1)); }
+  }
+  throw new Error(`${label}: ${last?.message || '失敗'}`);
 }
 
-async function fetchQuote(symbol, attempt = 0) {
-  const hosts = ['query1.finance.yahoo.com', 'query2.finance.yahoo.com'];
-  let lastErr;
-  for (const host of hosts) {
+// ---- 匯率 USD→TWD(open.er-api.com,免金鑰)----
+async function fetchFx() {
+  const res = await fetch('https://open.er-api.com/v6/latest/USD', { headers: { 'User-Agent': UA, 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const j = await res.json();
+  const twd = j?.rates?.TWD;
+  if (!twd) throw new Error('回應無 TWD 匯率');
+  return twd;
+}
+
+// ---- 美股 / ETF(CNBC,一次批次查詢多檔)----
+async function fetchUsQuotes(symbols) {
+  if (!symbols.length) return {};
+  const url = 'https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols='
+    + symbols.map(encodeURIComponent).join('|')
+    + '&requestMethod=itv&noform=1&fund=1&exthrs=1&output=json';
+  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const j = await res.json();
+  let arr = j?.FormattedQuoteResult?.FormattedQuote || [];
+  if (!Array.isArray(arr)) arr = [arr];
+  const map = {};
+  for (const q of arr) {
+    const price = num(q.last);
+    const pct = num(q.change_pct);
+    if (!isFinite(price)) continue;
+    // 由當日漲跌幅回推昨收,計算組合層級的今日變動
+    const prev = (isFinite(pct) && (1 + pct / 100) !== 0) ? price / (1 + pct / 100) : price;
+    map[q.symbol] = { price, prev };
+  }
+  return map;
+}
+
+// ---- 台股 ETF(TWSE 官方 API,當月每日成交資訊)----
+async function fetchTwQuote(stockNo) {
+  const now = new Date();
+  const tw = new Date(now.getTime() + 8 * 3600 * 1000);
+  const ymd = tw.toISOString().slice(0, 10).replace(/-/g, '');
+  const url = `https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=${ymd}&stockNo=${stockNo}&response=json`;
+  const res = await fetch(url, { headers: { 'User-Agent': UA, 'Accept': 'application/json' } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const j = await res.json();
+  let data = j?.data;
+  // 月初資料不足兩筆時,補抓上個月
+  if (!data || data.length < 2) {
+    const pm = new Date(tw.getTime()); pm.setUTCDate(0); // 上個月最後一天
+    const ymd2 = pm.toISOString().slice(0, 10).replace(/-/g, '');
     try {
-      const url = `https://${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=5d`;
-      const res = await fetch(url, {
-        headers: {
-          'User-Agent': UA,
-          'Accept': 'application/json',
-          ...(YAHOO_COOKIE ? { 'Cookie': YAHOO_COOKIE } : {})
-        }
-      });
-      if (res.status === 429) throw new Error('HTTP 429');
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const j = await res.json();
-      const meta = j?.chart?.result?.[0]?.meta;
-      if (!meta || meta.regularMarketPrice == null) throw new Error('無價格');
-      return { price: meta.regularMarketPrice, prev: meta.chartPreviousClose ?? meta.previousClose ?? meta.regularMarketPrice };
-    } catch (e) { lastErr = e; }
+      const r2 = await fetch(`https://www.twse.com.tw/rwd/zh/afterTrading/STOCK_DAY?date=${ymd2}&stockNo=${stockNo}&response=json`, { headers: { 'User-Agent': UA, 'Accept': 'application/json' } });
+      const j2 = await r2.json();
+      const prevMonth = j2?.data || [];
+      data = [...prevMonth, ...(data || [])];
+    } catch (e) { /* 補抓失敗就用現有資料 */ }
   }
-  // 被限流(429)或暫時失敗時,指數退避重試
-  if (attempt < 6) {
-    await sleep(2000 * (attempt + 1) + Math.floor(Math.random() * 1000));
-    return fetchQuote(symbol, attempt + 1);
-  }
-  throw new Error(`${symbol}: ${lastErr?.message || '抓取失敗'}`);
+  if (!data || !data.length) throw new Error('TWSE 無資料');
+  const closeAt = row => num(row[6]); // 收盤價在第 7 欄
+  const last = data[data.length - 1];
+  const prevRow = data.length >= 2 ? data[data.length - 2] : last;
+  return { price: closeAt(last), prev: closeAt(prevRow) };
 }
 
 async function main() {
-  await initYahooSession();
-  // 匯率 USD→TWD
-  const fxQ = await fetchQuote('TWD=X');
-  const fx = fxQ.price;
+  const fx = await withRetry(fetchFx, '匯率');
+
+  const usSyms = HOLDINGS.filter(h => h.ccy === 'USD').map(h => h.sym);
+  const usMap = await withRetry(() => fetchUsQuotes(usSyms), '美股報價');
 
   const rows = [];
   let totalVal = 0, totalCost = 0, totalValPrev = 0;
   for (const h of HOLDINGS) {
-    await sleep(700);
-    const q = await fetchQuote(h.sym);
+    let q;
+    if (h.ccy === 'USD') {
+      q = usMap[h.sym];
+      if (!q) throw new Error(`缺少報價:${h.sym}`);
+    } else {
+      const stockNo = h.sym.replace(/\.TW$/i, '');
+      await sleep(500);
+      q = await withRetry(() => fetchTwQuote(stockNo), `台股 ${h.sym}`);
+    }
     const rate = h.ccy === 'USD' ? fx : 1;
     const valNative = q.price * h.shares;
     const prevNative = q.prev * h.shares;
