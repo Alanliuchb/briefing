@@ -1,1 +1,184 @@
-[{"sym":"0050.TW","name":"元大台灣50","shares":90513,"cost":61.72,"ccy":"TWD"},{"sym":"006208.TW","name":"富邦台50","shares":21439,"cost":121.58,"ccy":"TWD"},{"sym":"AAPL","name":"蘋果","shares":20,"cost":258.8405,"ccy":"USD"},{"sym":"COHR","name":"Coherent","shares":2,"cost":386.4,"ccy":"USD"},{"sym":"LITE","name":"Lumentum","shares":1,"cost":926.57,"ccy":"USD"},{"sym":"MRVL","name":"邁威爾 Marvell","shares":5,"cost":263.694,"ccy":"USD"},{"sym":"QQQ","name":"Invesco QQQ","shares":56.36109,"cost":457.907574,"ccy":"USD"},{"sym":"SPY","name":"SPDR S&P 500","shares":27,"cost":615.845556,"ccy":"USD"},{"sym":"VOO","name":"Vanguard S&P 500","shares":47.53537,"cost":487.360044,"ccy":"USD"},{"sym":"VT","name":"Vanguard 全世界","shares":197.52816,"cost":138.101474,"ccy":"USD"}]
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>我的持股看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+ :root{--bg:#0e1117;--card:#161b22;--line:#232b36;--txt:#e6edf3;--sub:#8b949e;--up:#e5484d;--down:#26a269;--accent:#3b82f6}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:-apple-system,"PingFang TC","Microsoft JhengHei",system-ui,sans-serif;background:var(--bg);color:var(--txt);padding:16px;max-width:1000px;margin:0 auto}
+ h1{font-size:20px;font-weight:700;margin-bottom:4px}
+ .muted{color:var(--sub);font-size:13px}
+ .up{color:var(--up)}.down{color:var(--down)}
+ /* 登入 */
+ #gate{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;gap:14px}
+ #gate input{background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--txt);font-size:16px;padding:12px 14px;width:min(280px,80vw);text-align:center}
+ #gate button{background:var(--accent);border:none;border-radius:10px;color:#fff;font-size:16px;font-weight:600;padding:12px 28px;cursor:pointer}
+ #gateErr{color:var(--up);font-size:13px;min-height:18px}
+ .lock{font-size:40px}
+ /* 看板 */
+ #board{display:none}
+ .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+ .scard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+ .scard .label{font-size:12px;color:var(--sub);margin-bottom:6px}
+ .scard .val{font-size:20px;font-weight:700}
+ .scard .sub{font-size:13px;margin-top:3px}
+ .chartbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
+ .grid2{display:grid;grid-template-columns:1fr;gap:14px}
+ @media(min-width:680px){.grid2{grid-template-columns:1.1fr 1fr}}
+ table{width:100%;border-collapse:collapse;font-size:13px}
+ th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+ th:first-child,td:first-child{text-align:left}
+ th{color:var(--sub);font-weight:600;font-size:12px}
+ .tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 12px;margin-bottom:14px}
+ .foot{font-size:12px;color:var(--sub);line-height:1.7;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="lock">🔒</div>
+  <h1>我的持股看板</h1>
+  <div class="muted">請輸入密碼開啟</div>
+  <input id="pw" type="password" inputmode="text" autocomplete="current-password" placeholder="密碼" />
+  <button id="go">開啟</button>
+  <div id="gateErr"></div>
+</div>
+
+<div id="board">
+  <h1>📊 我的持股看板</h1>
+  <div class="muted" id="updated">—</div>
+
+  <div class="summary">
+    <div class="scard"><div class="label">總資產 (TWD)</div><div class="val" id="sVal">—</div><div class="sub" id="sFx"></div></div>
+    <div class="scard"><div class="label">總損益</div><div class="val" id="sPl">—</div><div class="sub" id="sPlPct"></div></div>
+    <div class="scard"><div class="label">今日變動</div><div class="val" id="sDay">—</div></div>
+    <div class="scard"><div class="label">總成本 (TWD)</div><div class="val" id="sCost">—</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="chartbox"><canvas id="pie" height="220"></canvas></div>
+    <div class="tablewrap">
+      <table id="tbl"><thead><tr>
+        <th>標的</th><th>股數</th><th>現價</th><th>今日%</th><th>持股現值</th><th>現值(TWD)</th><th>均價</th><th>損益</th><th>損益%</th>
+      </tr></thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <div class="chartbox"><canvas id="assetChart" height="120"></canvas></div>
+  <div class="chartbox"><canvas id="plChart" height="90"></canvas></div>
+
+  <div class="foot">
+    <div>• 資料由 GitHub Actions 於每日台股(14:00)與美股(06:00)收盤後自動更新。</div>
+    <div>• 數字以密碼加密儲存,僅在你的瀏覽器解密,公開原始碼看不到任何金額。</div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(n,d=0)=>n==null||isNaN(n)?'—':Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const shFmt=n=>n==null||isNaN(n)?'—':(Number.isInteger(n)?fmt(n):Number(n).toLocaleString('en-US',{maximumFractionDigits:4}));
+const sg=n=>n>0?'+':'';
+const cls=n=>n>0?'up':(n<0?'down':'');
+
+// ---- 解密(對應 Node 端 AES-256-GCM）----
+async function decrypt(env, password){
+  const enc=new TextEncoder();
+  const salt=Uint8Array.from(atob(env.salt),c=>c.charCodeAt(0));
+  const iv=Uint8Array.from(atob(env.iv),c=>c.charCodeAt(0));
+  const data=Uint8Array.from(atob(env.data),c=>c.charCodeAt(0));
+  const baseKey=await crypto.subtle.importKey('raw',enc.encode(password),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey(
+    {name:'PBKDF2',salt,iterations:env.iters||200000,hash:'SHA-256'},
+    baseKey,{name:'AES-GCM',length:256},false,['decrypt']);
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+let ENC=null;
+async function loadEnc(){
+  if(ENC) return ENC;
+  const res=await fetch('./data.enc?'+Date.now());
+  if(!res.ok) throw new Error('找不到 data.enc(GitHub Action 可能還沒跑第一次)');
+  ENC=await res.json();
+  return ENC;
+}
+
+async function unlock(){
+  const pw=$('pw').value;
+  if(!pw){$('gateErr').textContent='請輸入密碼';return;}
+  $('gateErr').textContent='解密中…';
+  try{
+    const env=await loadEnc();
+    const payload=await decrypt(env,pw);
+    render(payload);
+    $('gate').style.display='none';
+    $('board').style.display='block';
+  }catch(e){
+    $('gateErr').textContent=(''+e.message).includes('data.enc')?e.message:'密碼錯誤';
+  }
+}
+$('go').onclick=unlock;
+$('pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+
+const palette=['#3b82f6','#e5484d','#26a269','#eab308','#a855f7','#06b6d4','#f97316','#ec4899','#84cc16','#64748b','#14b8a6','#f43f5e'];
+
+function render(d){
+  const tk='#8b949e',grid='#232b36';
+  $('updated').textContent='更新時間:'+d.updated;
+  $('sVal').textContent='NT$ '+fmt(d.totals.val);
+  $('sFx').textContent='USD匯率 '+fmt(d.fx,3);
+  const pl=$('sPl');pl.textContent='NT$ '+sg(d.totals.pl)+fmt(d.totals.pl);pl.className='val '+cls(d.totals.pl);
+  const plp=$('sPlPct');plp.textContent=sg(d.totals.plPct)+fmt(d.totals.plPct,2)+'%';plp.className='sub '+cls(d.totals.pl);
+  const day=$('sDay');day.textContent=sg(d.totals.dayPct)+fmt(d.totals.dayPct,2)+'%';day.className='val '+cls(d.totals.dayPct);
+  $('sCost').textContent='NT$ '+fmt(d.totals.cost);
+
+  // 明細表(依市值排序)
+  const rows=[...d.rows].sort((a,b)=>b.valTwd-a.valTwd);
+  const tb=$('tbl').querySelector('tbody');tb.innerHTML='';
+  rows.forEach(r=>{
+    const tr=document.createElement('tr');
+    const u=r.ccy==='USD'?'$':'NT$';
+    const valNative=r.price*r.shares;
+    const plNative=(r.price-r.cost)*r.shares;
+    tr.innerHTML=`<td>${r.name}<div class="muted" style="font-size:11px">${r.sym}</div></td>`
+      +`<td>${shFmt(r.shares)}</td>`
+      +`<td>${u}${fmt(r.price,2)}</td>`
+      +`<td class="${cls(r.dayPct)}">${sg(r.dayPct)}${fmt(r.dayPct,1)}%</td>`
+      +`<td>${u}${fmt(valNative)}</td>`
+      +`<td>${fmt(r.valTwd)}</td>`
+      +`<td>${u}${fmt(r.cost,2)}</td>`
+      +`<td class="${cls(plNative)}">${sg(plNative)}${u}${fmt(plNative)}</td>`
+      +`<td class="${cls(r.plPct)}">${sg(r.plPct)}${fmt(r.plPct,1)}%</td>`;
+    tb.appendChild(tr);
+  });
+
+  // 配置圓餅
+  new Chart($('pie'),{type:'doughnut',
+    data:{labels:rows.map(r=>r.name),datasets:[{data:rows.map(r=>r.valTwd),backgroundColor:rows.map((_,i)=>palette[i%palette.length]),borderColor:'#161b22',borderWidth:2}]},
+    options:{plugins:{legend:{position:'right',labels:{color:'#e6edf3',font:{size:11},boxWidth:12}},
+      title:{display:true,text:'資產配置',color:tk},
+      tooltip:{callbacks:{label:c=>` ${c.label}: NT$${fmt(c.parsed)} (${(c.parsed/d.totals.val*100).toFixed(1)}%)`}}}}});
+
+  // 走勢
+  const H=d.history||[],labels=H.map(r=>r.t);
+  new Chart($('assetChart'),{type:'line',
+    data:{labels,datasets:[
+      {label:'總資產 (TWD)',data:H.map(r=>r.V),borderColor:'#3b82f6',backgroundColor:'rgba(59,130,246,.12)',fill:true,tension:.25,pointRadius:H.length>40?0:3},
+      {label:'總成本 (TWD)',data:H.map(r=>r.C),borderColor:'#8b949e',borderDash:[5,4],fill:false,tension:.25,pointRadius:0}
+    ]},
+    options:{plugins:{legend:{labels:{color:'#e6edf3'}},title:{display:true,text:'總資產 vs 總成本',color:tk}},
+      scales:{x:{ticks:{color:tk,maxRotation:0,autoSkip:true},grid:{color:grid}},
+        y:{ticks:{color:tk,callback:v=>(v/1e6).toFixed(1)+'M'},grid:{color:grid}}}}});
+
+  new Chart($('plChart'),{type:'line',
+    data:{labels,datasets:[{label:'損益 %',data:H.map(r=>r.PP),borderColor:'#e5484d',backgroundColor:'rgba(229,72,77,.12)',fill:true,tension:.25,pointRadius:H.length>40?0:3}]},
+    options:{plugins:{legend:{labels:{color:'#e6edf3'}},title:{display:true,text:'報酬率 (%)',color:tk}},
+      scales:{x:{ticks:{color:tk,maxRotation:0,autoSkip:true},grid:{color:grid}},
+        y:{ticks:{color:tk,callback:v=>v+'%'},grid:{color:grid}}}}});
+}
+</script>
+</body>
+</html>
