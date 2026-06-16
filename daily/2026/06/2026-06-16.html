@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-06-16 星期二 每日彙整</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --card: #1e2130;
+      --border: #2a2d3e;
+      --text: #e8eaf0;
+      --muted: #a0aec0;
+      --accent: #4f6ef7;
+      --accent-light: rgba(79,110,247,0.13);
+      --highlight: #f6c90e;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 0 0 60px;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-back {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    .nav-back:hover { opacity: 1; }
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    header .date-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+    /* PDF Cards */
+    .pdf-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .pdf-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .one-liner {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      color: #c9d6ff;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .pdf-points {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px;
+    }
+    .pdf-points li {
+      position: relative;
+      padding: 6px 0 6px 20px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .pdf-points li:last-child { border-bottom: none; }
+    .pdf-points li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 13px;
+    }
+    .pdf-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .drive-link {
+      display: inline-block;
+      color: var(--accent);
+      font-size: 13px;
+      text-decoration: none;
+      padding: 5px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .drive-link:hover { background: var(--accent-light); }
+    .analyze-btn {
+      display: inline-block; padding: 5px 14px;
+      background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+      color: var(--muted); font-size: 13px; cursor: pointer; transition: all 0.2s;
+    }
+    .analyze-btn:hover { background: rgba(79,110,247,0.13); color: var(--text); }
+    .copy-toast {
+      position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+      background: #4f6ef7; color: white; padding: 10px 20px;
+      border-radius: 8px; font-size: 14px; z-index: 9999;
+      transition: opacity 0.5s; opacity: 1; pointer-events: none;
+    }
+    /* Photo grid */
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 12px; }
+    .photo-item { cursor: pointer; border-radius: 8px; overflow: hidden; background: var(--card); }
+    .photo-item img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .photo-caption { font-size: 12px; color: var(--muted); padding: 6px 8px; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <a href="../../index.html" class="nav-back">← 返回首頁</a>
+    <h1>2026-06-16 星期二</h1>
+    <div class="date-sub">每日彙整 · Daily Briefing</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- PDF 摘要 -->
+  <section class="section">
+    <h2 class="section-title">📄 PDF 摘要</h2>
+    
+    <div class="pdf-card">
+      <h3 class="pdf-title">油價跌至三個月低點 但油輪業者對荷姆茲通行仍持謹慎態度</h3>
+      <div class="one-liner">📌 美伊和平協議達成後油價應聲跌至三個月低點，惟全球最大油輪業者警告各船公司仍需等待數週才敢恢復荷姆茲海峽通行，顯示市場對航運正常化抱持高度觀望態度。</div>
+      <ul class="pdf-points">
+        <li>布蘭特原油期貨跌至每桶82.13美元，WTI則跌破80美元至79.67美元，雙雙創下近三個月新低，反映市場對美伊和平框架細節的持續不確定性，油市波動性仍高。</li>
+<li>川普總統在G7峰會上宣布，美伊和平框架已正式簽署，荷姆茲海峽最快將於週五「完全重新開放」並免收伊朗通行費，正式簽署儀式預定在日內瓦舉行。</li>
+<li>全球最大貨櫃航運公司赫伯羅德（Hapag-Lloyd）對和平協議表示歡迎，期待旗下仍在波灣的四艘船隻本週末能順利通過荷姆茲海峽，認為此為船員與客戶的「好消息」。</li>
+<li>全球最大油輪業者——三井商船（Mitsui OSK Lines）執行長田村譲太郎警告，光有書面協議還不夠，業者需要看到荷姆茲海峽「實際情況的改變」才會放行旗下油輪，多數業者仍將觀望數週。</li>
+<li>G7峰會討論將以中東和平協議為主軸，備忘錄的更多細節預計本週稍晚公布，短期油市仍將受地緣政治消息主導而持續震盪。</li>
+      </ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1zNMnLVWHDrdc9E5bLvoiLQIfGSQMLKbo/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-16', '油價跌至三個月低點 但油輪業者對荷姆茲通行仍持謹慎態度')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">美伊協議推升道瓊創歷史新高 日經225盤中觸及70,000點</h3>
+      <div class="one-liner">📌 美伊停火協議帶動道瓊工業指數創歷史新高並掀起全球股市漲潮，惟油價重挫拖累能源股，中國五月零售銷售逾三年來首見負成長，顯示全球復甦基礎仍參差不齊。</div>
+      <ul class="pdf-points">
+        <li>道瓊工業指數週一大漲468點（+0.92%）創歷史收盤新高，標普500指數跳升1.65%，那斯達克綜合指數更勁揚3.07%，資訊科技類股領漲3.39%，七大板塊收紅，市場對停火協議反應積極。</li>
+<li>受荷姆茲海峽即將免費重開的消息刺激，油價週一單日急跌近5%，能源類股因此重挫3.58%成為市場最弱板塊，和平紅利在不同產業間呈現明顯分化效應。</li>
+<li>亞洲股市週二表現分歧：日本日經225指數盤中觸及70,000點歷史高位，韓國綜合股價指數大漲2.11%，但香港恆生指數下跌1.64%，中國滬深300指數下滑0.15%，中港股市顯示市場疑慮。</li>
+<li>日本央行進一步升息至1%（31年來最高），澳洲央行則維持利率4.35%不變但保留升息空間，韓國航太國防股因中東局勢改寫格局而逆勢大漲，韓華航太等股票當日漲幅超過10%。</li>
+<li>中國五月零售銷售年減0.6%，逾三年來首次出現負成長，勞動節長假效應未能挽救消費頹勢，低於市場預估，反映中國內需面臨嚴峻下行壓力，為全球復甦前景投下陰影。</li>
+      </ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1MBthLQhNYuFuYOI5Da4uwvgc916wRJpw/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-16', '美伊協議推升道瓊創歷史新高 日經225盤中觸及70,000點')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">Anthropic 將與白宮官員會面 討論 AI 工具暫停使用問題</h3>
+      <div class="one-liner">📌 Anthropic執行長達里奧·阿莫迪預計與美國商務部長盧特尼克會面，就政府以國家安全理由暫停新款AI模型Fable 5及Mythos 5供外籍人士使用一事協商，AI安全與開放共享之間的張力持續升溫。</div>
+      <ul class="pdf-points">
+        <li>美國政府以國家安全為由禁止Anthropic讓任何外籍人士使用其最新AI工具Fable 5（面向大眾版本）與Mythos 5（限特定組織版本），兩者均為Claude Mythos系列最新模型，也是Anthropic迄今發布能力最強大的產品。</li>
+<li>Anthropic執行長達里奧·阿莫迪預定與商務部長霍華德·盧特尼克在華盛頓舉行會談，討論政府對模型「越獄」（jailbreak）漏洞的疑慮，但Anthropic表示迄今僅收到「口頭證據」，尚無書面文件支持。</li>
+<li>此次風波是Anthropic與政府今年衝突的延續，此前雙方已因國防部相關合約對簿公堂，惟數週前雙方曾召開「富有成效」的會議，顯示兩者關係時而緊張、時而緩和，充滿不確定性。</li>
+<li>來自輝達、Zoom、賓士以及前美國政府安全官員的數十名科技界人士聯名致函，呼籲商務部長解除限制，讓Fable 5和Mythos 5重新上線，並要求政府建立「公開、科學、透明」的AI風險評估程序。</li>
+<li>安全專家警告，在對手積極推進AI能力的背景下，若無充分理由便剝奪守方最強大的工具，將造成不對等的安全風險，此一論點凸顯AI治理政策設計所面臨的深層矛盾。</li>
+      </ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1r-W-q90NKB4vtKypTuLQFs-w8oRYonNs/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-16', 'Anthropic 將與白宮官員會面 討論 AI 工具暫停使用問題')">🔍 申請深度分析</button>
+      </div>
+    </div>
+
+    <div class="pdf-card">
+      <h3 class="pdf-title">日本升息至31年來最高 政策利率達1%</h3>
+      <div class="one-liner">📌 日本央行宣布升息至1%，創下31年來最高水準，以應對中東戰爭引發能源價格飆升所帶動的通膨壓力，標誌著日本正式告別長達二十年的超寬鬆貨幣政策時代。</div>
+      <ul class="pdf-points">
+        <li>日本央行週二將政策利率從0.75%上調至1%，為1995年以來最高，此為2024年3月啟動升息週期以來的重要里程碑，延續去年12月升息後的貨幣政策正常化路徑，顯示央行對經濟復甦的信心。</li>
+<li>美伊戰爭引發中東能源供應中斷，推升日本能源進口成本，五月批發物價年增逾6%創三年新高，儘管整體通膨率（4月CPI為1.4%）仍低於央行2%目標，但通膨上行風險持續加大。</li>
+<li>日本央行總裁植田和男因感染肝囊腫住院而缺席本次會議，政策委員會仍決議升息，顯示整體委員對升息方向已有高度共識，去除個別首長缺席的不確定性仍能推進政策正常化。</li>
+<li>弱勢日圓持續受強勢美元與歐元壓制，加劇輸入性通膨；此次升息同時有助於穩定匯率，學界認為目前「日圓偏便宜，升息不會傷到出口競爭力」，雙重政策目標兼顧的邏輯相對清晰。</li>
+<li>儘管升息，日本利率仍遠低於美英（兩者均逾3%），澳洲央行同日維持4.35%不變但保留再升息空間，全球央行利率政策分化格局正在緩慢重新排列，長期資金流向值得持續關注。</li>
+      </ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1U2kIkEyWTPpznlXwitJ_MRQC3oktRrwb/view" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-16', '日本升息至31年來最高 政策利率達1%')">🔍 申請深度分析</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  生成時間：2026-06-16 18:07（台灣時間）
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="this.style.display='none'" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;cursor:pointer;align-items:center;justify-content:center;">
+  <img id="lightbox-img" style="max-width:90%;max-height:90vh;border-radius:8px;">
+</div>
+
+<script>
+function openLightbox(url) {
+  document.getElementById('lightbox-img').src = url;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  }).catch(() => {
+    showToast('❌ 複製失敗，請手動複製');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
