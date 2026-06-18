@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日簡報 2026-06-18</title>
+<style>
+  :root {
+    --bg: #0f1117; --surface: #1a1d2e; --card: #1e2130;
+    --border: #2a2d3e; --text: #e8eaf0; --muted: #a0aec0;
+    --accent: #4f6ef7; --accent-light: rgba(79,110,247,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+    line-height: 1.7; padding: 0 0 60px;
+  }
+  .header {
+    background: linear-gradient(135deg, #141728 0%, #1a1d2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 24px 24px; text-align: center;
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: 0.04em; }
+  .header .date-sub { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .nav { display: flex; justify-content: center; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+  .nav a { color: var(--accent); text-decoration: none; font-size: 0.85rem; opacity: 0.85; transition: opacity 0.2s; }
+  .nav a:hover { opacity: 1; }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px 0; }
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 1.1rem; font-weight: 700; color: var(--accent);
+    border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 18px;
+  }
+  .pdf-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 20px;
+    transition: border-color 0.2s;
+  }
+  .pdf-card:hover { border-color: var(--accent); }
+  .pdf-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+  .pdf-headline {
+    background: var(--accent-light); border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 0.95rem;
+    color: #c9d1ff; margin-bottom: 14px; line-height: 1.6;
+  }
+  .pdf-points { list-style: none; padding: 0; margin: 0 0 14px; }
+  .pdf-points li {
+    position: relative; padding: 8px 0 8px 20px; font-size: 0.9rem;
+    color: var(--muted); border-bottom: 1px solid rgba(42,45,62,0.5); line-height: 1.65;
+  }
+  .pdf-points li:last-child { border-bottom: none; }
+  .pdf-points li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); opacity: 0.7; }
+  .pdf-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .drive-link { color: var(--accent); text-decoration: none; font-size: 0.88rem; opacity: 0.85; transition: opacity 0.2s; }
+  .drive-link:hover { opacity: 1; text-decoration: underline; }
+  .analyze-btn {
+    display: inline-block; padding: 6px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+  .footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📰 每日簡報</h1>
+  <div class="date-sub">2026-06-18（星期四）</div>
+  <nav class="nav">
+    <a href="../../index.html">← 返回月份列表</a>
+    <a href="../../../index.html">🏠 首頁</a>
+  </nav>
+</div>
+<div class="container">
+  <section class="section">
+    <h2 class="section-title">📄 PDF 摘要</h2>
+    <div class="pdf-card">
+      <h3 class="pdf-title">Trump and Iran's President Pezeshkian sign memorandum aimed to end war</h3>
+      <p class="pdf-headline">川普與伊朗總統佩澤什基安在法國凡爾賽宮正式完成停戰備忘錄數位簽署，協議涵蓋荷姆茲海峽立即重開及高濃縮鈾處置等14項條款，但已引發部分共和黨參議員公開強烈批評。</p>
+      <ul class="pdf-points"><li>川普與伊朗總統佩澤什基安於法國凡爾賽宮正式完成停戰備忘錄（MOU）的數位簽署，這距副總統范斯與伊朗國會議長加利巴夫完成同一文件的首次簽署僅隔三天，法國總統馬克宏在場握手致賀，稱讚「幹得好」。</li><li>備忘錄共14項條款，核心要求包括：以色列立即停止在黎巴嫩的軍事行動，以及伊朗在至少60天內免費重新開放荷姆茲海峽，並要求美伊雙方協商處置伊朗的高濃縮鈾庫存。</li><li>一名美國資深官員透露，美國認為無需立即進入伊朗取走核材料，因為去年六月「午夜之錘」行動對伊朗核設施的打擊極為成功，相關核材料已深埋地下難以使用。此說法似乎與川普當初發動戰爭時所稱「伊朗核威脅迫在眉睫」的論述有所矛盾。</li><li>共和黨參議員卡西迪（Bill Cassidy）在 X 平台痛批此協議為「數十年來最糟糕的外交政策失誤」，批評伊朗的核野心並未被遏制，而且伊朗已學會用荷姆茲海峽作為要脅籌碼，未來必定再度利用。</li><li>另一共和黨參議員提利斯（Thom Tillis）則在國會山莊表示，這場戰爭已耗費1,000億美元，損失兩架 F-18 戰機，造成13名美軍陣亡、365人受傷，對於僅有14項條款的協議感到不滿。</li></ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1v774aREmvvn3B4gXVi91q19ynsQM3qN3/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-18', 'Trump and Iran\'s President Pezeshkian sign memorandum aimed to end war')">🔍 申請深度分析</button>
+      </div>
+    </div>
+    <div class="pdf-card">
+      <h3 class="pdf-title">Why Wall Street banks and foreign borrowers are rushing to tap China's cheap money</h3>
+      <p class="pdf-headline">人民幣借貸成本遠低於美元市場，外資銀行與主權借款人紛紛湧入中國在岸債券市場發行「熊貓債券」，2026年上半年發行量年增逾八成，人民幣正快速演變為新的全球融資貨幣。</p>
+      <ul class="pdf-points"><li>「熊貓債券」係指境外發行人在中國在岸市場發行的人民幣計價債券，2026年截至六月第二週的發行量已達1,371億元人民幣，較去年同期大幅增長80.4%，單月最高紀錄亦出現在今年5月的266.4億元。</li><li>外資銀行在中國市場的借貸利率約為1.7%至2.2%，而在美元市場則為4.5%至5.5%，利差達兩至三個百分點。低廉的融資成本是外資追捧熊貓債的核心驅動力，摩根士丹利、德意志銀行、大眾汽車等均為近期發行者。</li><li>過去制約外資發行熊貓債的最大障礙在於資本管制——借款人無法自由將所籌資金匯出中國大陸，熊貓債的吸引力主要侷限於在華有大量業務的企業。近期北京逐步放寬相關限制，才使哈薩克與巴基斯坦等主權借款人也相繼加入。</li><li>分析師指出，人民幣作為融資貨幣的崛起，正在複製日圓數十年來在全球金融市場所扮演的角色。法國外貿銀行亞太首席經濟學家加西亞·埃雷羅表示：「這基本上是舊版的日圓套利邏輯，就是便宜的資金。」</li><li>中國人民銀行行長潘功勝最新宣布，允許海外央行與主權財富基金以中國債券為抵押品獲取人民幣流動性，進一步強化離岸人民幣使用的基礎設施，顯示北京正積極推進人民幣國際化戰略。</li></ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1CUM50hjoqOxjILgQfdzspcaPPKVhsHuX/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-18', 'Why Wall Street banks and foreign borrowers are rushing to tap China\'s cheap money')">🔍 申請深度分析</button>
+      </div>
+    </div>
+    <div class="pdf-card">
+      <h3 class="pdf-title">Oil falls as International Energy Agency forecasts supply glut next year after U.S.-Iran deal</h3>
+      <p class="pdf-headline">美國與伊朗簽署停戰備忘錄後，市場預期中東供應將大幅回升，國際能源署同步預警2027年原油市場將出現顯著供過於求，推動油價當日明顯下跌。</p>
+      <ul class="pdf-points"><li>國際能源署（IEA）在最新月度石油市場報告中預測，中東衝突的持久終結將帶來大量新增供應，並於2027年引發顯著的供過於求；2027年全球供應量預計回升至每日1.103億桶，較2026年大幅反彈。</li><li>布蘭特原油期貨下跌1.13%至每桶78.65美元，美國西德州中級原油（WTI）下跌1.26%至每桶75.82美元，跌幅受到美伊停戰協議正式簽署消息的明顯推動。</li><li>川普在凡爾賽宮完成協議簽署後，仍向媒體表示若伊朗違反協議將重啟打擊行動，「如果他們違反協議，我們將猛烈轟炸他們」，為油市前景增添政治不確定性。</li><li>儘管油價下跌有助於緩解通膨壓力，但紐約人壽投資管理公司的分析報告指出，局勢並非全面好轉：油價仍高於衝突前水準，航運恢復正常化需要時間，庫存與戰略儲備亦待補充。</li><li>根據協議，伊朗須在至少60天內不收取任何費用地重新開放荷姆茲海峽，這對全球石油供應鏈意義重大，但能否落實仍有待觀察，市場短期情緒受此利空壓制。</li></ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/1oJN_1ZdmNlknUjFZGTkVWmMuk0n2U8yU/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-18', 'Oil falls as International Energy Agency forecasts supply glut next year after U.S.-Iran deal')">🔍 申請深度分析</button>
+      </div>
+    </div>
+    <div class="pdf-card">
+      <h3 class="pdf-title">SpaceX adds longtime Elon Musk ally Roelof Botha to board</h3>
+      <p class="pdf-headline">SpaceX 在歷史性 IPO 後不到一週，將馬斯克的老友、紅杉資本前管理合夥人羅洛夫·波薩任命為獨立董事，進一步鞏固核心盟友圈在公司治理架構中的地位。</p>
+      <ul class="pdf-points"><li>SpaceX 在完成歷史性 IPO 後不到一週，宣布將紅杉資本前管理合夥人羅洛夫·波薩（Roelof Botha）納入董事會擔任獨立董事，並成為審計委員會成員，使董事會成員增至八人，馬斯克則繼續兼任董事長、執行長與技術長。</li><li>波薩與馬斯克同為南非出身，兩人早在2000年共事於線上支付公司 PayPal，此後建立起超過二十年的深厚交情。此次波薩加入董事會被市場視為馬斯克進一步強化核心盟友圈的舉措，而非引入獨立外部制衡力量。</li><li>紅杉資本自2019年起投資 SpaceX，歷經多輪加碼後，目前持有約1.5%的股份，市值估計達350億美元。波薩此次擔任董事並非代表紅杉的官方立場，紅杉合夥人穆奎爾（Shaun Maguire）才是負責 SpaceX 投資的主要負責人。</li><li>馬斯克目前掌控 SpaceX 超過82%的投票權，外部股東影響力極為有限。紅杉合夥人穆奎爾公開表示將「永遠持有」個人持有的 SpaceX 股份，但同時也暗示若估值明顯偏高，紅杉可能會分配部分股份給有限合夥人。</li><li>波薩去年因管理風格受同事批評，以及公開力挺被指責發表反伊斯蘭言論的穆奎爾而陷入爭議，隨後辭去管理合夥人職務，目前以顧問身分留任紅杉，主要負責早期及成長階段投資。</li></ul>
+      <div class="pdf-actions">
+        <a href="https://drive.google.com/file/d/16yjI5Wl1D3lXsIkQvn1GDcKh9GLp2mm0/view?usp=drivesdk" target="_blank" class="drive-link">📂 在 Google Drive 開啟</a>
+        <button class="analyze-btn" onclick="requestAnalysis(this, '2026-06-18', 'SpaceX adds longtime Elon Musk ally Roelof Botha to board')">🔍 申請深度分析</button>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="footer">
+  <p>生成時間：2026-06-18 18:08（台灣時間）</p>
+  <p style="margin-top:4px;opacity:0.6;">由 Claude AI 自動彙整 · <a href="https://github.com/Alanliuchb/briefing" style="color:var(--accent);opacity:0.7;">GitHub</a></p>
+</div>
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
