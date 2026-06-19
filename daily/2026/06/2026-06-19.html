@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-19 星期五 — 每日彙整</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0f1117; --surface: #1a1d2e; --card: #1e2130;
+    --text: #e8eaf0; --muted: #a0aec0; --accent: #4f6ef7;
+    --border: #2d3148;
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.6; padding: 0; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 24px; display: flex; align-items: center; gap: 16px; }
+  header nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+  header nav a:hover { color: var(--accent); }
+  header h1 { font-size: 22px; font-weight: 700; color: var(--text); }
+  header .date-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+  .empty-state { text-align: center; padding: 80px 0; color: var(--muted); }
+  .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+  .empty-state p { font-size: 16px; }
+  footer { text-align: center; padding: 24px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 48px; }
+  .analyze-btn {
+    display: inline-block; margin-top: 8px; padding: 6px 14px;
+    background: transparent; border: 1px solid #4f6ef7; border-radius: 6px;
+    color: #a0aec0; font-size: 13px; cursor: pointer; transition: all 0.2s;
+  }
+  .analyze-btn:hover { background: rgba(79,110,247,0.13); color: #e8eaf0; }
+  .copy-toast {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: #4f6ef7; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 14px; z-index: 9999;
+    transition: opacity 0.5s; opacity: 1;
+  }
+</style>
+</head>
+<body>
+<header>
+  <nav><a href="../../index.html">← 回首頁</a></nav>
+  <div>
+    <h1>2026-06-19　星期五</h1>
+    <div class="date-sub">每日彙整</div>
+  </div>
+</header>
+<div class="container">
+  <div class="empty-state">
+    <div class="icon">📭</div>
+    <p>今日 Google Drive 資料夾尚無內容</p>
+    <p style="margin-top:8px;font-size:13px;">可將 PDF、圖片、連結等資料放入 Drive，明日將自動彙整</p>
+  </div>
+</div>
+<footer>生成時間：2026-06-19 18:02（台灣時間）</footer>
+<script>
+function requestAnalysis(btn, date, title) {
+  const text = '幫我深度分析 ' + date + ' 的 PDF：' + title;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = orig, 2000);
+    showToast('✅ 已複製！請貼給 Claude');
+  });
+}
+function showToast(msg) {
+  const t = document.createElement('div'); t.className = 'copy-toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; }, 2000);
+  setTimeout(() => { t.remove(); }, 2500);
+}
+</script>
+</body>
+</html>
