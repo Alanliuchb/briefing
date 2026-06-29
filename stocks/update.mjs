@@ -12,11 +12,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const PASSWORD = process.env.VIEW_PASSWORD;
-const HOLDINGS_JSON = process.env.PORTFOLIO_HOLDINGS;
 if (!PASSWORD) { console.error('缺少 VIEW_PASSWORD'); process.exit(1); }
-if (!HOLDINGS_JSON) { console.error('缺少 PORTFOLIO_HOLDINGS'); process.exit(1); }
 
-const HOLDINGS = JSON.parse(HOLDINGS_JSON);
+// 持股來源:優先用環境變數 PORTFOLIO_HOLDINGS(GitHub Secret),否則讀 stocks/holdings.json
+let HOLDINGS;
+const HOLDINGS_JSON = process.env.PORTFOLIO_HOLDINGS;
+if (HOLDINGS_JSON) {
+  HOLDINGS = JSON.parse(HOLDINGS_JSON);
+} else {
+  const holdingsPath = path.join('stocks', 'holdings.json');
+  if (!fs.existsSync(holdingsPath)) {
+    console.error('缺少 PORTFOLIO_HOLDINGS 環境變數或 stocks/holdings.json 檔案');
+    process.exit(1);
+  }
+  HOLDINGS = JSON.parse(fs.readFileSync(holdingsPath, 'utf8'));
+  console.log(`從 ${holdingsPath} 讀取持股清單,共 ${HOLDINGS.length} 筆`);
+}
 const DATA_PATH = path.join('stocks', 'data.enc');
 const PBKDF2_ITERS = 200000;
 
