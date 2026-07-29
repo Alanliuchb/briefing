@@ -3,8 +3,8 @@
     "sym": "0050",
     "name": "元大台灣50",
     "ccy": "TWD",
-    "shares": 94013,
-    "cost": 63.24
+    "shares": 96013,
+    "cost": 63.99
   },
   {
     "sym": "006208",
@@ -45,8 +45,8 @@
     "sym": "QQQ",
     "name": "Invesco QQQ",
     "ccy": "USD",
-    "shares": 57.32533,
-    "cost": 462.418097
+    "shares": 61.33772,
+    "cost": 467.325987
   },
   {
     "sym": "SPY",
@@ -59,8 +59,8 @@
     "sym": "VOO",
     "name": "Vanguard S&P 500",
     "ccy": "USD",
-    "shares": 48.563,
-    "cost": 491.46346
+    "shares": 49.58555,
+    "cost": 495.447565
   },
   {
     "sym": "VT",
