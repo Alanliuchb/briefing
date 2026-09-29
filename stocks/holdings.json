@@ -1,79 +1,79 @@
 [
-  {
-    "sym": "0050",
-    "name": "元大台灣50",
-    "ccy": "TWD",
-    "shares": 98013,
-    "cost": 64.82
-  },
-  {
-    "sym": "006208",
-    "name": "富邦台灣50",
-    "ccy": "TWD",
-    "shares": 21439,
-    "cost": 121.58
-  },
-  {
-    "sym": "AAPL",
-    "name": "Apple",
-    "ccy": "USD",
-    "shares": 24,
-    "cost": 268.23375
-  },
-  {
-    "sym": "COHR",
-    "name": "Coherent",
-    "ccy": "USD",
-    "shares": 4,
-    "cost": 335.93
-  },
-  {
-    "sym": "LITE",
-    "name": "Lumentum",
-    "ccy": "USD",
-    "shares": 1,
-    "cost": 926.57
-  },
-  {
-    "sym": "MRVL",
-    "name": "Marvell",
-    "ccy": "USD",
-    "shares": 10,
-    "cost": 250.342
-  },
-  {
-    "sym": "QQQ",
-    "name": "Invesco QQQ",
-    "ccy": "USD",
-    "shares": 62.32191,
-    "cost": 480.037438
-  },
-  {
-    "sym": "SPY",
-    "name": "SPDR S&P 500",
-    "ccy": "USD",
-    "shares": 27,
-    "cost": 615.845556
-  },
-  {
-    "sym": "VOO",
-    "name": "Vanguard S&P 500",
-    "ccy": "USD",
-    "shares": 50.57963,
-    "cost": 499.551697
-  },
-  {
-    "sym": "VT",
-    "name": "Vanguard Total World",
-    "ccy": "USD",
-    "shares": 220.08634,
-    "cost": 140.195798
-  },
-  {
-    "sym": "SPCX",
-    "name": "Procure Space ETF",
-    "ccy": "USD",
-    "shares": 23,
-    "cost": 133.842174
-  }
+    {
+          "sym": "0050",
+          "name": "元大台灣50",
+          "ccy": "TWD",
+          "shares": 100013,
+          "cost": 65.76
+    },
+    {
+          "sym": "006208",
+          "name": "富邦台灣50",
+          "ccy": "TWD",
+          "shares": 21439,
+          "cost": 121.58
+    },
+    {
+          "sym": "AAPL",
+          "name": "Apple",
+          "ccy": "USD",
+          "shares": 30,
+          "cost": 279.805333
+    },
+    {
+          "sym": "COHR",
+          "name": "Coherent",
+          "ccy": "USD",
+          "shares": 10,
+          "cost": 320.104
+    },
+    {
+          "sym": "LITE",
+          "name": "Lumentum",
+          "ccy": "USD",
+          "shares": 3,
+          "cost": 915.306667
+    },
+    {
+          "sym": "MRVL",
+          "name": "Marvell",
+          "ccy": "USD",
+          "shares": 15,
+          "cost": 254.433333
+    },
+    {
+          "sym": "QQQ",
+          "name": "Invesco QQQ",
+          "ccy": "USD",
+          "shares": 63.26438,
+          "cost": 483.952423
+    },
+    {
+          "sym": "SPY",
+          "name": "SPDR S&P 500",
+          "ccy": "USD",
+          "shares": 30,
+          "cost": 630.473
+    },
+    {
+          "sym": "VOO",
+          "name": "Vanguard S&P 500",
+          "ccy": "USD",
+          "shares": 51.56765,
+          "cost": 503.556784
+    },
+    {
+          "sym": "VT",
+          "name": "Vanguard Total World",
+          "ccy": "USD",
+          "shares": 226.27063,
+          "cost": 140.783981
+    },
+    {
+          "sym": "SPCX",
+          "name": "Procure Space ETF",
+          "ccy": "USD",
+          "shares": 30,
+          "cost": 138.129333
+    }
 ]
